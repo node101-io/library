@@ -30,12 +30,39 @@ block content
             .all-header-each-language-button#all-header-ru
               .all-header-each-language-button-text RU
               img.all-header-each-language-button-flag(src=`${URL}/img/flags/ru.png` alt='node101 language russian')
-    //- .all-header-responsive-wrapper
-      a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang = ' + query_lang : ''))
-        img.all-header-logo(src=URL + '/img/logo/header.svg' alt='library.node101 logo')
+    .all-header-responsive-wrapper
+      .all-header-responsive-top-wrapper
+        a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang = ' + query_lang : ''))
+          img.all-header-logo(src=URL + '/img/logo/header.svg' alt='library.node101 logo')
+        label.all-header-search-wrapper
+          svg.all-header-search-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512')
+            path(d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z')
+          input.all-header-search-input(type='text' name='search' placeholder=__('Search') autofocus autocomplete='off' value=(search ? search : ''))
+        .all-header-language-wrapper(style='overflow: hidden')
+          .all-header-language-button
+            .all-header-language-button-text= __('Langugage')
+            img.all-header-language-button-flag(src=`${URL}/img/flags/${lang}.png` alt='node101 language ' + lang)
+          .all-header-language-menu
+            if lang != 'en'
+              .all-header-each-language-button#all-header-en
+                .all-header-each-language-button-text EN
+                img.all-header-each-language-button-flag(src=`${URL}/img/flags/en.png` alt='node101 language english')
+            if lang != 'tr'
+              .all-header-each-language-button#all-header-tr
+                .all-header-each-language-button-text TR
+                img.all-header-each-language-button-flag(src=`${URL}/img/flags/tr.png` alt='node101 language turkish')
+            if lang != 'ru'
+              .all-header-each-language-button#all-header-ru
+                .all-header-each-language-button-text RU
+                img.all-header-each-language-button-flag(src=`${URL}/img/flags/ru.png` alt='node101 language russian')
       .all-header-buttons-wrapper
-        a.all-header-each-button-text(href='https://stake.node101.io' + (query_lang ? '?lang=' + query_lang : ''))= __('Stake')
-        a.all-header-each-button-text(href='https://testnet.node101.io' + (query_lang ? '?lang=' + query_lang : ''))= __('Testnet')
-      .all-header-language-wrapper
+        a.all-header-each-button(href='/books' + (query_lang ? '?lang=' + query_lang : ''))= __('Books')
+        a.all-header-each-button(href='/projects' + (query_lang ? '?lang=' + query_lang : ''))= __('Projects')
+        a.all-header-each-button(href='/101' + (query_lang ? '?lang=' + query_lang : ''))= __('101 Content')
+        a.all-header-each-button(href='/writers' + (query_lang ? '?lang=' + query_lang : ''))= __('Writers')
+      label.all-header-responsive-search-wrapper
+        svg.all-header-search-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512')
+          path(d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z')
+        input.all-header-search-input(type='text' name='search' placeholder=__('Search') autofocus autocomplete='off' value=(search ? search : ''))
     .all-content-wrapper
       block main

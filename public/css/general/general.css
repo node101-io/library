@@ -87,14 +87,14 @@ p, h1, h2, h3, h4, h5, h6 {
     --page-horizontal-padding: 60px;
   }
 }
-@media only screen and (max-width: 900px) {
-  :root {
-    --page-horizontal-padding: 80px;
-  }
-}
 @media only screen and (max-width: 700px) {
   :root {
-    --page-horizontal-padding: 60px;
+    --page-horizontal-padding: 50px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  :root {
+    --page-horizontal-padding: 40px;
   }
 }
 @media only screen and (max-width: 500px) {
