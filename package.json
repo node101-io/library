@@ -1,0 +1,31 @@
+{
+  "name": "library.node101",
+  "version": "1.0.0",
+  "description": "https://library.node101.io",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yunus Gürlek",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^3.2.4",
+    "cluster": "^0.7.7",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "i18n": "^0.15.1",
+    "moment-timezone": "^0.5.41",
+    "mongoose": "^6.6.5",
+    "multer": "^1.4.5-lts.1",
+    "os": "^0.1.2",
+    "pug": "^3.0.2",
+    "serve-favicon": "^2.5.0",
+    "urldecode": "^1.0.1",
+    "validator": "^13.7.0"
+  }
+}

@@ -1,0 +1,58 @@
+extends  ../partials/header
+block main
+  //- .background-shape
+  .slider-wrapper
+    each slide in slider
+      .each-slide-wrapper
+        .each-slide-image-wrapper
+          img.each-slide-image(src=slide.cover alt=slide.title)
+          .each-slide-change-buttons-wrapper
+            .each-slide-change-button
+              svg.each-slide-change-button-icon(viewBox='0 0 6 10' xmlns='http://www.w3.org/2000/svg')
+                path(d='M0.000195285 5L5.0002 -3.0598e-08L5.7002 0.7L1.40019 5L5.70019 9.3L5.0002 10L0.000195285 5Z')
+            .each-slide-change-button
+              svg.each-slide-change-button-icon(viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg')
+                path(d='M6 5L1 10L0.3 9.3L4.6 5L0.3 0.7L1 -2.18557e-07L6 5Z')
+        .each-slide-content-wrapper
+          .each-slide-title= slide.title
+          .each-slide-subtitle= slide.subtitle
+          a.each-slide-button(href=slide.link)
+            .each-slide-button-text= __('Read Now')
+            svg.each-slide-button-icon(viewBox='0 0 16 12' xmlns='http://www.w3.org/2000/svg')
+              path(d='M14.6252 1.37995C14.3465 1.10027 14.0153 0.878364 13.6507 0.726948C13.286 0.575532 12.8951 0.497589 12.5002 0.497589C12.1054 0.497589 11.7144 0.575532 11.3498 0.726948C10.9851 0.878364 10.6539 1.10027 10.3752 1.37995L11.0852 2.08995C11.2714 1.90381 11.4924 1.75614 11.7356 1.6554C11.9788 1.55466 12.2395 1.50281 12.5027 1.50281C12.766 1.50281 13.0267 1.55466 13.2699 1.6554C13.5131 1.75614 13.7341 1.90381 13.9202 2.08995C14.1064 2.2761 14.254 2.49709 14.3548 2.74031C14.4555 2.98352 14.5074 3.2442 14.5074 3.50745C14.5074 3.77071 14.4555 4.03138 14.3548 4.2746C14.254 4.51782 14.1064 4.73881 13.9202 4.92495L9.92023 8.92496C9.54495 9.3009 9.03569 9.51237 8.5045 9.51283C7.9733 9.5133 7.46367 9.30274 7.08773 8.92745C6.71178 8.55217 6.50032 8.04292 6.49985 7.51172C6.49938 6.98053 6.70995 6.4709 7.08523 6.09495L7.79023 5.38495L7.08523 4.67495L6.37523 5.38495C6.09555 5.66367 5.87364 5.99484 5.72222 6.3595C5.57081 6.72415 5.49286 7.11511 5.49286 7.50995C5.49286 7.9048 5.57081 8.29575 5.72222 8.66041C5.87364 9.02507 6.09555 9.35624 6.37523 9.63495C6.94097 10.1935 7.70527 10.5046 8.50023 10.5C8.89659 10.5016 9.28934 10.4247 9.65579 10.2736C10.0222 10.1226 10.3551 9.9004 10.6352 9.61996L14.6352 5.61995C15.1957 5.05613 15.5095 4.29289 15.5076 3.49789C15.5057 2.70288 15.1884 1.94113 14.6252 1.37995Z')
+              path(d='M2.09523 10.41C1.90853 10.2241 1.76037 10.0032 1.65928 9.75997C1.55819 9.51671 1.50615 9.25588 1.50615 8.99245C1.50615 8.72903 1.55819 8.4682 1.65928 8.22494C1.76037 7.98168 1.90853 7.76079 2.09523 7.57495L6.09523 3.57495C6.28107 3.38825 6.50196 3.2401 6.74521 3.13901C6.98847 3.03791 7.2493 2.98587 7.51273 2.98587C7.77616 2.98587 8.03699 3.03791 8.28024 3.13901C8.5235 3.2401 8.74439 3.38825 8.93023 3.57495C9.11575 3.76226 9.2618 3.98489 9.35971 4.22966C9.45762 4.47444 9.5054 4.73637 9.50023 4.99995C9.50175 5.26436 9.45084 5.52644 9.35042 5.77103C9.25001 6.01563 9.10209 6.23789 8.91523 6.42495L7.85523 7.49995L8.56523 8.20995L9.62523 7.14995C10.1895 6.58571 10.5065 5.82042 10.5065 5.02245C10.5065 4.22449 10.1895 3.4592 9.62523 2.89495C9.06098 2.33071 8.2957 2.01372 7.49773 2.01372C6.69976 2.01372 5.93448 2.33071 5.37023 2.89495L1.37023 6.89496C1.0898 7.17376 0.867251 7.50525 0.715391 7.87036C0.56353 8.23548 0.485352 8.62702 0.485352 9.02246C0.485352 9.41789 0.56353 9.80943 0.715391 10.1745C0.867251 10.5397 1.0898 10.8712 1.37023 11.15C1.93964 11.7042 2.70568 12.0099 3.50023 12C4.30178 12.0007 5.07109 11.6844 5.64023 11.12L4.93023 10.41C4.74439 10.5967 4.5235 10.7448 4.28024 10.8459C4.03699 10.947 3.77616 10.999 3.51273 10.999C3.2493 10.999 2.98847 10.947 2.74521 10.8459C2.50196 10.7448 2.28107 10.5967 2.09523 10.41Z')
+  .inner-content-wrapper
+    .navbar-wrapper
+      .navbar-buttons-wrapper
+        .each-navbar-button.selected-navbar-button#navbar-button-trend= __('Trend')
+        .each-navbar-button#navbar-button-exclusive= __('Exclusive')
+        .each-navbar-button#navbar-button-latest= __('Exclusive')
+        .each-navbar-button#navbar-button-editors-pick= __('Editors Pick')
+      .navbar-search-wrapper
+        input.navbar-search-input(type='text' placeholder=__('What are you looking for?') autocomplete='none')
+        .navbar-search-icon-wrapper
+          svg.navbar-search-icon(viewBox='0 0 15 15' xmlns='http://www.w3.org/2000/svg')
+            path(d='M14.5001 13.7929L10.7241 10.0169C11.6314 8.92758 12.0839 7.53038 11.9873 6.11596C11.8908 4.70153 11.2526 3.37879 10.2057 2.42288C9.15867 1.46698 7.78347 0.951515 6.36612 0.983723C4.94877 1.01593 3.5984 1.59333 2.59593 2.59581C1.59345 3.59828 1.01605 4.94865 0.983845 6.366C0.951637 7.78335 1.4671 9.15855 2.423 10.2055C3.37891 11.2525 4.70165 11.8907 6.11608 11.9872C7.5305 12.0838 8.9277 11.6313 10.017 10.7239L13.7931 14.5L14.5001 13.7929ZM2.00012 6.5C2.00012 5.60998 2.26404 4.73995 2.75851 3.99993C3.25297 3.25991 3.95578 2.68313 4.77804 2.34254C5.60031 2.00194 6.50511 1.91283 7.37802 2.08646C8.25094 2.2601 9.05276 2.68868 9.6821 3.31802C10.3114 3.94735 10.74 4.74918 10.9137 5.62209C11.0873 6.495 10.9982 7.3998 10.6576 8.22207C10.317 9.04434 9.7402 9.74714 9.00018 10.2416C8.26016 10.7361 7.39013 11 6.50012 11C5.30705 10.9987 4.16323 10.5241 3.3196 9.68052C2.47597 8.83689 2.00144 7.69306 2.00012 6.5Z')
+        .navbar-search-button= __('Search')
+    .writings-wrapper
+      - for (let i = 0; i < writings.length; i += 3)
+        .writings-each-line
+          - for (let j = i; j < Math.min(i + 3, writings.length); j++)
+            article.each-writing-wrapper
+              img.each-writing-image(src=writings[j].logo alt=writings[j].title)
+              .each-writing-header-wrapper
+                .each-writing-writer-wrapper
+                  img.each-writing-writer-image(src=writings[j].writer.image alt=writings[j].writer.title)
+                  h3.each-writing-writer-name= writings[j].writer.name
+                if writings[j].flag
+                  .each-writing-flag= writings[j].flag
+              h1.each-writing-title= writings[j].title
+              h2.each-writing-subtitle= writings[j].subtitle
+              .each-writing-footer-wrapper
+                .each-writing-date #{writings[j].created_at.split('.')[0]} #{MONTHS[parseInt(writings[j].created_at.split('.')[1]) - 1]}
+                .each-writing-social-media-accounts-wrapper
+                  each account in Object.keys(writings[j].social_media_accounts)
+                    a.each-writing-social-media-account-wrapper(href=writings[j].social_media_accounts[account] target='_blank')
+                      svg.each-writing-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
+                        path(d=SOCIAL_MEDIA_ICONS[account].d)
+

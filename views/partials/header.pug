@@ -1,0 +1,64 @@
+extends ./head
+block content
+  .all-wrapper
+    .all-header-wrapper
+      a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang = ' + query_lang : ''))
+        img.all-header-logo(src=URL + '/img/logo/header.svg' alt='library.node101 logo')
+      .all-header-buttons-wrapper
+        a.all-header-each-button-text(href='https://stake.node101.io' + (query_lang ? '?lang=' + query_lang : ''))= __('Stake')
+        a.all-header-each-button-text(href='https://testnet.node101.io' + (query_lang ? '?lang=' + query_lang : ''))= __('Testnet')
+        if header_library
+          .all-header-each-button-wrapper
+            .all-header-each-button-visible-wrapper
+              h1.all-header-each-button-text= __('Library')
+              svg.all-header-each-button-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512')
+                path(d='M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z')
+            .all-header-each-button-hidden-wrapper
+              .all-header-library-button-content-wrapper
+                .all-header-library-button-content-left-wrapper
+                  .all-header-each-library-button-content-column
+                    h2.all-header-each-library-button-content-column-title= __('Projects')
+                    each project in header_library.projects
+                      a.all-header-each-library-button-content-column-text(href=`${project.link}${query_lang ? '?lang=' + query_lang : ''}`)= project.title
+                  .all-header-each-library-button-content-column
+                    h2.all-header-each-library-button-content-column-title= __('Terms')
+                    each term in header_library.terms
+                      a.all-header-each-library-button-content-column-text(href=term.link)= term.title
+                  .all-header-each-library-button-content-column
+                    h2.all-header-each-library-button-content-column-title= __('101 News')
+                    each news in header_library.news
+                      a.all-header-each-library-button-content-column-text(href=news.link)= news.title
+                .all-header-library-right-wrapper
+                  .all-header-library-button-content-writings-wrapper
+                    each writing in header_library.writings
+                      a.all-header-each-library-button-content-writing-wrapper(href=writing.link)
+                        img.all-header-each-library-button-content-writing-image(src=writing.logo alt=writing.title)
+                        h2.all-header-each-library-button-content-writing-title= writing.title
+                        h3.all-header-each-library-button-content-writing-subtitle= writing.subtitle
+                  .all-header-library-button-content-writings-buttons-wrapper
+                    .all-header-library-button-content-writings-each-button
+                      svg.all-header-library-button-content-writings-each-button-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512')
+                        path(d='M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z')
+                    .all-header-library-button-content-writings-each-button
+                      svg.all-header-library-button-content-writings-each-button-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512')
+                        path(d='M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z')
+        else
+          a.all-header-each-button-text(href='https://library.node101.io' + (query_lang ? '?lang=' + query_lang : ''))= __('Library')
+        a.all-header-each-button-text(href='https://events.node101.io' + (query_lang ? '?lang=' + query_lang : ''))= __('Events')
+        a.all-header-each-button-text(href='https://aboutus.node101.io' + (query_lang ? '?lang=' + query_lang : ''))= __('About Us')
+        //- .all-header-each-button-wrapper
+          .all-header-each-button-visible-wrapper
+            h1.all-header-each-button-text= __('Community')
+              svg(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512')
+                path(d='M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z')
+          .all-header-each-button-hidden-wrapper
+            .all-header-community-button-links-wrapper
+              each link in node101_links
+                a.all-header-each-community-button-wrapper(href=link.url)
+                  .all-header-each-community-button-logo
+                    svg(xmlns='http://www.w3.org/2000/svg' viewBox=link.view_box)
+                      path(d=link.d)
+                  span.all-header-each-community-button-text= link.title
+      .all-header-language-wrapper
+    .all-content-wrapper
+      block main
