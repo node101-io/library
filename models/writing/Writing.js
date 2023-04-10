@@ -161,7 +161,7 @@ WritingSchema.statics.findWritingByIdAndFormat = function (id, callback) {
 WritingSchema.statics.findWritingByIdAndFormatByLanguage = function (id, language, callback) {
   const Writing = this;
 
-  if (!language || !validator.isISO31661Alpha2(language.toString()))
+  if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
   Writing.findWritingById(id, (err, writing) => {

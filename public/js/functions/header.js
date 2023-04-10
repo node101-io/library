@@ -1,24 +1,36 @@
 window.addEventListener('load', () => {
   const allHeader = document.querySelector('.all-header-wrapper');
+  const allHeaderLanguageWrapperList = document.querySelectorAll('.all-header-language-wrapper');
 
   document.addEventListener('mouseover', event => {
-    if (ancestorWithClassName(event.target, 'all-header-each-button-visible-wrapper')) {
-      const target = ancestorWithClassName(event.target, 'all-header-each-button-visible-wrapper');
-      const item = target.nextElementSibling;
-      const alreadySelectedItem = document.querySelector('.all-header-each-button-hidden-wrapper-hovered');
+    if (ancestorWithClassName(event.target, 'all-header-language-wrapper')) {
+      for (let i = 0; i < allHeaderLanguageWrapperList.length; i++)
+        allHeaderLanguageWrapperList[i].style.overflow = 'visible';
+    } else {
+      for (let i = 0; i < allHeaderLanguageWrapperList.length; i++)
+        allHeaderLanguageWrapperList[i].style.overflow = 'hidden';
+    }
+  });
 
-      if (alreadySelectedItem) {
-        if (alreadySelectedItem == item)
-          return;
-        else
-          alreadySelectedItem.classList.remove('all-header-each-button-hidden-wrapper-hovered');
-      }
+  document.addEventListener('click', event => {
+    if (ancestorWithClassName(event.target, 'all-header-each-language-button')) {
+      const target = ancestorWithClassName(event.target, 'all-header-each-language-button');
+      const lang = target.id.replace('all-header-', '');
+      const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop)
+      });
 
-      allHeader.classList.add('all-header-wrapper-hovered');
-      item.classList.add('all-header-each-button-hidden-wrapper-hovered');
-    } else if (!ancestorWithClassName(event.target, 'all-header-each-button-wrapper') && document.querySelector('.all-header-each-button-hidden-wrapper-hovered')) {
-      document.querySelector('.all-header-each-button-hidden-wrapper-hovered').classList.remove('all-header-each-button-hidden-wrapper-hovered');
-      allHeader.classList.remove('all-header-wrapper-hovered');
+      let url = window.location.href.split('?')[0] + '?';
+
+      Object.keys(params).forEach(key => {
+        if (key != 'lang')
+          url = `${url}${key}=${params[key]}&`;
+      });
+      url = `${url}lang=${lang}`;
+
+      console.log(url)
+
+      window.location.href = url;
     }
   });
 });

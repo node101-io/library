@@ -56,7 +56,8 @@ input[type=number] {
   --box-padding: 20px;
 
   --main-color: rgba(120, 169, 255, 1);
-  --background-color: rgba(1, 1, 1, 1);
+  --box-color: rgba(6, 6, 9, 1);
+  --background-color: rgba(9, 9, 9, 1);
   --background-color-two: rgba(18, 18, 18, 1);
   --button-text-color: rgba(244, 244, 244, 1);
   --button-background-color: rgba(15, 98, 254, 1);

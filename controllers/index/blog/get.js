@@ -4,7 +4,7 @@ const Blog = require('../../../models/blog/Blog');
 const Writing = require('../../../models/writing/Writing');
 
 module.exports = (req, res) => {
-  const language = res.locals.language;
+  const language = res.locals.lang;
   const url = req.originalUrl.substring(1, req.originalUrl.length);
   const identifier = urldecode(url.split('?')[0]).replace('blog/', '');
 

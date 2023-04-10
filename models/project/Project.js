@@ -5,6 +5,7 @@ const validator = require('validator');
 const getProject = require('./functions/getProject');
 const getProjectByLanguage = require('./functions/getProjectByLanguage');
 
+const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
 const DEFAULT_DOCUMENT_COUNT_PER_QUERY = 20;
 const MAX_DATABASE_ARRAY_FIELD_LENGTH = 1e4;
 const MAX_DATABASE_TEXT_FIELD_LENGTH = 1e4;
@@ -118,7 +119,7 @@ ProjectSchema.statics.findProjectByIdentifierAndFormatByLanguage = function (ide
     if (!project.is_completed)
       return callback('not_authenticated_request');
 
-    if (!language || !validator.isISO31661Alpha2(language.toString()))
+    if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
       language = project.identifier_languages[identifier];
 
     getProjectByLanguage(project, language, (err, project) => {
@@ -146,7 +147,7 @@ ProjectSchema.statics.findProjectByIdAndFormat = function (id, callback) {
 ProjectSchema.statics.findProjectByIdAndFormatByLanguage = function (id, language, callback) {
   const Project = this;
 
-  if (!language || !validator.isISO31661Alpha2(language.toString()))
+  if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
   Project.findProjectById(id, (err, project) => {

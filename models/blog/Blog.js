@@ -7,6 +7,7 @@ const toURLString = require('../../utils/toURLString');
 const getBlog = require('./functions/getBlog');
 const getBlogByLanguage = require('./functions/getBlogByLanguage');
 
+const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
 const DEFAULT_DOCUMENT_COUNT_PER_QUERY = 20;
 const MAX_DATABASE_TEXT_FIELD_LENGTH = 1e4;
 const MAX_DATABASE_LONG_TEXT_FIELD_LENGTH = 1e5;
@@ -129,7 +130,7 @@ BlogSchema.statics.findBlogByIdAndFormat = function (id, callback) {
 BlogSchema.statics.findBlogByIdAndFormatByLanguage = function (id, language, callback) {
   const Blog = this;
 
-  if (!language || !validator.isISO31661Alpha2(language.toString()))
+  if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
   Blog.findBlogById(id, (err, blog) => {
@@ -148,7 +149,7 @@ BlogSchema.statics.findBlogByIdAndFormatByLanguage = function (id, language, cal
 BlogSchema.statics.findBlogByIdenfierAndFormatByLanguage = function (identifier, language, callback) {
   const Blog = this;
 
-  if (!identifier || typeof identifier != 'string' || !identifier.trim().length)
+  if (!identifier || typeof identifier != 'string' || !identifier.trim().length)
     return callback('bad_request');
 
   Blog.findOne({

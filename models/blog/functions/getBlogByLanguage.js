@@ -10,6 +10,7 @@ module.exports = (blog, language, callback) => {
       subtitle: blog.subtitle,
       social_media_accounts: blog.social_media_accounts
     };
+    
 
   if (blog.type == 'project') {
     Project.findProjectByIdAndFormatByLanguage(blog.project_id, language, (err, project) => {

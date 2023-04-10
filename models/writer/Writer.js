@@ -5,6 +5,7 @@ const validator = require('validator');
 const getWriter = require('./functions/getWriter');
 const getWriterByLanguage = require('./functions/getWriterByLanguage');
 
+const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
 const DEFAULT_DOCUMENT_COUNT_PER_QUERY = 20;
 const MAX_DATABASE_TEXT_FIELD_LENGTH = 1e4;
 const MAX_DOCUMENT_COUNT_PER_QUERY = 1e2;
@@ -95,7 +96,7 @@ WriterSchema.statics.findWriterByIdAndFormat = function (id, callback) {
 WriterSchema.statics.findWriterByIdAndFormatByLanguage = function (id, language, callback) {
   const Writer = this;
 
-  if (!language || !validator.isISO31661Alpha2(language.toString()))
+  if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
   Writer.findWriterById(id, (err, writer) => {
