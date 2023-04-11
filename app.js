@@ -36,8 +36,10 @@ if (cluster.isMaster) {
   const MAX_SERVER_PARAMETER_LIMIT = 50000;
   const QUERY_LIMIT = 20;
 
-  const indexRouteController = require('./routes/indexRoute');
   const allRouteController = require('./routes/allRoute');
+  const projectsRouteController = require('./routes/projectsRoute');
+  const indexRouteController = require('./routes/indexRoute');
+  const writersRouteController = require('./routes/writersRoute');
 
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'pug');
@@ -90,6 +92,8 @@ if (cluster.isMaster) {
   });
 
   app.use('/', indexRouteController);
+  app.use('/projects', projectsRouteController);
+  app.use('/writers', writersRouteController);
   app.use('*', allRouteController);
 
   server.listen(PORT, () => {

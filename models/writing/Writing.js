@@ -4,7 +4,6 @@ const validator = require('validator');
 
 const toURLString = require('../../utils/toURLString');
 
-const getWriting = require('./functions/getWriting');
 const getWritingByLanguage = require('./functions/getWritingByLanguage');
 
 const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
@@ -141,20 +140,6 @@ WritingSchema.statics.findWritingById = function (id, callback) {
     if (!writing) return callback('document_not_found');
 
     return callback(null, writing);
-  });
-};
-
-WritingSchema.statics.findWritingByIdAndFormat = function (id, callback) {
-  const Writing = this;
-
-  Writing.findWritingById(id, (err, writing) => {
-    if (err) return callback(err);
-
-    getWriting(writing, (err, writing) => {
-      if (err) return callback(err);
-
-      return callback(null, writing);
-    });
   });
 };
 

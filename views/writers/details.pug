@@ -1,0 +1,36 @@
+extends  ../partials/header
+block main
+  .general-info-wrapper
+    .general-info-image-wrapper
+      img.general-info-image(src=writer.image alt=writer.name)
+    .general-info-content-wrapper
+      h1.general-info-title= writer.name
+      h2.general-info-subtitle= writer.title
+      .general-info-social-media-accounts-wrapper
+        each account in Object.keys(writer.social_media_accounts)
+          a.general-info-each-social-media-account-wrapper(href=writer.social_media_accounts[account] target='_blank')
+            svg.general-info-each-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
+              path(d=SOCIAL_MEDIA_ICONS[account].d)
+      h3.general-info-number #{count} #{__('writing')}#{count > 1 ? __('s') : ''}
+  .inner-content-wrapper
+    .general-writings-wrapper
+      - for (let i = 0; i < writings.length; i += 3)
+        .general-writings-each-line
+          - for (let j = i; j < Math.min(i + 3, writings.length); j++)
+            article.general-each-writing-wrapper
+              img.general-each-writing-image(src=writings[j].logo alt=writings[j].title)
+              .general-each-writing-header-wrapper
+                .general-each-writing-writer-wrapper
+                  img.general-each-writing-writer-image(src=writings[j].writer.image alt=writings[j].writer.title)
+                  h3.general-each-writing-writer-name= writings[j].writer.name
+                if writings[j].flag
+                  .general-each-writing-flag= writings[j].flag
+              h1.general-each-writing-title= writings[j].title
+              h2.general-each-writing-subtitle= writings[j].subtitle
+              .general-each-writing-footer-wrapper
+                .general-each-writing-date #{writings[j].created_at.split('.')[0]} #{MONTHS[parseInt(writings[j].created_at.split('.')[1]) - 1]}
+                .general-each-writing-social-media-accounts-wrapper
+                  each account in Object.keys(writings[j].social_media_accounts)
+                    a.general-each-writing-social-media-account-wrapper(href=writings[j].social_media_accounts[account] target='_blank')
+                      svg.general-each-writing-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
+                        path(d=SOCIAL_MEDIA_ICONS[account].d)

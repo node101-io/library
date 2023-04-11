@@ -37,14 +37,14 @@ html(lang='tr')
         if includes.external.css
           each file_name in includes.external.css
             if file_name == 'page'
-              link(rel='stylesheet' href=`/css/${page}.css`)
+              link(rel='stylesheet' href=`${URL}/css/${page}.css`)
             else
-              link(rel='stylesheet' href=`/css/general/${file_name}.css`)
+              link(rel='stylesheet' href=`${URL}/css/general/${file_name}.css`)
         if includes.external.js
           each file_name in includes.external.js
             if file_name == 'page'
-              script(src=`/js/${page}.js`)
+              script(src=`${URL}/js/${page}.js`)
             else
-              script(src=`/js/functions/${file_name}.js`)
+              script(src=`${URL}/js/functions/${file_name}.js`)
     body
       block content

@@ -2,10 +2,7 @@ module.exports = (writer, language, callback) => {
   let translation = writer.translations[language];
 
   if (!translation)
-    translation = {
-      title: writer.title,
-      social_media_accounts: writer.social_media_accounts
-    };
+    translation = {};
   if (!translation.title)
     translation.title = writer.title;
   Object.keys(writer.social_media_accounts).forEach(key => {
@@ -17,7 +14,7 @@ module.exports = (writer, language, callback) => {
     _id: writer._id.toString(),
     is_completed: writer.is_completed,
     name: writer.name.replace(writer._id.toString(), ''),
-    link: '/writer/' + writer.identifier,
+    link: '/writers/' + writer.identifier,
     title: translation.title,
     image: writer.image,
     social_media_accounts: translation.social_media_accounts

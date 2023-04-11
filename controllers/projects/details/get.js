@@ -1,32 +1,32 @@
 const urldecode = require('urldecode');
 
-const Writer = require('../../../models/writer/Writer');
+const Blog = require('../../../models/blog/Blog');
 const Writing = require('../../../models/writing/Writing');
 
 module.exports = (req, res) => {
-  const language = res.locals.language;
+  const language = res.locals.lang;
   const url = req.originalUrl.substring(1, req.originalUrl.length);
-  const identifier = urldecode(url.split('?')[0]).replace('writer/', '');
+  const identifier = urldecode(url.split('?')[0]).replace('projects/', '');
 
-  Writer.findWriterByIdenfierAndFormatByLanguage(identifier, language, (err, writer) => {
-    if (err) return res.redirect('/');
+  Blog.findBlogByIdenfierAndFormatByLanguage(identifier, language, (err, project) => {
+    if (err) return res.redirect('/projects');
 
     Writing.findWritingsByFiltersAndFormatByLanguage({
-      writer_id: writer._id
+      parent_id: project._id
     }, language, (err, data) => {
-      if (err) return res.redirect('/');
+      if (err) return res.redirect('/projects');
 
       Writing.findWritingCountByFiltersAndLanguage({
-        writer_id: writer._id
+        parent_id: project._id
       }, language, (err, count) => {
-        if (err) return res.redirect('/');
+        if (err) return res.redirect('/projects');
 
-        return res.render('index/writer', {
-          page: 'index/writer',
-          title: writer.name,
+        return res.render('projects/details', {
+          page: 'projects/details',
+          title: project.name,
           includes: {
             external: {
-              css: ['general', 'header', 'info', 'page', 'writings'],
+              css: ['general', 'header', 'info', 'page', 'writing'],
               js: ['ancestorWithClassName', 'header', 'serverRequest']
             },
             // meta: {
@@ -36,7 +36,7 @@ module.exports = (req, res) => {
             //   twitter: true
             // }
           },
-          writer,
+          project,
           count,
           writings: data.writings,
           limit: data.limit,

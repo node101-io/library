@@ -51,6 +51,8 @@ input[type=number] {
 }
 
 :root {
+  --inner-content-wrapper-width: 950px;
+
   --page-horizontal-padding: 200px;
   --page-vertical-padding: 60px;
   --box-padding: 20px;

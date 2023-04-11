@@ -7,13 +7,19 @@ module.exports = (writing, language, callback) => {
   let translation = writing.translations[language];
 
   if (!translation)
-    translation = {
-      title: writing.title.replace(writing._id.toString(), ''),
-      subtitle: writing.subtitle,
-      content: writing.content,
-      flag: writing.flag,
-      social_media_accounts: writing.social_media_accounts
-    };
+    translation = {};
+  if (!translation.title || !translation.title.length)
+    translation.title = writing.title;
+  if (!translation.subtitle || !translation.subtitle.length)
+    translation.subtitle = writing.subtitle
+  if (!translation.content || !translation.content.length)
+    translation.content = writing.content;
+  if (!translation.flag || !translation.flag.length)
+    translation.flag = writing.flag;
+  Object.keys(writing.social_media_accounts).forEach(key => {
+    if (!translation.social_media_accounts[key])
+      translation.social_media_accounts[key] = writing.social_media_accounts[key];
+  });
 
   Blog.findBlogByIdAndFormatByLanguage(writing.parent_id, language, (err, blog) => {
     if (err) return  callback(err);

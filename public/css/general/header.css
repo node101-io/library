@@ -166,7 +166,7 @@
   justify-content: space-between;
   padding: 0 10px;
   background-color: var(--background-color-two);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   cursor: pointer;
 }
 .all-header-each-language-button:hover {

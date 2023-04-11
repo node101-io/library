@@ -1,24 +1,9 @@
 :root {
-  --inner-content-wrapper-width: 950px;
   --writing-gap: 20px;
   --each-writing-height: 500px;
+  --each-first-line-writing-height: 450px;
   --each-writing-padding: 10px;
   --each-writer-image-size: 30px;
-}
-
-.inner-content-wrapper {
-  position: relative;
-  z-index: 2;
-  height: fit-content;
-  min-height: fit-content;
-  width: 100vw;
-  min-width: 100vw;
-  padding: 0 calc((100vw - var(--inner-content-wrapper-width)) / 2);
-  display: flex;
-  flex-direction: column;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  padding-bottom: 100px;
 }
 
 .general-writings-wrapper {
@@ -28,19 +13,18 @@
   min-width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
 }
 
 .general-writings-each-line {
-  height: var(--each-writing-height);
-  min-height: var(--each-writing-height);
+  height: fit-content;
+  min-height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--writing-gap);
 }
 
-.general-each-writing-wrapper {
+.general-each-writing-wrapper, .general-each-first-line-writing-wrapper {
   display: flex;
   flex-direction: column;
   height: var(--each-writing-height);
@@ -55,11 +39,17 @@
   cursor: pointer;
   margin: 0 calc(var(--writing-gap) / 2);
 }
-.general-each-writing-wrapper:hover {
+.general-each-first-line-writing-wrapper {
+  height: var(--each-first-line-writing-height);
+  min-height: var(--each-first-line-writing-height);
+  width: calc((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4);
+  min-width: calc((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4);
+}
+.general-each-writing-wrapper:hover, .general-each-first-line-writing-wrapper:hover {
   margin-top: -3px;
 }
 
-.general-each-writing-image {
+.general-each-writing-image, .general-each-first-line-writing-image {
   width: 100%;
   min-width: 100%;
   height: calc(((var(--inner-content-wrapper-width) - 2 * var(--writing-gap)) / 3) - 2 * var(--each-writing-padding));
@@ -69,6 +59,10 @@
   box-shadow: 0 0 2px rgba(254, 254, 254, 0.1);
   border-radius: 2px;
 }
+.general-each-first-line-writing-image {
+  height: calc(((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4) - 2 * var(--each-writing-padding));
+  min-height: calc(((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4) - 2 * var(--each-writing-padding));
+}
 
 .general-each-writing-header-wrapper {
   display: flex;
@@ -77,12 +71,15 @@
   margin-bottom: var(--each-writing-padding);
 }
 .general-each-writing-writer-wrapper {
-  flex: 1;
   display: flex;
   align-items: center;
-  width: fit-content;
-  min-width: fit-content;
   text-decoration: none;
+  overflow: hidden;
+  width: auto;
+  color: var(--text-color);
+}
+.general-each-writing-writer-wrapper:hover {
+  color: var(--main-color);
 }
 .general-each-writing-writer-image {
   width: var(--each-writer-image-size);
@@ -93,7 +90,12 @@
 .general-each-writing-writer-name {
   font-weight: 500;
   font-size: 14px;
-  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .general-each-writing-flag {
   font-weight: 400;
@@ -103,11 +105,6 @@
   font-size: 13px;
   color: var(--background-color);
   border-radius: 12px;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin-left: 8px;
 }
 

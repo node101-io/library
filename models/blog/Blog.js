@@ -4,7 +4,6 @@ const validator = require('validator');
 
 const toURLString = require('../../utils/toURLString');
 
-const getBlog = require('./functions/getBlog');
 const getBlogByLanguage = require('./functions/getBlogByLanguage');
 
 const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
@@ -110,20 +109,6 @@ BlogSchema.statics.findBlogById = function (id, callback) {
     if (!blog) return callback('document_not_found');
 
     return callback(null, blog);
-  });
-};
-
-BlogSchema.statics.findBlogByIdAndFormat = function (id, callback) {
-  const Blog = this;
-
-  Blog.findBlogById(id, (err, blog) => {
-    if (err) return callback(err);
-
-    getBlog(blog, (err, blog) => {
-      if (err) return callback(err);
-
-      return callback(null, blog);
-    });
   });
 };
 
@@ -256,7 +241,7 @@ BlogSchema.statics.findBlogsByFiltersAndFormatByLanguage = function (data, langu
   };
 };
 
-BlogSchema.statics.findBlogCountByFilters = function (data, callback) {
+BlogSchema.statics.findBlogCountByFiltersAndLanguage = function (data, language, callback) {
   const Blog = this;
 
   if (!data || typeof data != 'object')
@@ -266,6 +251,9 @@ BlogSchema.statics.findBlogCountByFilters = function (data, callback) {
     is_completed: true,
     is_deleted: false
   };
+
+  if (data.type && typeof data.type == 'string' && TYPE_VALUES.includes(data.type))
+    filters.type = data.type;
 
   if (!data.search || typeof data.search != 'string' || !data.search.trim().length) {
     Blog

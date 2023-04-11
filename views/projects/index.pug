@@ -1,0 +1,18 @@
+extends  ../partials/header
+block main
+  .general-title-wrapper
+    h1.general-title= __('Projects')
+    p.general-text= __('node101 brings together experienced names in the blockchain world and young enthusiats with the vision of helping the growth of the blockchain community accross the globe. Feel free to reach us from support@node101.io if you have any questions / feedback on our content.')
+  .general-item-wrapper
+    - for (let i = 0; i < projects.length; i += 4)
+      .general-each-item-line-wrapper
+        - for (let j = i; j < Math.min(i + 4, projects.length); j++)
+          article.general-each-item-wrapper(id=projects[j].link)
+            img.general-each-item-image(src=projects[j].image alt=projects[j].name)
+            .general-each-item-title= projects[j].title
+            .general-each-item-subtitle= projects[j].subtitle
+            .general-each-item-footer-wrapper
+              each account in Object.keys(projects[j].social_media_accounts)
+                a.general-each-item-social-media-account-wrapper(href=projects[j].social_media_accounts[account] target='_blank')
+                  svg.general-each-item-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
+                    path(d=SOCIAL_MEDIA_ICONS[account].d)

@@ -5,11 +5,15 @@ module.exports = (blog, language, callback) => {
   let translation = blog.translations[language];
 
   if (!translation)
-    translation = {
-      title: blog.title.replace(blog._id.toString(), ''),
-      subtitle: blog.subtitle,
-      social_media_accounts: blog.social_media_accounts
-    };
+    translation = {};
+  if (!translation.title || !translation.title.length)
+    translation.title = blog.title;
+  if (!translation.subtitle || !translation.subtitle.length)
+    translation.subtitle = blog.subtitle;
+  Object.keys(blog.social_media_accounts).forEach(key => {
+    if (!translation.social_media_accounts[key])
+      translation.social_media_accounts[key] = blog.social_media_accounts[key];
+  });
     
 
   if (blog.type == 'project') {
@@ -21,8 +25,8 @@ module.exports = (blog, language, callback) => {
 
         return callback(null, {
           _id: blog._id.toString(),
-          title: translation.title,
-          link: `/${blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0]}`,
+          title: translation.title.replace(blog._id.toString(), ''),
+          link: `/projects/${blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0]}`,
           type: blog.type,
           project,
           writer,
@@ -39,8 +43,8 @@ module.exports = (blog, language, callback) => {
 
       return callback(null, {
         _id: blog._id.toString(),
-        title: translation.title,
-        link: `/${blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0]}`,
+        title: translation.title.replace(blog._id.toString(), ''),
+        link: `/projects/${blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0]}`,
         type: blog.type,
         project: null,
         writer,

@@ -1,0 +1,94 @@
+:root {
+  --item-gap: 20px;
+  --each-item-height: 370px;
+  --each-item-padding: 10px;
+}
+
+.general-item-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.general-each-item-line-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--item-gap);
+}
+
+.general-each-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: var(--each-item-height);
+  min-height: var(--each-item-height);
+  width: calc((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4);
+  min-width: calc((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4);
+  padding: var(--each-item-padding);
+  background: linear-gradient(99.85deg, rgba(12, 12, 12, 1) 0%, rgba(15, 15, 15, 1) 100%);
+  border-radius: 3px;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0 calc(var(--item-gap) / 2);
+}
+.general-each-item-wrapper:hover {
+  margin-top: -3px;
+}
+
+.general-each-item-image {
+  width: 100%;
+  min-width: 100%;
+  height: calc(((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4) - 2 * var(--each-item-padding));
+  min-height: calc(((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4) - 2 * var(--each-item-padding));
+  margin-bottom: var(--item-gap);
+}
+
+.general-each-item-title {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 21px;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.general-each-item-subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.general-each-item-footer-wrapper {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.general-each-item-social-media-account-wrapper {
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.general-each-item-social-media-account-wrapper:hover {
+  opacity: 1;
+}
+.general-each-item-social-media-account-icon {
+  height: 14px;
+  fill: var(--text-color);
+  margin-left: 10px;
+}
