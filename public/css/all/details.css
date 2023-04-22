@@ -1,0 +1,311 @@
+:root {
+  --writing-item-gap: 25px;
+  --writings-wrapper-width: 350px;
+}
+
+.writing-outer-wrapper {
+  display: flex;
+  width: 100vw;
+  min-width: 100vw;
+  padding: 0 var(--page-horizontal-padding);
+}
+
+.writing-content-wrapper {
+  flex: 1;
+  height: fit-content;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-right: var(--writing-item-gap);
+}
+
+.writing-cover {
+  width: 100%;
+  height: auto;
+  min-height: auto;
+  margin-bottom: var(--writing-item-gap);
+}
+
+.writing-title {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 150%;
+  margin-bottom: var(--writing-item-gap);
+}
+.writing-subtitle {
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 150%;
+  margin-bottom: var(--writing-item-gap);
+}
+
+.writing-content {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  min-height: fit-content;
+  width: 100%;
+  min-width: 100%;
+}
+
+.writing-item {
+  width: 100%;
+  min-width: 100%;
+  height: fit-content;
+  min-height: fit-content;
+  margin-bottom: var(--writing-item-gap);
+}
+
+.writing-header {
+  width: 100%;
+  min-width: 100%;
+  height: fit-content;
+  min-height: fit-content;
+  color: var(--text-color);
+  font-weight: 800;
+}
+.writing-header-1 {
+  font-size: 36px;
+  line-height: 44px;
+}
+.writing-header-2 {
+  font-size: 30px;
+  line-height: 38px;
+}
+.writing-header-3 {
+  font-size: 25px;
+  line-height: 28px;
+}
+.writing-header-4 {
+  font-size: 20px;
+  line-height: 24px;
+}
+.writing-header-5 {
+  font-size: 19px;
+  line-height: 22px;
+}
+.writing-header-6 {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.writing-text {
+  color: var(--text-color);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 23px;
+  outline: none;
+}
+.writing-text-bold {
+  font-weight: 800;
+}
+.writing-text-italic {
+  font-style: italic;
+}
+.writing-text-underline {
+  text-decoration: underline;
+}
+.writing-text-url {
+  color: var(--main-color) !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+.writing-text-url:hover {
+  text-decoration: underline;
+}
+
+.writing-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+}
+.writing-alt-text {
+  display: none;
+}
+.writing-image {
+  width: var(--writing-image-width);
+  min-width: var(--writing-image-width);
+  height: auto;
+  min-height: auto;
+  border-radius: 2px;
+}
+.writing-image-description {
+  max-width: var(--writing-image-width);
+  width: auto;
+  height: fit-content;
+  min-height: fit-content;
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 15px;
+  margin-top: 10px;
+  outline: none;
+  text-align: center;
+}
+
+.writing-video-wrapper {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+}
+.writing-video-url {
+  display: none;
+}
+.writing-video-alt-text {
+  display: none;
+}
+.writing-video {
+  border-radius: 2px;
+  background-color: var(--box-color);
+  border: none;
+}
+.writing-video-description {
+  max-width: var(--writing-image-width);
+  width: auto;
+  height: fit-content;
+  min-height: fit-content;
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 15px;
+  margin-top: 10px;
+  outline: none;
+  text-align: center;
+}
+
+.writing-list {
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 23px;
+  outline: none;
+  padding: 15px 0;
+  width: calc(100% - 50px) !important;
+  min-width: calc(100% - 50px) !important;
+  margin-left: 30px;
+  position: relative;
+}
+.writing-list::before {
+  content: "•";
+  position: absolute;
+  left: -22px;
+  top: 17px;
+  font-size: 35px;
+  color: var(--text-color);
+  font-weight: 800;
+}
+
+.writing-code {
+  outline: none;
+  background-color: var(--box-color) !important;
+  font-weight: 600 !important;
+  padding: 15px 30px;
+  color: rgb(7, 161, 40);
+}
+
+.writing-quote {
+  padding: 15px 0;
+  max-width: calc(100% - 300px) !important;
+  min-width: auto !important;
+  width: auto !important;
+  justify-self: center;
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--text-color-two);
+  outline: none;
+  line-height: 23px;
+  font-style: italic;
+  position: relative;
+  text-align: justify;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.writing-quote::before {
+  content: "❝";
+  position: absolute;
+  left: -30px;
+  top: 12px;
+  font-size: 30px;
+  color: var(--placeholder-color);
+}
+.writing-quote::after {
+  content: "❞";
+  position: absolute;
+  right: -30px;
+  bottom: 12px;
+  font-size: 30px;
+  color: var(--placeholder-color);
+}
+
+.writing-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--text-color-two);
+  font-size: 40px;
+  letter-spacing: 10px;
+}
+
+.writing-twitter-wrapper {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+}
+.writing-twitter-embed-text {
+  position: absolute;
+  left: calc((100% - var(--writing-twitter-width)) / 2);
+  top: 15px;
+  background-color: var(--box-color);
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 4px 8px;
+  outline: none;
+  opacity: 0.8;
+  width: 300px;
+  height: 20px;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.writing-twitter-embed-text::before {
+  content: 'Embed Code: ';
+  font-weight: 600;
+}
+.writing-twitter-embed-tex:empty:before {
+  content: 'Copy & Paste the embed code.';
+  color: var(--placeholder-color);
+}
+.writing-twitter {
+  width: var(--writing-twitter-width);
+  min-width: var(--writing-twitter-width);
+  height: auto;
+  min-height: 300px;
+  border-radius: 2px;
+}
+
+.writings-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  width: var(--writings-wrapper-width);
+  min-width: var(--writings-wrapper-width);
+}

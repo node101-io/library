@@ -17,7 +17,7 @@ block main
       - for (let i = 0; i < writings.length; i += 3)
         .general-writings-each-line
           - for (let j = i; j < Math.min(i + 3, writings.length); j++)
-            article.general-each-writing-wrapper
+            article.general-each-writing-wrapper(id=writings[j].link)
               img.general-each-writing-image(src=writings[j].logo alt=writings[j].title)
               .general-each-writing-header-wrapper
                 .general-each-writing-writer-wrapper

@@ -1,0 +1,30 @@
+extends ./header
+block main
+  .general-inner-content-outer-wrapper
+    .general-inner-content-wrapper
+      block inner
+    .general-navbar-wrapper
+      article.general-navbar-editors-pick-wrapper
+        .general-navbar-title-wrapper
+          h1.general-navbar-title= __('Editors Pick')
+          a.general-navbar-see-more-button= __('See More')
+        - for (let i = 0; i < editors_pick.length; i++)
+          a.general-navbar-each-short-writing-wrapper(href=editors_pick[i].link)
+            img.general-navbar-each-short-writing-image(src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Color_icon_red.svg/640px-Color_icon_red.svg.png' alt=editors_pick[i].title)
+            h2.general-navbar-each-short-writing-title= editors_pick[i].title
+      article.general-navbar-tags-wrapper
+        h1.general-navbar-title= __('Popular Tags')
+        .general-navbar-tags-inner-wrapper
+          - for (let i = 0; i < tags.length; i++)
+            a.general-navbar-each-tag(href=tags[i].url)= tags[i].name
+      article.general-navbar-exclusive-wrapper
+        .general-navbar-title-wrapper
+          h1.general-navbar-title= __('Exclusive Content')
+          a.general-navbar-see-more-button= __('See More')
+        - for (let i = 0; i < editors_pick.length; i++)
+          a.general-navbar-each-writing-wrapper(href=editors_pick[i].link)
+            img.general-navbar-each-writing-image(src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Color_icon_red.svg/640px-Color_icon_red.svg.png' alt=editors_pick[i].title)
+            .general-navbar-each-writing-content-wrapper
+              h2.general-navbar-each-writing-title= editors_pick[i].title
+              h2.general-navbar-each-writing-subtitle= editors_pick[i].subtitle
+      //- article.general-navbar-node101-wrapper

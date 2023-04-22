@@ -8,7 +8,7 @@ module.exports = (req, res) => {
   const url = req.originalUrl.substring(1, req.originalUrl.length);
   const identifier = urldecode(url.split('?')[0]).replace('projects/', '');
 
-  Blog.findBlogByIdenfierAndFormatByLanguage(identifier, language, (err, project) => {
+  Blog.findBlogByIdentifierAndFormatByLanguage(identifier, language, (err, project) => {
     if (err) return res.redirect('/projects');
 
     Writing.findWritingsByFiltersAndFormatByLanguage({
@@ -27,7 +27,7 @@ module.exports = (req, res) => {
           includes: {
             external: {
               css: ['general', 'header', 'info', 'page', 'writing'],
-              js: ['ancestorWithClassName', 'header', 'serverRequest']
+              js: ['ancestorWithClassName', 'header', 'page', 'serverRequest']
             },
             // meta: {
             //   title: res.__('Read, Listen & Watch | library.node101'),
@@ -39,8 +39,8 @@ module.exports = (req, res) => {
           project,
           count,
           writings: data.writings,
-          limit: data.limit,
-          page: data.page
+          writings_limit: data.limit,
+          writings_page: data.page
         });
       });
     });

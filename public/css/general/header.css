@@ -1,7 +1,7 @@
 :root {
-  --all-content-header-height: 100px;
-  --all-content-header-logo-width: 120px;
-  --all-content-header-button-gap: 35px;
+  --all-content-header-height: 70px;
+  --all-content-header-logo-width: 100px;
+  --all-content-header-button-gap: 30px;
   --all-content-header-language-button-height: 42px;
   --all-content-header-language-button-width: 140px;
 }
@@ -26,9 +26,7 @@
   min-height: var(--all-content-header-height);
   padding: 0 var(--page-horizontal-padding);
   z-index: 100;
-  background: rgba(9, 9, 9, 0.6);
-  backdrop-filter: blur(27px);
-  -webkit-backdrop-filter: blur(27px);
+  background-color: var(--background-color);
   display: flex;
   align-items: center;
 }
@@ -57,6 +55,7 @@
   text-decoration: none;
 }
 .all-header-logo {
+  fill: var(--text-color);
   width: var(--all-content-header-logo-width);
   height: auto;
 }
@@ -68,10 +67,10 @@
 }
 .all-header-each-button {
   margin: 0 calc(var(--all-content-header-button-gap) / 2);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  color: var(--button-text-color);
+  color: var(--text-color);
   min-width: fit-content;
   display: flex;
   align-items: center;
@@ -79,7 +78,8 @@
   cursor: pointer;
 }
 .all-header-each-button:hover {
-  color: var(--main-color);
+  border-bottom: 2px solid var(--text-color);
+  margin-bottom: -2px;
 }
 
 .all-header-search-wrapper, .all-header-responsive-search-wrapper {
@@ -87,6 +87,9 @@
   align-items: center;
   width: fit-content;
   min-width: fit-content;
+  background-color: var(--background-color-two);
+  padding: 5px 15px;
+  border-radius: 20px;
 }
 .all-header-responsive-search-wrapper {
   display: none;
@@ -102,7 +105,7 @@
   outline: none;
   border: none;
   background-color: transparent;
-  width: 120px;
+  width: 200px;
   color: var(--text-color);
   font-weight: 600;
   font-size: 16px;
@@ -110,7 +113,7 @@
 }
 .all-header-search-input::placeholder {
   color: var(--placeholder-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .all-header-language-wrapper {
@@ -135,7 +138,7 @@
   cursor: pointer;
 }
 .all-header-language-button-text {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   color: var(--text-color);
 }
@@ -216,7 +219,7 @@
     margin-left: var(--all-content-header-button-gap);
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   :root {
     --all-content-header-height: 130px;
     --all-content-header-button-gap: 20px;

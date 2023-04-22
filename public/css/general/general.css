@@ -3,7 +3,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: 'Space Grotesk', Helvetica, Arial, sans-serif;
+  font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
 }
 html {
   width: 100vw;
@@ -51,20 +51,23 @@ input[type=number] {
 }
 
 :root {
-  --inner-content-wrapper-width: 950px;
+  --page-horizontal-padding: 80px;
+  --content-horizontal-padding: 170px;
+  --box-padding: 30px;
+  --space-character-width: 6px;
 
-  --page-horizontal-padding: 200px;
-  --page-vertical-padding: 60px;
-  --box-padding: 20px;
+  /* 414 - 752 */
 
   --main-color: rgba(120, 169, 255, 1);
   --box-color: rgba(6, 6, 9, 1);
-  --background-color: rgba(9, 9, 9, 1);
-  --background-color-two: rgba(18, 18, 18, 1);
-  --button-text-color: rgba(244, 244, 244, 1);
-  --button-background-color: rgba(15, 98, 254, 1);
+  --background-color: rgba(13, 13, 15, 1);
+  --background-color-two: rgba(12, 12, 15, 1);
+  --border-color: rgba(248, 248, 248, 0.2);
+  --hover-color: rgba(148, 148, 148, 0.2);
+  --hover-color-light: rgba(254, 254, 254, 0.8);
+  --button-text-color: rgba(250, 250, 250, 1);
   --text-color: rgba(254, 254, 254, 1);
-  --placeholder-color: rgba(254, 254, 254, 0.6);
+  --placeholder-color: rgba(248, 248, 248, 0.6);
 }
 
 .display-none {
@@ -76,36 +79,43 @@ p, h1, h2, h3, h4, h5, h6 {
 
 @media only screen and (min-width: 1900px) {
   :root {
-    --page-horizontal-padding: calc((100vw - 1900px) / 2 + 200px);
+    --page-horizontal-padding: calc((100vw - 1900px) / 2 + 80px);
+    --content-horizontal-padding: calc((100vw - 1900px) / 2 + 170px);
   }
 }
 @media only screen and (max-width: 1700px) {
   :root {
-    --page-horizontal-padding: 100px;
+    --page-horizontal-padding: 70px;
+    --content-horizontal-padding: 150px;
+  }
+}
+@media only screen and (max-width: 1500px) {
+  :root {
+    --page-horizontal-padding: 60px;
+    --content-horizontal-padding: 110px;
   }
 }
 @media only screen and (max-width: 1200px) {
   :root {
-    --page-horizontal-padding: 60px;
+    --page-horizontal-padding: 40px;
+    --content-horizontal-padding: 90px;
   }
 }
 @media only screen and (max-width: 700px) {
   :root {
-    --page-horizontal-padding: 50px;
+    --page-horizontal-padding: 25px;
+    --content-horizontal-padding: 60px;
   }
 }
 @media only screen and (max-width: 600px) {
   :root {
-    --page-horizontal-padding: 40px;
+    --page-horizontal-padding: 20px;
+    --content-horizontal-padding: 30px;
   }
 }
 @media only screen and (max-width: 500px) {
   :root {
-    --page-horizontal-padding: 30px;
-  }
-}
-@media only screen and (max-width: 400px) {
-  :root {
     --page-horizontal-padding: 20px;
+    --content-horizontal-padding: 20px;
   }
 }

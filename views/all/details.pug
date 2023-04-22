@@ -1,0 +1,9 @@
+extends  ../partials/header
+block main
+  .writing-outer-wrapper
+    .writing-content-wrapper
+      img.writing-cover(src=writing.cover width='100%' alt=writing.title)
+      h1.writing-title= writing.title
+      h2.writing-subtitle= writing.subtitle
+      .writing-content !{writing.content.map(each => each.split('contenteditable="true"').join('').split('spellcheck="false"').join('').split('general-writing').join('writing')).join('')}
+    .writings-wrapper

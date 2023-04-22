@@ -27,7 +27,7 @@ module.exports = (req, res) => {
           includes: {
             external: {
               css: ['general', 'header', 'info', 'page', 'writing'],
-              js: ['ancestorWithClassName', 'header', 'serverRequest']
+              js: ['ancestorWithClassName', 'header', 'page', 'serverRequest']
             },
             // meta: {
             //   title: res.__('Read, Listen & Watch | library.node101'),
@@ -39,8 +39,8 @@ module.exports = (req, res) => {
           writer,
           count,
           writings: data.writings,
-          limit: data.limit,
-          page: data.page
+          writings_limit: data.limit,
+          writings_page: data.page
         });
       });
     });

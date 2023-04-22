@@ -131,32 +131,10 @@ BlogSchema.statics.findBlogByIdAndFormatByLanguage = function (id, language, cal
   });
 };
 
-BlogSchema.statics.findBlogByIdenfierAndFormatByLanguage = function (identifier, language, callback) {
-  const Blog = this;
-
-  if (!identifier || typeof identifier != 'string' || !identifier.trim().length)
-    return callback('bad_request');
-
-  Blog.findOne({
-    identifiers: identifier.trim()
-  }, (err, blog) => {
-    if (err) return callback('database_error');
-    if (!blog) return callback('document_not_found');
-    if (!blog.is_completed)
-      return callback('not_authenticated_request');
-
-    Blog.findBlogByIdAndFormatByLanguage(
-      blog._id,
-      language,
-      (err, blog) => callback(err, blog)
-    );
-  });
-};
-
 BlogSchema.statics.findBlogByIdentifierAndFormatByLanguage = function (identifier, language, callback) {
   const Blog = this;
 
-  if (!identifier || typeof identifier != 'string' || !identifier.trim().length || identifier.trim().length > MAX_DATABASE_TEXT_FIELD_LENGTH)
+  if (!identifier || typeof identifier != 'string' || !identifier.trim().length || !identifier.trim().length > MAX_DATABASE_TEXT_FIELD_LENGTH)
     return callback('bad_request');
 
   Blog.findOne({

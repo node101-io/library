@@ -1,9 +1,6 @@
 :root {
-  --writing-gap: 20px;
-  --each-writing-height: 500px;
-  --each-first-line-writing-height: 450px;
-  --each-writing-padding: 10px;
-  --each-writer-image-size: 30px;
+  --general-writing-blog-image-size: 30px;
+  --general-writing-image-size: 130px;
 }
 
 .general-writings-wrapper {
@@ -15,105 +12,78 @@
   flex-direction: column;
 }
 
-.general-writings-each-line {
-  height: fit-content;
-  min-height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: var(--writing-gap);
-}
-
-.general-each-writing-wrapper, .general-each-first-line-writing-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: var(--each-writing-height);
-  min-height: var(--each-writing-height);
-  width: calc((var(--inner-content-wrapper-width) - 2 * var(--writing-gap)) / 3);
-  min-width: calc((var(--inner-content-wrapper-width) - 2 * var(--writing-gap)) / 3);
-  padding: var(--each-writing-padding);
-  background: linear-gradient(99.85deg, rgb(19, 19, 19) 0%, rgb(3, 3, 3) 100%);
-  border-radius: 3px;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  margin: 0 calc(var(--writing-gap) / 2);
-}
-.general-each-first-line-writing-wrapper {
-  height: var(--each-first-line-writing-height);
-  min-height: var(--each-first-line-writing-height);
-  width: calc((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4);
-  min-width: calc((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4);
-}
-.general-each-writing-wrapper:hover, .general-each-first-line-writing-wrapper:hover {
-  margin-top: -3px;
-}
-
-.general-each-writing-image, .general-each-first-line-writing-image {
+.general-each-writing-seperator {
+  height: 1px;
+  min-height: 1px;
   width: 100%;
   min-width: 100%;
-  height: calc(((var(--inner-content-wrapper-width) - 2 * var(--writing-gap)) / 3) - 2 * var(--each-writing-padding));
-  min-height: calc(((var(--inner-content-wrapper-width) - 2 * var(--writing-gap)) / 3) - 2 * var(--each-writing-padding));
-  margin-bottom: var(--each-writing-padding);
-  border-radius: 2px;
-  box-shadow: 0 0 2px rgba(254, 254, 254, 0.1);
-  border-radius: 2px;
-}
-.general-each-first-line-writing-image {
-  height: calc(((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4) - 2 * var(--each-writing-padding));
-  min-height: calc(((var(--inner-content-wrapper-width) - 3 * var(--writing-gap)) / 4) - 2 * var(--each-writing-padding));
+  background-color: var(--border-color);
+  margin: calc(var(--box-padding) / 2) 0;
+  margin-right: var(--box-padding);
 }
 
-.general-each-writing-header-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--each-writing-padding);
-}
-.general-each-writing-writer-wrapper {
+.general-each-writing-wrapper {
+  height: var(--general-writing-image-size);
+  min-height: var(--general-writing-image-size);
+  width: 100%;
+  min-width: 100%;
   display: flex;
   align-items: center;
   text-decoration: none;
-  overflow: hidden;
-  width: auto;
+}
+
+.general-each-writing-content-wrapper {
+  height: var(--general-writing-image-size);
+  min-height: var(--general-writing-image-size);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.general-each-writing-content-header-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.general-each-writing-blog-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  width: fit-content;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.general-each-writing-blog-image {
+  height: var(--general-writing-blog-image-size);
+  min-height: var(--general-writing-blog-image-size);
+  width: var(--general-writing-blog-image-size);
+  min-width: var(--general-writing-blog-image-size);
+  border-radius: 2px;
+  margin-right: calc(var(--box-padding) / 2);
+}
+.general-each-writing-blog-title {
+  font-weight: 600;
+  font-size: 14px;
   color: var(--text-color);
 }
-.general-each-writing-writer-wrapper:hover {
-  color: var(--main-color);
-}
-.general-each-writing-writer-image {
-  width: var(--each-writer-image-size);
-  height: var(--each-writer-image-size);
-  border-radius: 100%;
-  margin-right: 8px;
-}
-.general-each-writing-writer-name {
+
+.general-each-writing-date {
   font-weight: 500;
   font-size: 14px;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.general-each-writing-flag {
-  font-weight: 400;
-  font-family: "IBM Plex Sans";
-  background-color: var(--text-color);
-  padding: 2px 8px;
-  font-size: 13px;
-  color: var(--background-color);
-  border-radius: 12px;
-  margin-left: 8px;
+  color: var(--placeholder-color);
+  margin-left: var(--space-character-width);
 }
 
 .general-each-writing-title {
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 21px;
+  font-weight: 600;
+  font-size: 16px;
   color: var(--text-color);
-  margin-bottom: 8px;
+  margin-top: calc(var(--box-padding) / 2);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -121,44 +91,22 @@
   text-overflow: ellipsis;
 }
 .general-each-writing-subtitle {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
-  line-height: 20px;
   color: var(--text-color);
+  margin-top: calc(var(--box-padding) / 2);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.general-each-writing-footer-wrapper {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.general-each-writing-date {
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--placeholder-color);
-}
-
-.general-each-writing-social-media-accounts-wrapper {
-  display: flex;
-  align-items: center;
-}
-.general-each-writing-social-media-account-wrapper {
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.9;
-}
-.general-each-writing-social-media-account-wrapper:hover {
-  opacity: 1;
-}
-.general-each-writing-social-media-account-icon {
-  height: 14px;
-  fill: var(--text-color);
-  margin-left: 10px;
+.general-each-writing-image {
+  height: var(--general-writing-image-size);
+  min-height: var(--general-writing-image-size);
+  width: var(--general-writing-image-size);
+  min-width: var(--general-writing-image-size);
+  border-radius: 2px;
+  margin-left: var(--box-padding);
 }

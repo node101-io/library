@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const toURLString = require('../../utils/toURLString');
- 
-const getWritingByLanguage = require('./functions/getWritingByLanguage');
+
 
 const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
 const DEFAULT_LANGUAGE = 'en';
@@ -17,21 +16,13 @@ const MAX_DOCUMENT_COUNT_PER_QUERY = 1e2;
 
 const Schema = mongoose.Schema;
 
-const WritingSchema = new Schema({
+const WritingFilterSchema = new Schema({
   title: {
     type: String,
     required: true,
     trim: true,
     minlength: 1,
     maxlength: MAX_DATABASE_TEXT_FIELD_LENGTH
-  },
-  identifiers: {
-    type: Array,
-    default: []
-  },
-  identifier_languages: {
-    type: Object,
-    default: {}
   },
   type: {
     type: String,

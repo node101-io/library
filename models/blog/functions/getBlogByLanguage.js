@@ -26,6 +26,7 @@ module.exports = (blog, language, callback) => {
         return callback(null, {
           _id: blog._id.toString(),
           title: translation.title.replace(blog._id.toString(), ''),
+          identifier: blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0],
           link: `/projects/${blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0]}`,
           type: blog.type,
           project,
@@ -44,6 +45,7 @@ module.exports = (blog, language, callback) => {
       return callback(null, {
         _id: blog._id.toString(),
         title: translation.title.replace(blog._id.toString(), ''),
+        identifier: blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0],
         link: `/projects/${blog.identifiers.find(each => blog.identifier_languages[each] == language) || blog.identifiers[0]}`,
         type: blog.type,
         project: null,
