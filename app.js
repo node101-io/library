@@ -36,7 +36,7 @@ if (cluster.isMaster) {
   const MAX_SERVER_PARAMETER_LIMIT = 50000;
   const QUERY_LIMIT = 20;
 
-  const allRouteController = require('./routes/allRoute');
+  const blogRouteController = require('./routes/blogRoute');
   const projectsRouteController = require('./routes/projectsRoute');
   const indexRouteController = require('./routes/indexRoute');
   const writersRouteController = require('./routes/writersRoute');
@@ -94,7 +94,7 @@ if (cluster.isMaster) {
   app.use('/', indexRouteController);
   app.use('/projects', projectsRouteController);
   app.use('/writers', writersRouteController);
-  app.use('*', allRouteController);
+  app.use('/blog/*', blogRouteController);
 
   server.listen(PORT, () => {
     console.log(`Server is on port ${PORT} as Worker ${cluster.worker.id} running @ process ${cluster.worker.process.pid}`);

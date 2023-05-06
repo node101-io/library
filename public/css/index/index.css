@@ -159,8 +159,8 @@
 .each-slide-buttons-wrapper {
   height: var(--each-slide-button-size);
   min-height: var(--each-slide-button-size);
-  width: calc(2 * var(--each-slide-button-size) + var(--box-padding) / 2);
-  min-width: calc(2 * var(--each-slide-button-size) + var(--box-padding) / 2);
+  width: calc(2 * var(--each-slide-button-size) + var(--box-padding) / 4);
+  min-width: calc(2 * var(--each-slide-button-size) + var(--box-padding) / 4);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -183,7 +183,22 @@
   background-color: var(--hover-color-light);
 }
 .each-slide-button-icon {
-  width: 8px;
+  width: 7px;
   height: auto;
   fill: var(--background-color);
+}
+
+@media only screen and (max-width: 500px) {
+  :root {
+    --each-slide-image-size: 140px;
+  }
+  .each-slide-content-inner-wrapper {
+    padding-right: 0;
+  }
+  .each-slide-subtitle {
+    -webkit-line-clamp: 1;
+  }
+  .each-slide-image {
+    display: none;
+  }
 }

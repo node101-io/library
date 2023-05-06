@@ -5,7 +5,7 @@ block main
       block inner
     .general-navbar-wrapper
       article.general-navbar-editors-pick-wrapper
-        .general-navbar-title-wrapper
+        .general-navbar-title-wrapper(style='margin-top: 0;')
           h1.general-navbar-title= __('Editors Pick')
           a.general-navbar-see-more-button= __('See More')
         - for (let i = 0; i < editors_pick.length; i++)

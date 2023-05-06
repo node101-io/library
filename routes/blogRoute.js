@@ -4,12 +4,12 @@ const router = express.Router();
 
 const generateConstantData = require('../middleware/generateConstantData');
 
-const indexGetController = require('../controllers/all/get');
+const detailsGetController = require('../controllers/blog/details/get');
 
 router.get(
   '*',
     generateConstantData,
-    indexGetController
+    detailsGetController
 );
 
 module.exports = router;

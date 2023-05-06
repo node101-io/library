@@ -29,6 +29,7 @@
   background-color: var(--background-color);
   display: flex;
   align-items: center;
+  border-bottom: 1px solid transparent;
 }
 .all-header-responsive-wrapper {
   display: none;
@@ -223,6 +224,7 @@
   :root {
     --all-content-header-height: 130px;
     --all-content-header-button-gap: 20px;
+    --all-content-header-language-button-width: 130px;
   }
   .all-header-buttons-wrapper {
     justify-content: flex-start;

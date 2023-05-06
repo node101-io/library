@@ -37,6 +37,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  margin-bottom: calc(var(--box-padding) / 4);
 }
 
 .general-navbar-title {
@@ -80,8 +81,7 @@
   padding-left: var(--box-padding);
 }
 .general-navbar-each-short-writing-wrapper:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  background-color: var(--hover-color);
 }
 
 .general-navbar-each-short-writing-image {
@@ -126,10 +126,13 @@
   padding: 2px 12px;
   border-radius: 12px;
   display: inline-block;
-  margin-right: calc(var(--box-padding) / 2);
+  margin-right: calc(var(--box-padding) / 4);
   margin-bottom: 5px;
   overflow: hidden;
   text-decoration: none;
+}
+.general-navbar-each-tag:hover {
+  opacity: 0.9;
 }
 
 .general-navbar-exclusive-wrapper {
@@ -190,4 +193,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+  :root {
+    --general-navbar-width: 300px;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .general-navbar-wrapper {
+    display: none;
+  }
+  .general-inner-content-wrapper {
+    border-right: none;
+    padding-right: 0;
+  }
 }

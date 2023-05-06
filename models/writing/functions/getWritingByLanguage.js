@@ -30,7 +30,7 @@ module.exports = (writing, language, callback) => {
       return callback(null, {
         _id: writing._id.toString(),
         title: translation.title.replace(writing._id.toString(), ''),
-        link: `/${blog.identifier}/${writing.identifiers.find(each => writing.identifier_languages[each] == language) || writing.identifiers[0]}`,
+        link: `/blog/${blog.identifier}/${writing.identifiers.find(each => writing.identifier_languages[each] == language) || writing.identifiers[0]}`,
         blog,
         writer,
         created_at: moment(writing.created_at).format('DD[.]MM[.]YYYY'),

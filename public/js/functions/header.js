@@ -33,4 +33,15 @@ window.addEventListener('load', () => {
       window.location.href = url;
     }
   });
+
+  const allHeaderAnimationMaxHeight = 100;
+  const allHeaderWrapper = document.querySelector('.all-header-wrapper');
+  const allHeaderResponsiveWrapper = document.querySelector('.all-header-responsive-wrapper');
+
+  document.querySelector('.all-wrapper').addEventListener('scroll', event => {
+    allHeaderWrapper.style.borderBottomColor = `rgba(148, 148, 148, ${0.2 * Math.min(event.target.scrollTop, allHeaderAnimationMaxHeight) / allHeaderAnimationMaxHeight})`;
+    allHeaderWrapper.style.boxShadow = `0 0 3px rgba(148, 148, 148, ${0.2 * Math.min(event.target.scrollTop, allHeaderAnimationMaxHeight) / allHeaderAnimationMaxHeight})`;
+    allHeaderResponsiveWrapper.style.borderBottomColor = `rgba(148, 148, 148, ${0.2 * Math.min(event.target.scrollTop, allHeaderAnimationMaxHeight) / allHeaderAnimationMaxHeight})`;
+    allHeaderResponsiveWrapper.style.boxShadow = `0 0 3px rgba(148, 148, 148, ${0.2 * Math.min(event.target.scrollTop, allHeaderAnimationMaxHeight) / allHeaderAnimationMaxHeight})`;
+  });
 });

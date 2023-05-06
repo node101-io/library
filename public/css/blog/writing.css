@@ -5,18 +5,18 @@
 
 .writing-outer-wrapper {
   display: flex;
-  width: 100vw;
-  min-width: 100vw;
-  padding: 0 var(--page-horizontal-padding);
+  width: 100%;
+  min-width: 100%;
+  overflow: hidden;
 }
 
 .writing-content-wrapper {
-  flex: 1;
+  width: 100%;
+  min-width: 100%;
   height: fit-content;
   min-height: fit-content;
   display: flex;
   flex-direction: column;
-  margin-right: var(--writing-item-gap);
 }
 
 .writing-cover {
@@ -139,7 +139,6 @@
 }
 .writing-image-description {
   max-width: var(--writing-image-width);
-  width: auto;
   height: fit-content;
   min-height: fit-content;
   font-weight: 500;
@@ -174,7 +173,6 @@
 }
 .writing-video-description {
   max-width: var(--writing-image-width);
-  width: auto;
   height: fit-content;
   min-height: fit-content;
   font-weight: 500;
@@ -218,8 +216,6 @@
 .writing-quote {
   padding: 15px 0;
   max-width: calc(100% - 300px) !important;
-  min-width: auto !important;
-  width: auto !important;
   justify-self: center;
   font-size: 17px;
   font-weight: 300;
