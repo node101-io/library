@@ -12,7 +12,7 @@ block inner
               .each-slide-date • #{slide.created_at.split('.')[0]} #{MONTHS[parseInt(slide.created_at.split('.')[1]) - 1]} #{slide.created_at.split('.')[2]}
             h1.each-slide-title= slide.title
             h2.each-slide-subtitle= slide.subtitle
-          img.each-slide-image(src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Color_icon_red.svg/640px-Color_icon_red.svg.png' alt=slide.title height='100%' loading='lazy')
+          img.each-slide-image(src=slide.logo alt=slide.title height='100%' loading='lazy')
         .each-slide-footer-wrapper
           .each-slide-bullets-wrapper
             - for (let j = 0; j < slider.length; j++)

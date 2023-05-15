@@ -28,15 +28,15 @@
 
 .writing-title {
   color: var(--text-color);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 36px;
   line-height: 150%;
   margin-bottom: var(--writing-item-gap);
 }
 .writing-subtitle {
   color: var(--text-color);
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 600;
+  font-size: 19px;
   line-height: 150%;
   margin-bottom: var(--writing-item-gap);
 }
@@ -63,7 +63,7 @@
   min-width: 100%;
   height: fit-content;
   min-height: fit-content;
-  color: var(--text-color);
+  color: var(--text-color-two);
   font-weight: 800;
 }
 .writing-header-1 {
@@ -92,7 +92,7 @@
 }
 
 .writing-text {
-  color: var(--text-color);
+  color: var(--text-color-two);
   font-size: 17px;
   font-weight: 400;
   line-height: 23px;
@@ -100,6 +100,7 @@
 }
 .writing-text-bold {
   font-weight: 800;
+  color: var(--text-color) !important;
 }
 .writing-text-italic {
   font-style: italic;
@@ -167,6 +168,7 @@
   display: none;
 }
 .writing-video {
+  width: 100%;
   border-radius: 2px;
   background-color: var(--box-color);
   border: none;
@@ -200,7 +202,7 @@
   position: absolute;
   left: -22px;
   top: 17px;
-  font-size: 35px;
+  font-size: 25px;
   color: var(--text-color);
   font-weight: 800;
 }

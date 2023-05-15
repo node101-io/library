@@ -12,9 +12,9 @@ function moveToNextSlide() {
   const element = wrapper.childNodes[0];
 
   const duplicate = element.cloneNode(true);
-  element.remove();
-
+  
   wrapper.appendChild(duplicate);
+  element.remove();
 
   isSlideMoving = false;
 };
@@ -27,9 +27,9 @@ function moveToPrevSlide() {
   const element = wrapper.childNodes[wrapper.childNodes.length - 1];
 
   const duplicate = element.cloneNode(true);
-  element.remove();
-
+  
   wrapper.insertBefore(duplicate, wrapper.childNodes[0]);
+  element.remove();
 
   isSlideMoving = false;
 };

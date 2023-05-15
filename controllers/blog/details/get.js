@@ -102,52 +102,7 @@ module.exports = (req, res) => {
           // }
         },
         blog,
-        writing,
-        slider: LOCAL,
-        editors_pick: LOCAL.filter((_, i) => i < 5),
-        writings: LOCAL,
-        tags: [
-          {
-            name: 'Cosmos',
-            url: '/'
-          },
-          {
-            name: 'SUI',
-            url: '/'
-          },
-          {
-            name: 'Celestia',
-            url: '/'
-          },
-          {
-            name: 'NYM',
-            url: '/'
-          },
-          {
-            name: 'Haftalık',
-            url: '/'
-          },
-          {
-            name: 'Mutlu.Cosmos',
-            url: '/'
-          },
-          {
-            name: 'Mina',
-            url: '/'
-          },
-          {
-            name: 'En Yeniler',
-            url: '/'
-          },
-          {
-            name: 'DevCon',
-            url: '/'
-          },
-          {
-            name: 'ZK Special',
-            url: '/'
-          }
-        ]
+        writing
       });
     });
   });

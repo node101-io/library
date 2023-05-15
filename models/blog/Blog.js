@@ -115,10 +115,13 @@ BlogSchema.statics.findBlogById = function (id, callback) {
 BlogSchema.statics.findBlogByIdAndFormatByLanguage = function (id, language, callback) {
   const Blog = this;
 
+  if (!id || !validator.isMongoId(id.toString()))
+    return callback('bad_request');
+
   if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
-  Blog.findBlogById(id, (err, blog) => {
+  Blog.findById(mongoose.Types.ObjectId(id.toString()), (err, blog) => {
     if (err) return callback(err);
     if (!blog.is_completed)
       return callback('not_authenticated_request');

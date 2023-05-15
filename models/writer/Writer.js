@@ -81,10 +81,13 @@ WriterSchema.statics.findWriterById = function (id, callback) {
 WriterSchema.statics.findWriterByIdAndFormatByLanguage = function (id, language, callback) {
   const Writer = this;
 
+  if (!id || !validator.isMongoId(id.toString()))
+    return callback('bad_request');
+
   if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
-  Writer.findWriterById(id, (err, writer) => {
+  Writer.findWriterById(mongoose.Types.ObjectId(id.toString()), (err, writer) => {
     if (err) return callback(err);
 
     if (!writer.is_completed)

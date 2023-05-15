@@ -4,16 +4,15 @@ const validator = require('validator');
 
 const toURLString = require('../../utils/toURLString');
  
-const getWritingByLanguage = require('./functions/getWritingByLanguage');
+const WritingFilter = require('../writing_filter/WritingFilter');
+
+const getWritingByLanguageAndOptions = require('./functions/getWritingByLanguageAndOptions');
 
 const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
 const DEFAULT_LANGUAGE = 'en';
-const DEFAULT_DOCUMENT_COUNT_PER_QUERY = 10;
 const LABEL_VALUES = ['slider', 'editors_pick', 'exclusive'];
 const MAX_DATABASE_ARRAY_FIELD_LENGTH = 1e5;
 const MAX_DATABASE_TEXT_FIELD_LENGTH = 1e4;
-const MAX_DATABASE_LONG_TEXT_FIELD_LENGTH = 1e5;
-const MAX_DOCUMENT_COUNT_PER_QUERY = 1e2;
 
 const Schema = mongoose.Schema;
 
@@ -132,17 +131,33 @@ WritingSchema.statics.findWritingById = function (id, callback) {
 WritingSchema.statics.findWritingByIdAndFormatByLanguage = function (id, language, callback) {
   const Writing = this;
 
+  if (!id || !validator.isMongoId(id.toString()))
+    return callback('bad_request');
+
   if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
-  Writing.findWritingById(id, (err, writing) => {
+  const time0 = (new Date).getTime();
+
+  Writing.findById(mongoose.Types.ObjectId(id.toString()), (err, writing) => {
     if (err) return callback(err);
+
+    const time1 = (new Date).getTime();
+
+    console.log("Each Writing: " + ((time1 - time0) / 1000))
+
+    if (((time1 - time0) / 1000) > 0.1)
+      console.log(writing._id.toString());
 
     if (!writing.is_completed)
       return callback('not_authenticated_request');
 
-    getWritingByLanguage(writing, language, (err, writing) => {
+    getWritingByLanguageAndOptions(writing, language, {}, (err, writing) => {
       if (err) return callback(err);
+
+      const time2 = (new Date).getTime();
+
+      console.log("Each Writing: " + ((time2 - time1) / 1000))
 
       return callback(null, writing);
     });
@@ -171,185 +186,39 @@ WritingSchema.statics.findWritingByIdentifierAndFormatByLanguage = function (ide
 
 WritingSchema.statics.findWritingsByFiltersAndFormatByLanguage = function (data, language, callback) {
   const Writing = this;
-    
-  if (!data || typeof data != 'object')
-    return callback('bad_request');
 
-  if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
-    return callback('bad_request');
+  const time0 = (new Date).getTime();
 
-  const filters = {
-    label: "slider",
-    is_completed: true,
-    is_deleted: false
-  };
+  WritingFilter.findWritingFiltersByFiltersAndLanguage(data, language, (err, writing_filters_data) => {
+    if (err) return callback(err);
 
-  // if (language == DEFAULT_LANGUAGE)
-  //   filters.$and.push({ is_hidden: false })
-  // else
-  //   filters.$and.push({ $or: [ { is_hidden: true }, { is_hidden: false } ] });
+    Writing.find({ _id: { $in: writing_filters_data.id_list } }, (err, writings) => {
+      if (err) return callback('database_error');
 
-  // for (let i = 1; i < ALLOWED_LANGUAGE_VALUES.length; i++)
-  //   if (ALLOWED_LANGUAGE_VALUES[i] == language)
-  //     filters.$and.push({ ['translations.' + ALLOWED_LANGUAGE_VALUES[i] + '.is_hidden']: false });
-  //   else
-  //     filters.$and.push({ $or: [ { ['translations.' + ALLOWED_LANGUAGE_VALUES[i] + '.is_hidden']: true, ['translations.' + ALLOWED_LANGUAGE_VALUES[i] + '.is_hidden']: false } ] });
-
-  // if (data.label && LABEL_VALUES.includes(data.label))
-  //   filters.$and.push({ label: data.label });
-  // else {
-  //   const labelOrArray = [];
-
-  //   for (let i = 0; i < LABEL_VALUES.length; i++)
-  //     labelOrArray.push({ label: LABEL_VALUES[i] });
-    
-  //   filters.$and.push({ $or: labelOrArray });
-  // }
-
-  const limit = data.limit && !isNaN(parseInt(data.limit)) && parseInt(data.limit) > 0 && parseInt(data.limit) < MAX_DOCUMENT_COUNT_PER_QUERY ? parseInt(data.limit) : DEFAULT_DOCUMENT_COUNT_PER_QUERY;
-  const page = data.page && !isNaN(parseInt(data.page)) && parseInt(data.page) > 0 ? parseInt(data.page) : 0;
-  const skip = page * limit;
-
-  // if (data.parent_id && validator.isMongoId(data.parent_id.toString()))
-  //   filters.parent_id = mongoose.Types.ObjectId(data.parent_id.toString());
-
-  // if (data.writer_id && validator.isMongoId(data.writer_id.toString()))
-  //   filters.writer_id = mongoose.Types.ObjectId(data.writer_id.toString());
-
-  if (!data.search || typeof data.search != 'string' || !data.search.trim().length) {
-    console.log(JSON.stringify(filters))
-    Writing
-      .find({
-        label: "slider",
-        is_completed: true,
-        is_deleted: false
-      })
-      // .sort({ order: -1 })
-      .explain()
-      .limit(limit)
-      .skip(skip)
-      .then(explanation => {
-        console.log(explanation);
-
-        Writing
-          .find(filters)
-          .sort({ order: -1 })
-          .limit(limit)
-          .skip(skip)
-          .then(writings => async.timesSeries(
-            writings.length,
-            (time, next) => Writing.findWritingByIdAndFormatByLanguage(writings[time]._id, language, (err, writing) => next(err, writing)),
-            (err, writings) => {
-              if (err) return callback(err);
-
-              return callback(null, {
-                search: null,
-                limit,
-                page,
-                writings
-              });
-            })
-        )
-        .catch(_ => callback('database_error'));
-      })
-      .catch(_ => callback('database_error'));
-  } else {
-    filters.$text = { $search: data.search.trim() };
-
-    Writing
-      .find(filters)
-      .sort({
-        score: { $meta: 'textScore' }, 
-        created_at: -1
-      })
-      .limit(limit)
-      .skip(skip)
-      .explain()
-      .then(explanation => {
-        console.log(explanation)
-
-        Writing
-          .find(filters)
-          .sort({
-            score: { $meta: 'textScore' }, 
-            created_at: -1
-          })
-          .limit(limit)
-          .skip(skip)
-          .then(writings => async.timesSeries(
-            writings.length,
-            (time, next) => Writing.findWritingByIdAndFormatByLanguage(writings[time]._id, language, (err, writing) => next(err, writing)),
-            (err, writings) => {
-              if (err) return callback(err);
-
-              return callback(null, {
-                search: data.search.trim(),
-                limit,
-                page,
-                writings
-              });
-            })
-      )
-      .catch(_ => callback('database_error'));
-      })
-      .catch(_ => callback('database_error'));
-  }
+      async.timesSeries(
+        writings.length,
+        (time, next) => getWritingByLanguageAndOptions(writings[time], language, data, (err, writing) => next(err, writing)),
+        (err, writings) => {
+          if (err) return callback(err);
+  
+          return callback(null, {
+            search: writing_filters_data.search,
+            limit: writing_filters_data.limit,
+            page: writing_filters_data.page,
+            writings
+          });
+        }
+      );
+    });
+  });
 };
 
 WritingSchema.statics.findWritingCountByFiltersAndLanguage = function (data, language, callback) {
-  const Writing = this;
+  WritingFilter.findWritingFiltersCountByFiltersAndLanguage(data, language, (err, count) => {
+    if (err) return callback(err);
 
-  if (!data || typeof data != 'object')
-    return callback('bad_request');
-
-  const filters = {
-    is_completed: true,
-    is_deleted: { $ne: true }
-  };
-
-  if (language == DEFAULT_LANGUAGE)
-    filters.is_hidden = { $ne: true };
-  else
-    filters[language + '.is_hidden'] = { $ne: true };
-
-  if (data.title && typeof data.title == 'string' && data.title.trim().length && data.title.trim().length < MAX_DATABASE_TEXT_FIELD_LENGTH) {
-    if (language == DEFAULT_LANGUAGE)
-     filters.title = { $regex: data.title.trim(), $options: 'i' };
-    else
-      filters[language + '.title'] = { $regex: data.title.trim(), $options: 'i' };
-  }
-
-  if (data.label && LABEL_VALUES.includes(data.label))
-    filters.label = data.label;
-
-  if (data.flag && typeof data.flag == 'string' && data.flag.trim().length && data.flag.trim().length < MAX_DATABASE_TEXT_FIELD_LENGTH) {
-    if (language == DEFAULT_LANGUAGE)
-      filters.flag = data.flag.trim();
-    else
-      filters[language + '.flag'] = data.flag.trim();
-  }
-
-  if (data.parent_id && validator.isMongoId(data.parent_id.toString()))
-    filters.parent_id = mongoose.Types.ObjectId(data.parent_id.toString());
-
-  if (data.writer_id && validator.isMongoId(data.writer_id.toString()))
-    filters.writer_id = mongoose.Types.ObjectId(data.writer_id.toString());
-
-  if (!data.search || typeof data.search != 'string' || !data.search.trim().length) {
-    Writing
-      .find(filters)
-      .countDocuments()
-      .then(count => callback(null, count))
-      .catch(_ => callback('database_error'));
-  } else {
-    filters.$text = { $search: data.search.trim() };
-
-    Writing
-      .find(filters)
-      .countDocuments()
-      .then(count => callback(null, count))
-      .catch(_ => callback('database_error'));
-  };
+    return callback(null, count);
+  });
 };
 
 module.exports = mongoose.model('Writing', WritingSchema);
