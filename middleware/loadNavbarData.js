@@ -10,12 +10,14 @@ module.exports = (req, res, next) => {
 
   if (
     req.session.navbar_data &&
-    req.sesion.navbar_last_update_time &&
+    req.session.navbar_last_update_time &&
     (new Date).getTime() - req.session.navbar_last_update_time < FIVE_MINS_IN_MS
   ) {
-    res.locals.tags = req.session.navbar_data.tags;
-    res.locals.editors_pick = req.session.navbar_data.writings;
-    res.locals.exclusive = req.session.navbar_data.writings;
+    const navbar = JSON.parse(req.session.navbar_data);
+
+    res.locals.tags = navbar.tags;
+    res.locals.editors_pick = navbar.editors_pick;
+    res.locals.exclusive = navbar.exclusive;
 
     return next();
   } else {
@@ -40,11 +42,11 @@ module.exports = (req, res, next) => {
         }, language, (err, exclusive_data) => {
           if (err) return res.redirect('/error?message=' + err);
 
-          req.session.navbar_data = {
+          req.session.navbar_data = JSON.stringify({
             tags: tags_data.tags,
             editors_pick: editors_pick_data.writings,
             exclusive: exclusive_data.writings
-          };
+          });
           req.session.navbar_last_update_time = (new Date).getTime();
       
           res.locals.tags = tags_data.tags;
