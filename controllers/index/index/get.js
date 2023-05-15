@@ -31,12 +31,12 @@ module.exports = (req, res) => {
             css: ['general', 'header', 'navbar', 'page', 'writing'],
             js: ['ancestorWithClassName', 'duplicateElement', 'header', 'navbar', 'page', 'serverRequest']
           },
-          // meta: {
-          //   title: res.__('Read, Listen & Watch | library.node101'),
-          //   description: res.__('Stake your assets with the industry\'s most user-friendly organization! node101 accompanies you on your staking journey from start to finish and offers a privileged service where you can safely stake your assets and get support from experts whenever you want.'),
-          //   image: '/res/images/open-graph/header.png',
-          //   twitter: true
-          // }
+          meta: {
+            title: res.__('Read, Listen & Watch | library.node101'),
+            description: res.__('Stake your assets with the industry\'s most user-friendly organization! node101 accompanies you on your staking journey from start to finish and offers a privileged service where you can safely stake your assets and get support from experts whenever you want.'),
+            image: '/res/images/meta/header.png',
+            twitter: true
+          }
         },
         slider: slider_data.writings,
         writings: writings_data.writings
