@@ -34,8 +34,8 @@ function serverRequest (url, method, data, callback) {
     try {
       if (xhr.readyState == 4 && xhr.status != 200)
         return callback({ success: false, error: 'network_error' })
-      else if (xhr.readyState == 4 && xhr.responseText) {
-        const data = JSON.parse(xhr.responseText);
+      else if (xhr.readyState == 4 && xhr.response) {
+        const data = JSON.parse(xhr.response);
         return callback(data);
       }
     } catch (err) {

@@ -1,6 +1,7 @@
 :root {
   --general-writing-blog-image-size: 30px;
   --general-writing-image-size: 130px;
+  --general-writing-loading-icon-wrapper-height: 100px;
 }
 
 .general-writings-wrapper {
@@ -109,6 +110,48 @@
   min-width: var(--general-writing-image-size);
   border-radius: 2px;
   margin-left: var(--box-padding);
+}
+
+.general-writings-loading-icon-wrapper {
+  height: var(--general-writing-loading-icon-wrapper-height);
+  min-height: var(--general-writing-loading-icon-wrapper-height);
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.general-writings-loading-icon {
+  height: 30px;
+  fill: var(--placeholder-color);
+  animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media only screen and (max-width: 500px) {

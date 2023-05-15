@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const EDITORS_PICK_WRITING_COUNT = 5;
 const EXCLUSIVE_WRITING_COUNT = 5;
 const FIVE_MINS_IN_MS = 5 * 60 * 1000;
@@ -7,7 +9,11 @@ const Writing = require('../models/writing/Writing');
 
 module.exports = (req, res, next) => {
   const language = req.query.lang ? req.query.lang : (req.headers['accept-language'] ? req.headers['accept-language'].split('-')[0] : 'en');
-
+//   const LOCAL = JSON.parse(fs.readFileSync('./local.json'));
+// res.locals.tags = LOCAL;
+// res.locals.editors_pick = LOCAL;
+// res.locals.exclusive = LOCAL;
+// return;
   if (
     req.session.navbar_data &&
     req.session.navbar_last_update_time &&
@@ -27,6 +33,7 @@ module.exports = (req, res, next) => {
       Writing.findWritingsByFiltersAndFormatByLanguage({
         limit: EDITORS_PICK_WRITING_COUNT,
         label: 'editors_pick',
+        type: 'blog',
         do_not_load_content: true,
         do_not_load_blog: true,
         do_not_load_writer: true
@@ -36,6 +43,7 @@ module.exports = (req, res, next) => {
         Writing.findWritingsByFiltersAndFormatByLanguage({
           limit: EXCLUSIVE_WRITING_COUNT,
           label: 'exclusive',
+          type: 'blog',
           do_not_load_content: true,
           do_not_load_blog: true,
           do_not_load_writer: true

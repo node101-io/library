@@ -109,9 +109,9 @@ WritingFilterSchema.statics.findWritingFiltersByFiltersAndLanguage = function (d
   if (!data.search || typeof data.search != 'string' || !data.search.trim().length) {
     WritingFilter
       .find(filters)
+      .skip(skip)
       .sort({ order: -1 })
       .limit(limit)
-      .skip(skip)
       .then(writing_filters => callback(null, {
         search: null,
         limit,
@@ -124,12 +124,12 @@ WritingFilterSchema.statics.findWritingFiltersByFiltersAndLanguage = function (d
 
     WritingFilter
       .find(filters)
+      .skip(skip)
       .sort({
         score: { $meta: 'textScore' }, 
         order: -1
       })
       .limit(limit)
-      .skip(skip)
       .then(writing_filters => callback(null, {
         search: null,
         limit,
