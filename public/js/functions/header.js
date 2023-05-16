@@ -1,5 +1,10 @@
+let QUERY;
+
 window.addEventListener('load', () => {
-  const allHeader = document.querySelector('.all-header-wrapper');
+  QUERY = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop)
+  });
+
   const allHeaderLanguageWrapperList = document.querySelectorAll('.all-header-language-wrapper');
 
   document.addEventListener('mouseover', event => {
@@ -16,19 +21,14 @@ window.addEventListener('load', () => {
     if (ancestorWithClassName(event.target, 'all-header-each-language-button')) {
       const target = ancestorWithClassName(event.target, 'all-header-each-language-button');
       const lang = target.id.replace('all-header-', '');
-      const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop)
-      });
 
       let url = window.location.href.split('?')[0] + '?';
 
-      Object.keys(params).forEach(key => {
+      Object.keys(QUERY).forEach(key => {
         if (key != 'lang')
-          url = `${url}${key}=${params[key]}&`;
+          url = `${url}${key}=${QUERY[key]}&`;
       });
       url = `${url}lang=${lang}`;
-
-      console.log(url)
 
       window.location.href = url;
     }
@@ -44,4 +44,25 @@ window.addEventListener('load', () => {
     allHeaderResponsiveWrapper.style.borderBottomColor = `rgba(148, 148, 148, ${0.2 * Math.min(event.target.scrollTop, allHeaderAnimationMaxHeight) / allHeaderAnimationMaxHeight})`;
     allHeaderResponsiveWrapper.style.boxShadow = `0 0 3px rgba(148, 148, 148, ${0.2 * Math.min(event.target.scrollTop, allHeaderAnimationMaxHeight) / allHeaderAnimationMaxHeight})`;
   });
+
+  document.addEventListener('keyup', event => {
+    if (event.target.classList.contains('all-header-search-input')) {
+      if (
+        event.key == 'Enter' &&
+        event.target.value &&
+        event.target.value.trim().length
+      ) {
+        window.location = `/search?${QUERY.lang ? 'lang=' + QUERY.lang + '&' : ''}search=${event.target.value.trim()}`
+      }
+    }
+  });
+
+  document.addEventListener('click', event => {
+    console.log(event.target.classList)
+    if (event.target.classList.contains('all-header-search-input')) {
+      console.log("here")
+      event.target.focus();
+      event.target.select();
+    }
+  })
 });

@@ -8,13 +8,9 @@ window.addEventListener('load', () => {
   const navbar = document.querySelector('.general-navbar-wrapper');
   const navbarHeight = navbar.scrollHeight - (window.document.body.offsetHeight - allHeaderHeight);
 
-  console.log(navbarHeight)
-
   if (window.innerWidth > navbarDisplayNoneWidth)
     allWrapper.addEventListener('scroll', event => {
       const scrollHeight = event.target.scrollTop;
-
-      console.log(scrollHeight)
 
       if (scrollHeight >= navbarHeight) {
         contentWrapper.classList.add('general-inner-content-wrapper-sticky');

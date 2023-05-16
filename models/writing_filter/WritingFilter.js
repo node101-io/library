@@ -131,7 +131,7 @@ WritingFilterSchema.statics.findWritingFiltersByFiltersAndLanguage = function (d
       })
       .limit(limit)
       .then(writing_filters => callback(null, {
-        search: null,
+        search: data.search.trim(),
         limit,
         page,
         id_list: writing_filters.map(each => each.writing_id.toString())
@@ -171,7 +171,6 @@ WritingFilterSchema.statics.findWritingFiltersCountByFiltersAndLanguage = functi
   if (!data.search || typeof data.search != 'string' || !data.search.trim().length) {
     WritingFilter
       .find(filters)
-      .sort({ order: -1 })
       .countDocuments()
       .then(count => callback(null, count))
       .catch(_ => callback('database_error'));
@@ -180,10 +179,7 @@ WritingFilterSchema.statics.findWritingFiltersCountByFiltersAndLanguage = functi
 
     WritingFilter
       .find(filters)
-      .sort({
-        score: { $meta: 'textScore' }, 
-        order: -1
-      })
+      .countDocuments()
       .then(count => callback(null, count))
       .catch(_ => callback('database_error'));
   };

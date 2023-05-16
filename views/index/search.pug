@@ -1,0 +1,23 @@
+extends ../partials/navbar
+block inner
+  input.display-none#MONTHS(value=JSON.stringify(MONTHS))
+  input.display-none#writings-json(value=JSON.stringify(writings))
+  input.display-none#search-json(value=JSON.stringify(search))
+  h1.search-count-text #{__('Find')} #{count} #{__('result' + (count > 1 ? 's' : '') + ' for the')} "#{search}" #{__('search')}.
+  .general-writings-wrapper
+    each writing, i in writings
+      .general-each-writing-seperator
+      a.general-each-writing-wrapper(href=writing.link)
+        .general-each-writing-content-wrapper
+          .general-each-writing-content-header-wrapper
+            .general-each-writing-blog-wrapper
+              img.general-each-writing-blog-image(src=writing.blog.image alt=writing.blog.title)
+              h2.general-each-writing-blog-title= writing.blog.title
+            .general-each-writing-date • #{writing.created_at.split('.')[0]} #{MONTHS[parseInt(writing.created_at.split('.')[1]) - 1]} #{writing.created_at.split('.')[2]}
+          h1.general-each-writing-title= writing.title
+          h2.general-each-writing-subtitle= writing.subtitle
+        img.general-each-writing-image(src=writing.logo alt=writing.title height='100%' loading='lazy')
+  if writings.length < count
+    .general-writings-loading-icon-wrapper#writings-loading-icon
+      svg.general-writings-loading-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512')
+        path(d='M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z')
