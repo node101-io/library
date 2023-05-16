@@ -1,10 +1,9 @@
 :root {
-  --item-gap: 20px;
-  --each-item-height: 370px;
-  --each-item-padding: 10px;
+  --general-item-image-size: 100px;
+  --general-item-loading-icon-wrapper-height: 100px;
 }
 
-.general-item-wrapper {
+.general-items-wrapper {
   height: fit-content;
   min-height: fit-content;
   width: 100%;
@@ -13,72 +12,73 @@
   flex-direction: column;
 }
 
-.general-each-item-line-wrapper {
-  height: fit-content;
-  min-height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: var(--item-gap);
+.general-each-item-seperator {
+  height: 1px;
+  min-height: 1px;
+  width: 100%;
+  min-width: 100%;
+  background-color: var(--border-color);
+  margin: calc(var(--box-padding) / 2) 0;
+  margin-right: var(--box-padding);
 }
 
 .general-each-item-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: var(--each-item-height);
-  min-height: var(--each-item-height);
-  width: calc((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4);
-  min-width: calc((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4);
-  padding: var(--each-item-padding);
-  background: linear-gradient(99.85deg, rgba(12, 12, 12, 1) 0%, rgba(15, 15, 15, 1) 100%);
-  border-radius: 3px;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  margin: 0 calc(var(--item-gap) / 2);
-}
-.general-each-item-wrapper:hover {
-  margin-top: -3px;
-}
-
-.general-each-item-image {
+  height: var(--general-item-image-size);
+  min-height: var(--general-item-image-size);
   width: 100%;
   min-width: 100%;
-  height: calc(((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4) - 2 * var(--each-item-padding));
-  min-height: calc(((var(--inner-content-wrapper-width) - 3 * var(--item-gap)) / 4) - 2 * var(--each-item-padding));
-  margin-bottom: var(--item-gap);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.general-each-item-content-wrapper {
+  height: var(--general-item-image-size);
+  min-height: var(--general-item-image-size);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .general-each-item-title {
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 21px;
+  margin-right: auto;
+  font-weight: 700;
+  font-size: 19px;
   color: var(--text-color);
-  margin-bottom: 8px;
+  margin-bottom: calc(var(--box-padding) / 4);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.general-each-item-title-hovered {
+  border-bottom: 1px solid var(--text-color);
+  margin-bottom: calc(var(--box-padding) / 4 - 1px);
+}
 .general-each-item-subtitle {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
+  font-weight: 300;
+  font-size: 15px;
   color: var(--text-color);
+  margin-bottom: calc(var(--box-padding) / 2);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .general-each-item-footer-wrapper {
-  margin-top: auto;
+  height: fit-content;
+  min-height: fit-content;
+  width: 100%;
+  min-width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
+
 .general-each-item-social-media-account-wrapper {
   text-decoration: none;
   cursor: pointer;
@@ -91,4 +91,64 @@
   height: 14px;
   fill: var(--text-color);
   margin-left: 10px;
+}
+
+.general-each-item-image {
+  height: var(--general-item-image-size);
+  min-height: var(--general-item-image-size);
+  width: var(--general-item-image-size);
+  min-width: var(--general-item-image-size);
+  border-radius: 2px;
+  margin-left: var(--box-padding);
+}
+
+.general-items-loading-icon-wrapper {
+  height: var(--general-item-loading-icon-wrapper-height);
+  min-height: var(--general-item-loading-icon-wrapper-height);
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.general-items-loading-icon {
+  height: 30px;
+  fill: var(--placeholder-color);
+  animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  :root {
+    --general-item-image-size: 110px;
+  }
+  .general-each-item-image {
+    display: none;
+  }
 }

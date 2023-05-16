@@ -169,7 +169,7 @@ window.addEventListener('load', () => {
 
   const allWrapper = document.querySelector('.all-wrapper');
 
-  allWrapper.addEventListener('scroll', event => {
+  allWrapper.addEventListener('scroll', () => {
     if (
       !isWritingEndReached &&
       !isWritingsLoading &&
@@ -177,5 +177,5 @@ window.addEventListener('load', () => {
     ) {
       loadNewWritings();
     }
-  })
+  });
 });

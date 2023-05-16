@@ -31,7 +31,7 @@ module.exports = (req, res) => {
         includes: {
           external: {
             css: ['general', 'header', 'navbar', 'page', 'writing'],
-            js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest']
+            js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest', 'writing']
           },
           meta: {
             title: res.__('Read, Listen & Watch'),
