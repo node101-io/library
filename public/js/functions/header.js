@@ -58,9 +58,7 @@ window.addEventListener('load', () => {
   });
 
   document.addEventListener('click', event => {
-    console.log(event.target.classList)
     if (event.target.classList.contains('all-header-search-input')) {
-      console.log("here")
       event.target.focus();
       event.target.select();
     }

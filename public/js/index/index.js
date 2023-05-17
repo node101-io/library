@@ -133,9 +133,12 @@ function loadNewWritings() {
         createWriting(res.writings[i])
       }
 
+    checkNavbarPosition();
+
     if (!res.writings.length) {
       isWritingEndReached = true;
-      document.getElementById('writings-loading-icon').style.display = 'none';
+      if (document.getElementById('writings-loading-icon'))
+        document.getElementById('writings-loading-icon').style.display = 'none';
     }
 
     isWritingsLoading = false;

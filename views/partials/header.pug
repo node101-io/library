@@ -80,3 +80,28 @@ block content
         input.all-header-search-input(type='text' name='new-password' placeholder=__('Search') autocomplete='off' value=(search ? search : ''))
     .all-content-wrapper
       block main
+    .all-footer-wrapper
+      .all-footer-top-wrapper
+        .all-footer-left-wrapper
+          img.all-footer-logo(src=URL + '/img/logo/header.svg' alt='node101 logo')
+          h6.all-footer-copyright © #{(new Date).getFullYear()} node101, #{__('All rights reserved.')}
+        .all-footer-right-wrapper
+          .all-footer-right-info-wrapper
+            h1.all-footer-title= __('Not Just an Ordinary Validator!')
+            h2.all-footer-subtitle= __('node101 is a validator that describes promising projects and web3 technologies in a pure language.')
+          .all-footer-right-columns-wrapper
+            .all-footer-each-column-wrapper
+              h3.all-footer-each-column-title node101
+              a.all-footer-each-column-link(href='https://node101.io/stake' target='_blank')= __('Projects')
+              a.all-footer-each-column-link(href='https://node101.io/about_us' target='_blank')= __('About Us')
+              a.all-footer-each-column-link(href='/projects')= __('Blog')
+              a.all-footer-each-column-link(href='https://node101.io/stake' target='_blank')= __('Stake with Us')
+            .all-footer-each-column-wrapper
+              h3.all-footer-each-column-title Community
+              each account in Object.keys(NODE101_SOCIAL_MEDIA_ACCOUNTS)
+                a.all-footer-social-media-account-wrapper(href=NODE101_SOCIAL_MEDIA_ACCOUNTS[account] target='_blank')
+                  svg.all-footer-social-media-account-icon(xmlns='http://www.w3.org/2000/svg' viewBox=SOCIAL_MEDIA_ICONS[account].view_box)
+                    path(d=SOCIAL_MEDIA_ICONS[account].d)
+                  .all-footer-each-column-link= account.substring(0, 1).toUpperCase() + account.substring(1)
+      .all-footer-bottom-wrapper
+        .all-footer-bottom-text #{__('Designed & Developed by node101.io')}

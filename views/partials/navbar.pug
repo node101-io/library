@@ -32,4 +32,38 @@ block main
           h1.general-navbar-title= __('Follow Us')
         .general-navbar-social-media-wrapper
           each account in Object.keys(NODE101_SOCIAL_MEDIA_ACCOUNTS)
-            
+            a.general-navbar-each-social-media-account-wrapper(href=NODE101_SOCIAL_MEDIA_ACCOUNTS[account] target='_blank')
+              svg.general-navbar-each-social-media-account-icon(xmlns='http://www.w3.org/2000/svg' viewBox=SOCIAL_MEDIA_ICONS[account].view_box)
+                path(d=SOCIAL_MEDIA_ICONS[account].d)
+    .general-navbar-scrolled-wrapper(style='display: none')
+      article.general-navbar-editors-pick-wrapper
+        .general-navbar-title-wrapper(style='margin-top: 0;')
+          h1.general-navbar-title= __('Editors Pick')
+          a.general-navbar-see-more-button= __('See More')
+        - for (let i = 0; i < editors_pick.length; i++)
+          a.general-navbar-each-short-writing-wrapper(href=editors_pick[i].link)
+            img.general-navbar-each-short-writing-image(src=editors_pick[i].logo alt=editors_pick[i].title)
+            h2.general-navbar-each-short-writing-title= editors_pick[i].title
+      article.general-navbar-tags-wrapper
+        h1.general-navbar-title= __('Popular Tags')
+        .general-navbar-tags-inner-wrapper
+          - for (let i = 0; i < tags.length; i++)
+            a.general-navbar-each-tag(href=tags[i].url)= tags[i].name
+      article.general-navbar-exclusive-wrapper
+        .general-navbar-title-wrapper
+          h1.general-navbar-title= __('Exclusive Content')
+          a.general-navbar-see-more-button= __('See More')
+        - for (let i = 0; i < exclusive.length; i++)
+          a.general-navbar-each-writing-wrapper(href=exclusive[i].link)
+            img.general-navbar-each-writing-image(src=exclusive[i].logo alt=exclusive[i].title)
+            .general-navbar-each-writing-content-wrapper
+              h2.general-navbar-each-writing-title= exclusive[i].title
+              h2.general-navbar-each-writing-subtitle= exclusive[i].subtitle
+      article.general-navbar-node101-wrapper
+        .general-navbar-title-wrapper
+          h1.general-navbar-title= __('Follow Us')
+        .general-navbar-social-media-wrapper
+          each account in Object.keys(NODE101_SOCIAL_MEDIA_ACCOUNTS)
+            a.general-navbar-each-social-media-account-wrapper(href=NODE101_SOCIAL_MEDIA_ACCOUNTS[account] target='_blank')
+              svg.general-navbar-each-social-media-account-icon(xmlns='http://www.w3.org/2000/svg' viewBox=SOCIAL_MEDIA_ICONS[account].view_box)
+                path(d=SOCIAL_MEDIA_ICONS[account].d)
