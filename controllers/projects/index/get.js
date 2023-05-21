@@ -29,6 +29,7 @@ module.exports = (req, res) => {
             twitter: true
           }
         },
+        active_header: 'projects',
         count,
         projects: data.blogs,
         projects_limit: data.limit,

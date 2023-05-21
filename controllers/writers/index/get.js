@@ -28,6 +28,7 @@ module.exports = (req, res) => {
             twitter: true
           }
         },
+        active_header: 'writers',
         count,
         writers: data.writers,
         writers_limit: data.limit,

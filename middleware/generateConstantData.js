@@ -11,6 +11,28 @@ module.exports = (req, res, next) => {
   if (!ALLOWED_LANGUAGE_VALUES.includes(language))
     language = DEFAULT_LANGUAGE;
 
+  const HEADER_MENU = [
+    {
+      name: 'books',
+      text: res.__('Books'),
+      link: '/books'
+    },
+    {
+      name: 'projects',
+      text: res.__('Projects'),
+      link: '/projects'
+    },
+    {
+      name: '101',
+      text: res.__('101 Content'),
+      link: '/101'
+    },
+    {
+      name: 'writers',
+      text: res.__('Writers'),
+      link: '/writers'
+    }
+  ];
   const MONTHS = [
     res.__('Jan'),
     res.__('Feb'),
@@ -76,7 +98,9 @@ module.exports = (req, res, next) => {
     youtube: language == 'tr' ? 'https://www.youtube.com/@node101turkiye' : 'https://www.youtube.com/@node101',
     web: 'https://node101.io'
   };
+  
 
+  res.locals.HEADER_MENU = HEADER_MENU;
   res.locals.MONTHS = MONTHS;
   res.locals.SOCIAL_MEDIA_ICONS = SOCIAL_MEDIA_ICONS;
   res.locals.NODE101_SOCIAL_MEDIA_ACCOUNTS = NODE101_SOCIAL_MEDIA_ACCOUNTS;

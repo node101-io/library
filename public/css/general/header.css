@@ -79,6 +79,11 @@
   text-decoration: none;
   cursor: pointer;
 }
+.all-header-each-button-selected {
+  border-bottom: 2px solid var(--text-color);
+  margin-bottom: -2px;
+  cursor: default;
+}
 .all-header-each-button:hover {
   border-bottom: 2px solid var(--text-color);
   margin-bottom: -2px;
