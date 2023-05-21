@@ -120,15 +120,12 @@ WritingFilterSchema.statics.findWritingFiltersByFiltersAndLanguage = function (d
       }))
       .catch(_ => callback('database_error'));
   } else {
-    filters.$text = { $search: data.search.trim() };
+    filters.title = { $regex: data.search.trim(), $options: 'i' };
 
     WritingFilter
       .find(filters)
       .skip(skip)
-      .sort({
-        score: { $meta: 'textScore' }, 
-        order: -1
-      })
+      .sort({ order: -1 })
       .limit(limit)
       .then(writing_filters => callback(null, {
         search: data.search.trim(),
@@ -175,7 +172,7 @@ WritingFilterSchema.statics.findWritingFiltersCountByFiltersAndLanguage = functi
       .then(count => callback(null, count))
       .catch(_ => callback('database_error'));
   } else {
-    filters.$text = { $search: data.search.trim() };
+    filters.title = { $regex: data.search.trim(), $options: 'i' };
 
     WritingFilter
       .find(filters)

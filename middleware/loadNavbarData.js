@@ -9,11 +9,7 @@ const Writing = require('../models/writing/Writing');
 
 module.exports = (req, res, next) => {
   const language = req.query.lang ? req.query.lang : (req.headers['accept-language'] ? req.headers['accept-language'].split('-')[0] : 'en');
-//   const LOCAL = JSON.parse(fs.readFileSync('./local.json'));
-// res.locals.tags = LOCAL;
-// res.locals.editors_pick = LOCAL;
-// res.locals.exclusive = LOCAL;
-// return;
+
   if (
     req.session.navbar_data &&
     req.session.navbar_last_update_time &&

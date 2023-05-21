@@ -3,6 +3,8 @@ const moment = require('moment-timezone');
 const Blog = require('../../blog/Blog');
 const Writer = require('../../writer/Writer');
 
+const formatContent = require('./formatContent');
+
 module.exports = (writing, language, options, callback) => {
   let translation = writing.translations[language];
 
@@ -12,8 +14,8 @@ module.exports = (writing, language, options, callback) => {
     translation.title = writing.title;
   if (!translation.subtitle || !translation.subtitle.length)
     translation.subtitle = writing.subtitle
-  if (!translation.content || !translation.content.length)
-    translation.content = writing.content;
+  if (!formatContent(translation.content) || !formatContent(translation.content).length)
+    formatContent(translation.content) = writing.content;
   if (!translation.flag || !translation.flag.length)
     translation.flag = writing.flag;
   Object.keys(writing.social_media_accounts).forEach(key => {
@@ -33,7 +35,7 @@ module.exports = (writing, language, options, callback) => {
         logo: writing.logo,
         cover: writing.cover,
         subtitle: translation.subtitle,
-        content: options.do_not_load_content ? '' : translation.content,
+        content: options.do_not_load_content ? '' : formatContent(translation.content),
         label: writing.label,
         flag: translation.flag,
         social_media_accounts: translation.social_media_accounts
@@ -52,7 +54,7 @@ module.exports = (writing, language, options, callback) => {
           logo: writing.logo,
           cover: writing.cover,
           subtitle: translation.subtitle,
-          content: options.do_not_load_content ? '' : translation.content,
+          content: options.do_not_load_content ? '' : formatContent(translation.content),
           label: writing.label,
           flag: translation.flag,
           social_media_accounts: translation.social_media_accounts
@@ -74,7 +76,7 @@ module.exports = (writing, language, options, callback) => {
           logo: writing.logo,
           cover: writing.cover,
           subtitle: translation.subtitle,
-          content: options.do_not_load_content ? '' : translation.content,
+          content: options.do_not_load_content ? '' : formatContent(translation.content),
           label: writing.label,
           flag: translation.flag,
           social_media_accounts: translation.social_media_accounts
@@ -97,7 +99,7 @@ module.exports = (writing, language, options, callback) => {
             logo: writing.logo,
             cover: writing.cover,
             subtitle: translation.subtitle,
-            content: options.do_not_load_content ? '' : translation.content,
+            content: options.do_not_load_content ? '' : formatContent(translation.content),
             label: writing.label,
             flag: translation.flag,
             social_media_accounts: translation.social_media_accounts

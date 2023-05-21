@@ -19,7 +19,7 @@ module.exports = (req, res) => {
         includes: {
           external: {
             css: ['general', 'header', 'navbar', 'page', 'writing'],
-            js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest']
+            js: ['ancestorWithClassName', 'header', 'navbar', 'serverRequest']
           },
           meta: {
             title: res.__('Read, Listen & Watch'),
@@ -40,7 +40,7 @@ module.exports = (req, res) => {
         includes: {
           external: {
             css: ['general', 'header', 'navbar', 'page', 'writing'],
-            js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest']
+            js: ['ancestorWithClassName', 'header', 'navbar', 'serverRequest']
           },
           meta: {
             title: writing.title,
