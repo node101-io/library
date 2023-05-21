@@ -17,6 +17,7 @@
   font-weight: 400;
   font-size: 16px;
   color: var(--text-color-two);
-  line-height: 150%;
+  line-height: 175%;
+  margin-top: calc(var(--box-padding) / 2);
   margin-bottom: var(--box-padding);
 }

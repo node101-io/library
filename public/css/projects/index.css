@@ -1,0 +1,87 @@
+:root {
+  --each-project-height: 150px;
+}
+
+.projects-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  width: 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--box-padding);
+}
+
+.each-project-wrapper {
+  height: var(--each-project-height);
+  min-height: var(--each-project-height);
+  display: flex;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: calc(var(--box-padding) / 2);
+}
+
+.each-project-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding-right: calc(var(--box-padding) / 2);
+}
+
+.each-project-title {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.each-project-title-hovered {
+  border-bottom: 2px solid var(--text-color);
+  margin-bottom: -2px;
+}
+
+.each-project-subtitle {
+  line-height: 150%;
+  margin-top: calc(var(--box-padding) / 3);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--text-color-two);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.each-project-social-media-accounts-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+.each-project-social-media-account-wrapper {
+  margin-right: 10px;
+  cursor: pointer;
+}
+.each-project-social-media-account-wrapper:hover {
+  opacity: 0.9;
+}
+.each-project-social-media-account-icon {
+  height: 12px;
+  width: auto;
+  fill: var(--text-color);
+}
+
+.each-project-image {
+  height: calc(var(--each-project-height) - var(--box-padding) / 2);
+  min-height: calc(var(--each-project-height) - var(--box-padding) / 2);
+  width: calc(var(--each-project-height) - var(--box-padding) / 2);
+  min-width: calc(var(--each-project-height) - var(--box-padding) / 2);
+}
