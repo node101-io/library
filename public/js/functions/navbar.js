@@ -1,6 +1,10 @@
+const NAVBAR_DISPLAY_NONE_WIDTH = 950;
+
 let allHeaderHeight;
 
 function checkNavbarPosition() {
+  if (window.innerWidth <= NAVBAR_DISPLAY_NONE_WIDTH) return;
+
   const allWrapper = document.querySelector('.all-wrapper');
   
   const contentWrapper = document.querySelector('.general-inner-content-outer-wrapper');
@@ -26,12 +30,9 @@ function checkNavbarPosition() {
 window.addEventListener('load', () => {
   allHeaderHeight = document.querySelector('.general-inner-content-outer-wrapper').getBoundingClientRect().top;
 
-  const navbarDisplayNoneWidth = 900;
-
   const allWrapper = document.querySelector('.all-wrapper');
 
-  if (window.innerWidth > navbarDisplayNoneWidth) 
-    allWrapper.addEventListener('scroll', () => {
-      checkNavbarPosition();
-    });
+  allWrapper.addEventListener('scroll', () => {
+    checkNavbarPosition();
+  });
 });
