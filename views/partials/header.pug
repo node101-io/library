@@ -1,5 +1,6 @@
 extends ./head
 block content
+  input.display-none#social-media-account-json(value=JSON.stringify(SOCIAL_MEDIA_ICONS))
   .all-wrapper
     .all-header-wrapper
       a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang = ' + query_lang : ''))

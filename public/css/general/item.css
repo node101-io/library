@@ -89,8 +89,9 @@
 }
 .general-each-item-social-media-account-icon {
   height: 14px;
+  width: auto;
   fill: var(--text-color);
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .general-each-item-image {

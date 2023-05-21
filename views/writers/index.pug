@@ -4,17 +4,17 @@ block inner
   .general-title-wrapper
     h1.general-title= __('Our Writers')
     p.general-text= __('node101 brings together experienced names in the blockchain world and young enthusiats with the vision of helping the growth of the blockchain community accross the globe. Feel free to reach us from support@node101.io if you have any questions / feedback on our content.')
-  .general-items-wrapper
+  .general-items-wrapper.writers-wrapper
     each writer, i in writers
       if i > 0
         .general-each-item-seperator
       a.general-each-item-wrapper(href=writer.link)
         .general-each-item-content-wrapper
-          .general-each-item-title= writer.name
-          .general-each-item-subtitle= writer.title
+          h1.general-each-item-title= writer.name
+          h2.general-each-item-subtitle= writer.title
           .general-each-item-footer-wrapper
             each account in Object.keys(writer.social_media_accounts)
-              .general-each-item-social-media-account-wrapper(id=writer.social_media_accounts[account] target='_blank')
+              .general-each-item-social-media-account-wrapper(id=writer.social_media_accounts[account])
                 svg.general-each-item-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
                   path(d=SOCIAL_MEDIA_ICONS[account].d)
         img.general-each-item-image(src=writer.image alt=writer.name)

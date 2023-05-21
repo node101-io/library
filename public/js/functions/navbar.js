@@ -1,14 +1,16 @@
+let allHeaderHeight;
+
 function checkNavbarPosition() {
   const allWrapper = document.querySelector('.all-wrapper');
-  const allHeaderHeight = document.querySelector('.general-inner-content-outer-wrapper').getBoundingClientRect().top;
+  
   const contentWrapper = document.querySelector('.general-inner-content-outer-wrapper');
   const navbar = document.querySelector('.general-navbar-wrapper');
-  const navbarHeight = navbar.scrollHeight - (window.document.body.offsetHeight - allHeaderHeight);
+  const navbarHeight = navbar.offsetHeight - (window.document.body.offsetHeight);
 
-  const scrollHeight = allWrapper.scrollTop;
+  const scrollHeight = allWrapper.scrollTop - allHeaderHeight;
 
   if (scrollHeight >= navbarHeight) {
-    const contentWrapperHeight = contentWrapper.scrollHeight - (window.document.body.offsetHeight - allHeaderHeight)
+    const contentWrapperHeight = contentWrapper.scrollHeight - (window.document.body.offsetHeight)
 
     if (scrollHeight >= contentWrapperHeight) {
       document.querySelector('.general-navbar-wrapper').style.marginTop = 'auto';
@@ -22,6 +24,8 @@ function checkNavbarPosition() {
 }
 
 window.addEventListener('load', () => {
+  allHeaderHeight = document.querySelector('.general-inner-content-outer-wrapper').getBoundingClientRect().top;
+
   const navbarDisplayNoneWidth = 900;
 
   const allWrapper = document.querySelector('.all-wrapper');

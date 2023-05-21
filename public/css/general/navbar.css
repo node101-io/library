@@ -14,9 +14,10 @@
 .general-inner-content-wrapper {
   height: fit-content;
   min-height: fit-content;
+  width: calc(100% - var(--general-navbar-width));
+  min-width: calc(100% - var(--general-navbar-width));
   display: flex;
   flex-direction: column;
-  flex: 1;
   padding-right: var(--box-padding);
   position: relative;
 }
@@ -243,5 +244,9 @@
   .general-inner-content-wrapper {
     border-right: none;
     padding-right: 0;
+  }
+  .general-inner-content-wrapper {
+    width: 100%;
+    min-width: 100%;
   }
 }

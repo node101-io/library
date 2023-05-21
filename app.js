@@ -44,6 +44,7 @@ if (cluster.isMaster) {
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'pug');
 
+  mongoose.set('strictQuery', false);
   mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -87,6 +88,7 @@ if (cluster.isMaster) {
     res.locals.URL = URL;
     res.locals.QUERY_LIMIT = QUERY_LIMIT;
     req.query.limit = QUERY_LIMIT;
+    req.body.limit = QUERY_LIMIT;
 
     next();
   });

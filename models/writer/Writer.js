@@ -19,7 +19,7 @@ const WriterSchema = new Schema({
     minlength: 1,
     maxlength: MAX_DATABASE_TEXT_FIELD_LENGTH
   },
-  identifier: {
+  link: {
     type: String,
     required: true,
     unique: true,
@@ -101,14 +101,14 @@ WriterSchema.statics.findWriterByIdAndFormatByLanguage = function (id, language,
   });
 };
 
-WriterSchema.statics.findWriterByIdenfierAndFormatByLanguage = function (identifier, language, callback) {
+WriterSchema.statics.findWriterByIdenfierAndFormatByLanguage = function (link, language, callback) {
   const Writer = this;
 
-  if (!identifier || typeof identifier != 'string' || !identifier.trim().length)
+  if (!link || typeof link != 'string' || !link.trim().length)
     return callback('bad_request');
 
   Writer.findOne({
-    identifier: identifier.trim()
+    link: link.trim()
   }, (err, writer) => {
     if (err) return callback('database_error');
     if (!writer) return callback('document_not_found');
@@ -130,8 +130,8 @@ WriterSchema.statics.findWritersByFiltersAndFormatByLanguage = function (data, l
     return callback('bad_request');
 
   const filters = {
-    is_completed: 'true',
-    is_deleted: 'false'
+    is_completed: true,
+    is_deleted: false
   };
   const limit = data.limit && !isNaN(parseInt(data.limit)) && parseInt(data.limit) > 0 && parseInt(data.limit) < MAX_DOCUMENT_COUNT_PER_QUERY ? parseInt(data.limit) : DEFAULT_DOCUMENT_COUNT_PER_QUERY;
   const page = data.page && !isNaN(parseInt(data.page)) && parseInt(data.page) > 0 ? parseInt(data.page) : 0;
@@ -144,7 +144,7 @@ WriterSchema.statics.findWritersByFiltersAndFormatByLanguage = function (data, l
     .sort({ order: -1 })
     .then(writers => async.timesSeries(
       writers.length,
-      (time, next) => Writer.findWriterByIdAndFormatByLanguage(writers[time]._id, language, (err, writer) => next(err, writer)),
+      (time, next) => getWriterByLanguage(writers[time], language, (err, writer) => next(err, writer)),
       (err, writers) => {
         if (err) return callback(err);
 

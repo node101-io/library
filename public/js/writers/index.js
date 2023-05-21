@@ -9,7 +9,7 @@ function createWriter(writer) {
   const newItemSeperator = document.createElement('div');
   newItemSeperator.classList.add('general-each-item-seperator');
 
-  document.querySelector('.general-items-wrapper').appendChild(newItemSeperator);
+  document.querySelector('.writers-wrapper').appendChild(newItemSeperator);
 
   const newItem = document.createElement('a');
   newItem.classList.add('general-each-item-wrapper');
@@ -20,12 +20,12 @@ function createWriter(writer) {
 
   const newItemTitle = document.createElement('h1');
   newItemTitle.classList.add('general-each-item-title');
-  newItemTitle.innerHTML = writer.title;
+  newItemTitle.innerHTML = writer.name;
 
   newItemContentWrapper.appendChild(newItemTitle);
   const newItemSubtitle = document.createElement('h2');
   newItemSubtitle.classList.add('general-each-item-subtitle');
-  newItemSubtitle.innerHTML = writer.subtitle;
+  newItemSubtitle.innerHTML = writer.title;
 
   newItemContentWrapper.appendChild(newItemSubtitle);
 
@@ -36,13 +36,13 @@ function createWriter(writer) {
     const newItemSocialMediaAccountWrapper = document.createElement('div');
     newItemSocialMediaAccountWrapper.classList.add('general-each-item-social-media-account-wrapper');
     newItemSocialMediaAccountWrapper.id = writer.social_media_accounts[account];
-    newItemSocialMediaAccountWrapper.target = '_blank';
 
     const newItemSocialMediaAccountIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    newItemSocialMediaAccountIcon.viewBox = SOCIAL_MEDIA_ICONS[account].view_box;
+    newItemSocialMediaAccountIcon.classList.add('general-each-item-social-media-account-icon');
+    newItemSocialMediaAccountIcon.setAttributeNS(null, 'viewBox', SOCIAL_MEDIA_ICONS[account].view_box);
 
     const newItemSocialMediaAccountIconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    newItemSocialMediaAccountIconPath.d = SOCIAL_MEDIA_ICONS[account].d;
+    newItemSocialMediaAccountIconPath.setAttributeNS(null, 'd', SOCIAL_MEDIA_ICONS[account].d);
 
     newItemSocialMediaAccountIcon.appendChild(newItemSocialMediaAccountIconPath);
     newItemSocialMediaAccountWrapper.appendChild(newItemSocialMediaAccountIcon);
@@ -56,12 +56,11 @@ function createWriter(writer) {
   newItemImage.classList.add('general-each-item-image');
   newItemImage.src = writer.image;
   newItemImage.alt = writer.title;
-  newItemImage.height = '100%';
   newItemImage.loading = 'lazy';
 
   newItem.appendChild(newItemImage);
 
-  document.querySelector('.general-items-wrapper').appendChild(newItem);
+  document.querySelector('.writers-wrapper').appendChild(newItem);
 };
 
 function loadNewWriters() {
@@ -90,6 +89,7 @@ function loadNewWriters() {
       document.getElementById('writers-loading-icon').style.display = 'none';
     }
 
+    checkNavbarPosition();
     isWritersLoading = false;
   });
 };
@@ -103,12 +103,13 @@ window.addEventListener('load', () => {
   });
 
   const allWrapper = document.querySelector('.all-wrapper');
+  const allFooterHeight = document.querySelector('.all-footer-wrapper').offsetHeight;
 
   allWrapper.addEventListener('scroll', (_) => {
     if (
       !isWriterEndReached &&
       !isWritersLoading &&
-      (allWrapper.scrollHeight - (allWrapper.scrollTop + window.document.body.offsetHeight)) < NEW_WRITER_LOAD_SCROLL_DISTANCE
+      (allWrapper.scrollHeight - (allWrapper.scrollTop + window.document.body.offsetHeight + allFooterHeight)) < NEW_WRITER_LOAD_SCROLL_DISTANCE
     ) {
       loadNewWriters();
     }

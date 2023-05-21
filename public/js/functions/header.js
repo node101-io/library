@@ -1,6 +1,8 @@
+let SOCIAL_MEDIA_ICONS;
 let QUERY;
 
 window.addEventListener('load', () => {
+  SOCIAL_MEDIA_ICONS = JSON.parse(document.getElementById('social-media-account-json').value);
   QUERY = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop)
   });
