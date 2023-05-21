@@ -14,9 +14,9 @@
 }
 
 .general-text {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
-  color: var(--text-color);
+  color: var(--text-color-two);
   line-height: 150%;
   margin-bottom: var(--box-padding);
 }

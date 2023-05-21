@@ -137,27 +137,14 @@ WritingSchema.statics.findWritingByIdAndFormatByLanguage = function (id, languag
   if (!language || !ALLOWED_LANGUAGE_VALUES.includes(language))
     return callback('bad_request');
 
-  const time0 = (new Date).getTime();
-
   Writing.findById(mongoose.Types.ObjectId(id.toString()), (err, writing) => {
     if (err) return callback(err);
-
-    const time1 = (new Date).getTime();
-
-    console.log("Each Writing: " + ((time1 - time0) / 1000))
-
-    if (((time1 - time0) / 1000) > 0.1)
-      console.log(writing._id.toString());
 
     if (!writing.is_completed)
       return callback('not_authenticated_request');
 
     getWritingByLanguageAndOptions(writing, language, {}, (err, writing) => {
       if (err) return callback(err);
-
-      const time2 = (new Date).getTime();
-
-      console.log("Each Writing: " + ((time2 - time1) / 1000))
 
       return callback(null, writing);
     });

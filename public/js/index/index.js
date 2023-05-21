@@ -171,12 +171,13 @@ window.addEventListener('load', () => {
   });
 
   const allWrapper = document.querySelector('.all-wrapper');
+  const allFooterHeight = document.querySelector('.all-footer-wrapper').offsetHeight;
 
   allWrapper.addEventListener('scroll', () => {
     if (
       !isWritingEndReached &&
       !isWritingsLoading &&
-      (allWrapper.scrollHeight - (allWrapper.scrollTop + window.document.body.offsetHeight)) < NEW_WRITING_LOAD_SCROLL_DISTANCE
+      (allWrapper.scrollHeight - (allWrapper.scrollTop + window.document.body.offsetHeight + allFooterHeight)) < NEW_WRITING_LOAD_SCROLL_DISTANCE
     ) {
       loadNewWritings();
     }

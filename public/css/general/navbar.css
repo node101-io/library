@@ -1,7 +1,7 @@
 :root {
   --general-navbar-width: 350px;
-  --general-navbar-short-writing-height: 60px;
-  --general-navbar-writing-height: 100px;
+  --general-navbar-short-writing-height: 70px;
+  --general-navbar-writing-height: 110px;
 }
 
 .general-inner-content-outer-wrapper {
@@ -32,7 +32,7 @@
   border-left: 1px solid var(--border-color);
 }
 .general-navbar-scrolled-wrapper {
-  z-index: 2;
+  z-index: 1;
   position: absolute !important;
   bottom: 0;
   right: var(--content-horizontal-padding);
@@ -60,7 +60,7 @@
 .general-navbar-see-more-button {
   font-weight: 700;
   font-size: 14px;
-  color: var(--text-color);
+  color: var(--text-color-two);
   cursor: pointer;
 }
 .general-navbar-see-more-button:hover {
@@ -104,7 +104,7 @@
 .general-navbar-each-short-writing-title {
   font-weight: 600;
   font-size: 15px;
-  line-height: calc((var(--general-navbar-short-writing-height) - var(--box-padding)) / 2);
+  line-height: 135%;
   color: var(--text-color);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -131,7 +131,7 @@
 .general-navbar-each-tag {
   background-color: var(--text-color);
   color: var(--background-color);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
   padding: 2px 12px;
   border-radius: 12px;
@@ -185,8 +185,8 @@
 }
 .general-navbar-each-writing-title {
   font-weight: 600;
-  font-size: 15px;
-  line-height: calc((var(--general-navbar-short-writing-height) - var(--box-padding)) / 2);
+  font-size: 16px;
+  line-height: 125%;
   color: var(--text-color);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -196,8 +196,8 @@
 }
 .general-navbar-each-writing-subtitle {
   font-weight: 500;
-  font-size: 14px;
-  line-height: calc((var(--general-navbar-short-writing-height) - var(--box-padding)) / 2);
+  font-size: 15px;
+  line-height: 125%;
   color: var(--text-color);
   display: -webkit-box;
   -webkit-line-clamp: 2;

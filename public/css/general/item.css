@@ -58,7 +58,7 @@
   margin-bottom: calc(var(--box-padding) / 4 - 1px);
 }
 .general-each-item-subtitle {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 15px;
   color: var(--text-color);
   margin-bottom: calc(var(--box-padding) / 2);
@@ -146,10 +146,21 @@
 }
 
 @media only screen and (max-width: 500px) {
-  :root {
-    --general-item-image-size: 110px;
+  .general-each-item-title {
+    font-size: 17px;
   }
-  .general-each-item-image {
-    display: none;
+  .general-each-item-subtitle {
+    font-size: 14px;
+  }
+  :root {
+    --general-item-image-size: 80px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .general-each-item-title {
+    font-size: 16px;
+  }
+  :root {
+    --general-item-image-size: 70px;
   }
 }

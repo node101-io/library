@@ -14,7 +14,7 @@ function checkNavbarPosition() {
   const scrollHeight = allWrapper.scrollTop - allHeaderHeight;
 
   if (scrollHeight >= navbarHeight) {
-    const contentWrapperHeight = contentWrapper.scrollHeight - (window.document.body.offsetHeight)
+    const contentWrapperHeight = contentWrapper.scrollHeight - (window.document.body.offsetHeight);
 
     if (scrollHeight >= contentWrapperHeight) {
       document.querySelector('.general-navbar-wrapper').style.marginTop = 'auto';
