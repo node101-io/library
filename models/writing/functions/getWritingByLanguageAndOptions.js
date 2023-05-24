@@ -15,7 +15,7 @@ module.exports = (writing, language, options, callback) => {
   if (!translation.subtitle || !translation.subtitle.length)
     translation.subtitle = writing.subtitle
   if (!formatContent(translation.content) || !formatContent(translation.content).length)
-    formatContent(translation.content) = writing.content;
+    translation.content = formatContent(writing.content);
   if (!translation.flag || !translation.flag.length)
     translation.flag = writing.flag;
   Object.keys(writing.social_media_accounts).forEach(key => {
