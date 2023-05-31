@@ -107,7 +107,7 @@ TagSchema.statics.findTagsByFiltersAndFormatByLanguage = function (data, languag
     .skip(skip)
     .then(tags => async.timesSeries(
       tags.length,
-      (time, next) => Tag.findTagByIdAndFormatByLanguage(tags[time]._id, language, (err, tag) => next(err, tag)),
+      (time, next) => getTagByLanguage(tags[time], language, (err, tag) => next(err, tag)),
       (err, tags) => {
         if (err) return callback(err);
 
