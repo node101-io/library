@@ -18,6 +18,8 @@ module.exports = (writing, language, options, callback) => {
     translation.content = formatContent(writing.content);
   if (!translation.flag || !translation.flag.length)
     translation.flag = writing.flag;
+  if (!translation.social_media_accounts || typeof translation.social_media_accounts != 'object')
+    translation.social_media_accounts = {};
   Object.keys(writing.social_media_accounts).forEach(key => {
     if (!translation.social_media_accounts[key])
       translation.social_media_accounts[key] = writing.social_media_accounts[key];
