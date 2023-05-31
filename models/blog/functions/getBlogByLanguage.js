@@ -10,6 +10,8 @@ module.exports = (blog, language, callback) => {
     translation.title = blog.title;
   if (!translation.subtitle || !translation.subtitle.length)
     translation.subtitle = blog.subtitle;
+  if (!translation.social_media_accounts || typeof translation.social_media_accounts != 'object')
+    translation.social_media_accounts = {};
   Object.keys(blog.social_media_accounts).forEach(key => {
     if (!translation.social_media_accounts[key])
       translation.social_media_accounts[key] = blog.social_media_accounts[key];
