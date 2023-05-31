@@ -94,7 +94,7 @@ block content
             h2.all-footer-subtitle= __('node101 is a validator that describes promising projects and web3 technologies in a pure language.')
           .all-footer-right-columns-wrapper
             .all-footer-each-column-wrapper
-              h3.all-footer-each-column-title Community
+              h3.all-footer-each-column-title= __('Community')
               each account in Object.keys(NODE101_SOCIAL_MEDIA_ACCOUNTS)
                 a.all-footer-social-media-account-wrapper(href=NODE101_SOCIAL_MEDIA_ACCOUNTS[account] target='_blank')
                   svg.all-footer-social-media-account-icon(xmlns='http://www.w3.org/2000/svg' viewBox=SOCIAL_MEDIA_ICONS[account].view_box)

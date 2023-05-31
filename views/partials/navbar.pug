@@ -47,8 +47,8 @@ block main
       article.general-navbar-tags-wrapper
         h1.general-navbar-title= __('Popular Tags')
         .general-navbar-tags-inner-wrapper
-          - for (let i = 0; i < tags.length; i++)
-            a.general-navbar-each-tag(href=tags[i].url)= tags[i].name
+          each tag in tags
+            a.general-navbar-each-tag(href=tag.url)= tag.name
       article.general-navbar-exclusive-wrapper
         .general-navbar-title-wrapper
           h1.general-navbar-title= __('Exclusive Content')

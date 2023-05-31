@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const EDITORS_PICK_WRITING_COUNT = 5;
 const EXCLUSIVE_WRITING_COUNT = 5;
 const FIVE_MINS_IN_MS = 5 * 60 * 1000;
@@ -8,9 +6,10 @@ const Tag = require('../models/tag/Tag');
 const Writing = require('../models/writing/Writing');
 
 module.exports = (req, res, next) => {
-  const language = req.query.lang ? req.query.lang : (req.headers['accept-language'] ? req.headers['accept-language'].split('-')[0] : 'en');
+  const language = res.locals.lang;
 
   if (
+    req.session &&
     req.session.navbar_data &&
     req.session.navbar_last_update_time &&
     (new Date).getTime() - req.session.navbar_last_update_time < FIVE_MINS_IN_MS

@@ -174,8 +174,6 @@ WritingSchema.statics.findWritingByIdentifierAndFormatByLanguage = function (ide
 WritingSchema.statics.findWritingsByFiltersAndFormatByLanguage = function (data, language, callback) {
   const Writing = this;
 
-  const time0 = (new Date).getTime();
-
   WritingFilter.findWritingFiltersByFiltersAndLanguage(data, language, (err, writing_filters_data) => {
     if (err) return callback(err);
 

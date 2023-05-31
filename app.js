@@ -51,7 +51,7 @@ if (cluster.isMaster) {
   });
 
   i18n.configure({
-    locales:['tr', 'en'],
+    locales: ['tr', 'en'],
     directory: __dirname + '/translations',
     queryParameter: 'lang',
     defaultLocale: 'tr'
@@ -84,6 +84,8 @@ if (cluster.isMaster) {
       req.query = {};
     if (!req.body || typeof req.body != 'object')
       req.body = {};
+    if (!req.session || typeof req.session != 'object')
+      req.session = {};
 
     res.locals.URL = URL;
     res.locals.QUERY_LIMIT = QUERY_LIMIT;
