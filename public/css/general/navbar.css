@@ -58,7 +58,7 @@
 }
 
 .general-navbar-see-more-button {
-  font-weight: 700;
+  font-weight: 400;
   font-size: 14px;
   color: var(--text-color-two);
   cursor: pointer;

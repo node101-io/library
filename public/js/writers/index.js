@@ -96,9 +96,10 @@ function loadNewWriters() {
 
 window.addEventListener('load', () => {
   document.addEventListener('click', event => {
-    if (ancestorWithClassName(event.target, 'general-each-item-social-media-account-icon')) {
-      const target = ancestorWithClassName(event.target, 'general-each-item-social-media-account-icon');
-      window.location.href = target.id;
+    if (ancestorWithClassName(event.target, 'general-each-item-social-media-account-wrapper')) {
+      event.preventDefault();
+      const target = ancestorWithClassName(event.target, 'general-each-item-social-media-account-wrapper');
+      window.open(target.id, '_blank');
     }
   });
 

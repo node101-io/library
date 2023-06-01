@@ -30,7 +30,7 @@ module.exports = (writing, language, options, callback) => {
       return callback(null, {
         _id: writing._id.toString(),
         title: translation.title.replace(writing._id.toString(), ''),
-        link: `/blog/stable/${writing._id.toString()}`,
+        link: `/stable/${writing._id.toString()}`,
         blog: {},
         writer: {},
         created_at: moment(writing.created_at).format('DD[.]MM[.]YYYY'),
@@ -49,7 +49,7 @@ module.exports = (writing, language, options, callback) => {
         return callback(null, {
           _id: writing._id.toString(),
           title: translation.title.replace(writing._id.toString(), ''),
-          link: `/blog/stable/${writing._id.toString()}`,
+          link: `/stable/${writing._id.toString()}`,
           blog: {},
           writer,
           created_at: moment(writing.created_at).format('DD[.]MM[.]YYYY'),

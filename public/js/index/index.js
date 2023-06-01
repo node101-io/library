@@ -1,12 +1,13 @@
 let MONTHS;
 const NEW_WRITING_LOAD_SCROLL_DISTANCE = 300;
-const SLIDE_CHANGE_DURATION_IN_MS = 3 * 1000;
+const SLIDE_CHANGE_DURATION_IN_MS = 5 * 1000;
 
 let currentSlide = 0;
 let isSlideMoving = false;
 let isWritingEndReached = false;
 let isWritingsLoading = false;
 let onSlide = false;
+let slider = [];
 let writings = [];
 let writingsPageCount = 1;
 
@@ -22,6 +23,7 @@ function moveToNextSlide() {
   wrapper.appendChild(duplicate);
   element.remove();
 
+  currentSlide = (currentSlide + 1) % slider.length;
   isSlideMoving = false;
 };
 
@@ -37,6 +39,7 @@ function moveToPrevSlide() {
   wrapper.insertBefore(duplicate, wrapper.childNodes[0]);
   element.remove();
 
+  currentSlide = (currentSlide + slider.length - 1) % slider.length;
   isSlideMoving = false;
 };
 
@@ -147,6 +150,7 @@ function loadNewWritings() {
 
 window.addEventListener('load', () => {
   MONTHS = JSON.parse(document.getElementById('MONTHS').value);
+  slider = JSON.parse(document.getElementById('slider-json').value);
   writings = JSON.parse(document.getElementById('writings-json').value);
   changeSlide();
 
@@ -168,6 +172,12 @@ window.addEventListener('load', () => {
   document.addEventListener('click', event => {
     if (ancestorWithClassName(event.target, 'move-next-slide-button')) moveToNextSlide();
     if (ancestorWithClassName(event.target, 'move-previous-slide-button')) moveToPrevSlide();
+
+    if (event.target.classList.contains('each-slide-bullet')) {
+      const index = event.target.id.replace('each-slide-bullet-', '');
+      for (let i = 0; i < slider.length && index != currentSlide; i++)
+        moveToNextSlide();
+    }
   });
 
   const allWrapper = document.querySelector('.all-wrapper');

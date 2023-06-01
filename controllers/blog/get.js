@@ -1,7 +1,7 @@
 const urldecode = require('urldecode');
 
-const Blog = require('../../../models/blog/Blog');
-const Writing = require('../../../models/writing/Writing');
+const Blog = require('../../models/blog/Blog');
+const Writing = require('../../models/writing/Writing');
 
 module.exports = (req, res) => {
   const language = res.locals.lang;

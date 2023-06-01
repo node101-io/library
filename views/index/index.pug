@@ -1,6 +1,7 @@
 extends ../partials/navbar
 block inner
   input.display-none#MONTHS(value=JSON.stringify(MONTHS))
+  input.display-none#slider-json(value=JSON.stringify(slider))
   input.display-none#writings-json(value=JSON.stringify(writings))
   .slider-wrapper
     each slide, i in slider
@@ -19,9 +20,9 @@ block inner
           .each-slide-bullets-wrapper
             - for (let j = 0; j < slider.length; j++)
               if j == i
-                .each-slide-bullet-filled
+                .each-slide-bullet-filled(id=`each-slide-bullet-${j}`)
               else
-                .each-slide-bullet
+                .each-slide-bullet(id=`each-slide-bullet-${j}`)
           .each-slide-buttons-wrapper
             .each-slide-button.move-previous-slide-button
               svg.each-slide-button-icon(viewBox='0 0 6 10' xmlns='http://www.w3.org/2000/svg')

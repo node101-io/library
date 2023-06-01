@@ -3,7 +3,7 @@ const WRITERS_COUNT = 7;
 const Writer = require('../../../models/writer/Writer');
 
 module.exports= (req, res) => {
-  const language = res.locals.language;
+  const language = res.locals.lang;
 
   req.body.limit = WRITERS_COUNT;
 

@@ -1,6 +1,6 @@
 :root {
-  --each-slide-blog-image-size: 40px;
-  --each-slide-image-size: 170px;
+  --each-slide-blog-image-size: 60px;
+  --each-slide-image-size: 200px;
   --each-slide-footer-height: 40px;
   --each-slide-bullet-size: 9px;
   --each-slide-button-size: 20px;
@@ -97,12 +97,13 @@
   text-decoration: underline !important;
 }
 .each-slide-subtitle {
-  font-weight: 600;
-  font-size: 17px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
   color: var(--text-color);
   margin-top: auto;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

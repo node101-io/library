@@ -5,13 +5,13 @@ const router = express.Router();
 const generateConstantData = require('../middleware/generateConstantData');
 const loadNavbarData = require('../middleware/loadNavbarData');
 
-const detailsGetController = require('../controllers/blog/details/get');
+const indexGetController = require('../controllers/blog/get');
 
 router.get(
-  '*',
+  '/*',
     generateConstantData,
     loadNavbarData,
-    detailsGetController
+    indexGetController
 );
 
 module.exports = router;

@@ -8,6 +8,7 @@ const loadNavbarData = require('../middleware/loadNavbarData');
 const errorGetController = require('../controllers/index/error/get');
 const indexGetController = require('../controllers/index/index/get');
 const searchGetController = require('../controllers/index/search/get');
+const stableGetController = require('../controllers/index/stable/get');
 
 const filterPostController = require('../controllers/index/filter/post');
 
@@ -26,6 +27,11 @@ router.get(
     generateConstantData,
     loadNavbarData,
     searchGetController
+);
+router.get(
+  '/stable/*',
+    generateConstantData,
+    stableGetController
 );
 
 router.post(

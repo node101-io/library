@@ -11,3 +11,7 @@
   margin-left: 50%;
   transform: translateX(-50%);
 }
+
+.general-title-wrapper {
+  margin-bottom: calc(var(--box-padding) / 2);
+}
