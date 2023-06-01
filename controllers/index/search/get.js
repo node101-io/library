@@ -36,7 +36,7 @@ module.exports = (req, res) => {
           meta: {
             title: res.__('Read, Listen & Watch'),
             description: res.__('Stake your assets with the industry\'s most user-friendly organization! node101 accompanies you on your staking journey from start to finish and offers a privileged service where you can safely stake your assets and get support from experts whenever you want.'),
-            image: '/res/images/meta/header.png',
+            image: '/img/meta/header.png',
             twitter: true
           }
         },

@@ -24,7 +24,7 @@ module.exports = (req, res) => {
           meta: {
             title: res.__('Read, Listen & Watch'),
             description: blog.subtitle,
-            image: '/res/images/meta/header.png',
+            image: '/img/meta/header.png',
             twitter: true
           }
         },
@@ -45,7 +45,7 @@ module.exports = (req, res) => {
           meta: {
             title: writing.title,
             description: writing.subtitle,
-            image: '/res/images/meta/header.png',
+            image: '/img/meta/header.png',
             twitter: true
           }
         },

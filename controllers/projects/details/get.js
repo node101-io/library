@@ -32,7 +32,7 @@ module.exports = (req, res) => {
             // meta: {
             //   title: res.__('Read, Listen & Watch | library.node101'),
             //   description: res.__('Stake your assets with the industry\'s most user-friendly organization! node101 accompanies you on your staking journey from start to finish and offers a privileged service where you can safely stake your assets and get support from experts whenever you want.'),
-            //   image: '/res/images/open-graph/header.png',
+            //   image: '/img/open-graph/header.png',
             //   twitter: true
             // }
           },
