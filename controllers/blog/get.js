@@ -12,46 +12,54 @@ module.exports = (req, res) => {
   Blog.findBlogByIdentifierAndFormatByLanguage(blogIdentifier, language, (err, blog) => {
     if (err) return res.redirect('/');
 
-    if (!writingIdentifier)
-      return res.render('blog/details', {
-        page: 'blog/details',
-        title: blog.title,
-        includes: {
-          external: {
-            css: ['general', 'header', 'navbar', 'page', 'writing'],
-            js: ['ancestorWithClassName', 'header', 'navbar', 'serverRequest']
-          },
-          meta: {
-            title: res.__('Read, Listen & Watch'),
-            description: blog.subtitle,
-            image: '/img/meta/header.png',
-            twitter: true
-          }
-        },
-        blog
-      });
+    if (!writingIdentifier) {
+      Writing.findWritingCountByFiltersAndLanguage({
+        parent_id: blog._id,
+      }, language, (err, count) => {
+        if (err) return res.redirect('/');
 
-    Writing.findWritingByIdentifierAndFormatByLanguage(writingIdentifier, language, (err, writing) => {
-      if (err) return res.redirect('/');
-
-      return res.render('blog/writing', {
-        page: 'blog/writing',
-        title: writing.title,
-        includes: {
-          external: {
-            css: ['general', 'header', 'navbar', 'page', 'writing'],
-            js: ['ancestorWithClassName', 'header', 'navbar', 'serverRequest']
+        return res.render('blog/details', {
+          page: 'blog/details',
+          title: blog.title,
+          includes: {
+            external: {
+              css: ['general', 'header', 'info', 'navbar', 'writing'],
+              js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest']
+            },
+            meta: {
+              title: res.__('Read, Listen & Watch'),
+              description: blog.subtitle,
+              image: '/img/meta/header.png',
+              twitter: true
+            }
           },
-          meta: {
-            title: writing.title,
-            description: writing.subtitle,
-            image: '/img/meta/header.png',
-            twitter: true
-          }
-        },
-        blog,
-        writing
+          count,
+          blog
+        });
       });
-    });
+    } else {
+      Writing.findWritingByIdentifierAndFormatByLanguage(writingIdentifier, language, (err, writing) => {
+        if (err) return res.redirect('/');
+  
+        return res.render('blog/writing', {
+          page: 'blog/writing',
+          title: writing.title,
+          includes: {
+            external: {
+              css: ['general', 'header', 'navbar', 'page', 'writing'],
+              js: ['ancestorWithClassName', 'header', 'navbar', 'serverRequest']
+            },
+            meta: {
+              title: writing.title,
+              description: writing.subtitle,
+              image: '/img/meta/header.png',
+              twitter: true
+            }
+          },
+          blog,
+          writing
+        });
+      });
+    }
   });
 }
