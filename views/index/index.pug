@@ -36,7 +36,7 @@ block inner
       a.general-each-writing-wrapper(href=writing.link)
         .general-each-writing-content-wrapper
           .general-each-writing-content-header-wrapper
-            .general-each-writing-blog-wrapper
+            .general-each-writing-blog-wrapper(id=writing.blog.link)
               img.general-each-writing-blog-image(src=writing.blog.image alt=writing.blog.title)
               h2.general-each-writing-blog-title= writing.blog.title
             .general-each-writing-date • #{writing.created_at.split('.')[0]} #{MONTHS[parseInt(writing.created_at.split('.')[1]) - 1]} #{writing.created_at.split('.')[2]}

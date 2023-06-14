@@ -24,7 +24,7 @@ module.exports = (req, res) => {
           includes: {
             external: {
               css: ['general', 'header', 'info', 'navbar', 'writing'],
-              js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest']
+              js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest', 'writing']
             },
             meta: {
               title: blog.title,
