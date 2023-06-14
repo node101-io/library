@@ -2,7 +2,7 @@
   --each-slide-blog-image-size: 60px;
   --each-slide-image-size: 200px;
   --each-slide-footer-height: 40px;
-  --each-slide-bullet-size: 9px;
+  --each-slide-bullet-size: 11px;
   --each-slide-button-size: 20px;
 }
 
@@ -190,14 +190,18 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .slider-wrapper {
+    margin-top: var(--box-padding);
+  }
   :root {
-    --each-slide-image-size: 140px;
+    --each-slide-blog-image-size: 30px;
+    --each-slide-image-size: 170px;
   }
   .each-slide-content-inner-wrapper {
     padding-right: 0;
   }
   .each-slide-subtitle {
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
   }
   .each-slide-image {
     display: none;

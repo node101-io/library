@@ -1,6 +1,6 @@
 :root {
   --general-writing-blog-image-size: 30px;
-  --general-writing-image-size: 130px;
+  --general-writing-image-size: 110px;
   --general-writing-loading-icon-wrapper-height: 100px;
 }
 
@@ -99,7 +99,7 @@
 }
 .general-each-writing-subtitle {
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-color);
   margin-top: calc(var(--box-padding) / 2);
   display: -webkit-box;

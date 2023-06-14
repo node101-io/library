@@ -355,7 +355,7 @@
   .all-header-buttons-wrapper {
     justify-content: flex-start;
   }
-  .all-header-each-button, .all-header-language-button-text, .all-header-each-language-button-text, .all-header-search-input {
+  .all-header-language-button-text, .all-header-each-language-button-text, .all-header-search-input {
     font-size: 15px;
   }
   .all-header-search-wrapper {
@@ -370,7 +370,7 @@
     --all-header-button-gap: 15px;
   }
   .all-header-each-button, .all-header-language-button-text, .all-header-each-language-button-text, .all-header-search-input {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 

@@ -1,9 +1,4 @@
 {
-	"Read, Listen & Watch": "Read, Listen & Watch",
-	"Stake": "Stake",
-	"Testnet": "Testnet",
-	"Library": "Library",
-	"Events": "Events",
 	"About Us": "About Us",
 	"Jan": "Jan",
 	"Feb": "Feb",
@@ -59,5 +54,6 @@
 	"Designed & Developed by node101.io": "Designed & Developed by node101.io",
 	"See more": "See more",
 	"Community": "Community",
-	"Editor's Pick": "Editor's Pick"
+	"Editor's Pick": "Editörün Seçimleri",
+	"Read, Listen & Watch": "Read, Listen & Watch"
 }
