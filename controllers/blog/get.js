@@ -27,7 +27,7 @@ module.exports = (req, res) => {
               js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest']
             },
             meta: {
-              title: res.__('Read, Listen & Watch'),
+              title: blog.title,
               description: blog.subtitle,
               image: '/img/meta/header.png',
               twitter: true
