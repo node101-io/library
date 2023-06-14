@@ -2,18 +2,20 @@ extends ../partials/navbar
 block inner
   input.display-none#blog-json(value=JSON.stringify(blog))
   input.display-none#MONTHS(value=JSON.stringify(MONTHS))
-  .general-info-wrapper
-    .general-info-content-wrapper
-      h1.general-info-title= blog.title
-      h2.general-info-subtitle= blog.subtitle
-      .general-info-social-media-accounts-wrapper
-        each account in Object.keys(blog.social_media_accounts)
-          a.general-info-each-social-media-account-wrapper(href=blog.social_media_accounts[account] target='_blank')
-            svg.general-info-each-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
-              path(d=SOCIAL_MEDIA_ICONS[account].d)
-      h3.general-info-number #{count} #{__('writing')}#{count > 1 ? __('s') : ''}
-    .general-info-image-wrapper
-      img.general-info-image(src=blog.image alt=blog.name)
+  .general-info-outer-wrapper
+    .general-info-wrapper
+      .general-info-content-wrapper
+        h1.general-info-title= blog.title
+        h2.general-info-subtitle= blog.subtitle
+        .general-info-social-media-accounts-wrapper
+          each account in Object.keys(blog.social_media_accounts)
+            a.general-info-each-social-media-account-wrapper(href=blog.social_media_accounts[account] target='_blank')
+              svg.general-info-each-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
+                path(d=SOCIAL_MEDIA_ICONS[account].d)
+        h3.general-info-number #{count} #{__('writing')}#{count > 1 ? __('s') : ''}
+      .general-info-image-wrapper
+        img.general-info-image(src=blog.image alt=blog.name)
+    h2.general-info-responsive-subtitle= blog.subtitle
   .inner-content-wrapper
     .general-writings-wrapper
     .general-writings-loading-icon-wrapper#writings-loading-icon(style=(count > 0 ? '' : 'display: none;'))
