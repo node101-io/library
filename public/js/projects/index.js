@@ -111,7 +111,7 @@ window.addEventListener('load', () => {
     if (ancestorWithClassName(event.target, 'each-project-social-media-account-wrapper')) {
       event.preventDefault();
       const target = ancestorWithClassName(event.target, 'each-project-social-media-account-wrapper');
-      window.open(target.id, '_blank');
+      window.open(target.id, '_blank').focus();
     }
   });
 

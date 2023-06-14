@@ -86,6 +86,9 @@ WritingFilterSchema.statics.findWritingFiltersByFiltersAndLanguage = function (d
   const filters = {
     language
   };
+  
+  if (data.n_id && validator.isMongoId(data.n_id.toString()))
+    filters.writing_id = { $ne: mongoose.Types.ObjectId(data.n_id.toString()) };
 
   if (data.label && LABEL_VALUES.includes(data.label))
     filters.label = data.label;

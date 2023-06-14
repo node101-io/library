@@ -114,6 +114,7 @@
   min-height: var(--each-slide-image-size);
   width: var(--each-slide-image-size);
   min-width: var(--each-slide-image-size);
+  border-radius: 5px;
 }
 
 .each-slide-footer-wrapper {

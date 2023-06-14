@@ -99,6 +99,7 @@
   height: calc(var(--general-navbar-short-writing-height) - var(--box-padding));
   min-height: calc(var(--general-navbar-short-writing-height) - var(--box-padding));
   margin-right: calc(var(--box-padding) / 2);
+  border-radius: 3px;
 }
 
 .general-navbar-each-short-writing-title {
@@ -173,6 +174,7 @@
   height: calc(var(--general-navbar-writing-height) - var(--box-padding));
   min-height: calc(var(--general-navbar-writing-height) - var(--box-padding));
   margin-right: calc(var(--box-padding) / 2);
+  border-radius: 4px;
 }
 
 .general-navbar-each-writing-content-wrapper {

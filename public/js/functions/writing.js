@@ -63,14 +63,12 @@ function createWriting(writing) {
   document.querySelector('.general-writings-wrapper').appendChild(newWriting);
 };
 
-
 window.addEventListener('load', () => {
   document.addEventListener('click', event => {
     if (ancestorWithClassName(event.target, 'general-each-writing-blog-wrapper')) {
       event.preventDefault();
       const link = ancestorWithClassName(event.target, 'general-each-writing-blog-wrapper').id;
-
-      window.location.href = link;
+      window.location = link;
     }
   });
 

@@ -98,15 +98,15 @@ window.addEventListener('load', () => {
   document.addEventListener('click', event => {
     if (ancestorWithClassName(event.target, 'general-each-item-social-media-account-wrapper')) {
       event.preventDefault();
-      const target = ancestorWithClassName(event.target, 'general-each-item-social-media-account-wrapper');
-      window.open(target.id, '_blank');
+      const link = ancestorWithClassName(event.target, 'general-each-item-social-media-account-wrapper').id;
+      window.open(link, '_blank').focus();
     }
   });
 
   const allWrapper = document.querySelector('.all-wrapper');
   const allFooterHeight = document.querySelector('.all-footer-wrapper').offsetHeight;
 
-  allWrapper.addEventListener('scroll', (_) => {
+  allWrapper.addEventListener('scroll', _ => {
     if (
       !isWriterEndReached &&
       !isWritersLoading &&
