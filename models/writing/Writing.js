@@ -40,6 +40,28 @@ const WritingSchema = new Schema({
     type: mongoose.Types.ObjectId,
     required: true
   },
+  parent_identifiers: {
+    type: Array,
+    default: []
+  },
+  parent_identifier_languages: {
+    type: Object,
+    default: {}
+  },
+  parent_title: {
+    type: String,
+    default: null,
+    trim: true,
+    minlength: 1,
+    maxlength: MAX_DATABASE_TEXT_FIELD_LENGTH
+  },
+  parent_image: {
+    type: String,
+    default: null,
+    trim: true,
+    minlength: 1,
+    maxlength: MAX_DATABASE_TEXT_FIELD_LENGTH
+  },
   writer_id: {
     type: mongoose.Types.ObjectId,
     default: null
