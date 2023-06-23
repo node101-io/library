@@ -3,7 +3,7 @@
   --all-header-logo-width: 100px;
   --all-header-button-gap: 30px;
   --all-header-search-wrapper-height: 40px;
-  --all-header-search-wrapper-width: 250px;
+  --all-header-search-wrapper-width: 350px;
   --all-header-search-results-height: 150px;
   --all-header-search-result-image-size: 20px;
   --all-header-language-button-height: 42px;
@@ -94,7 +94,7 @@
   margin-bottom: -2px;
 }
 
-.all-header-search-outer-wrapper {
+.all-header-search-outer-wrapper,  .all-header-responsive-search-outer-wrapper {
   height: var(--all-header-search-wrapper-height);
   min-height: var(--all-header-search-wrapper-height);
   width: var(--all-header-search-wrapper-width);
@@ -105,7 +105,12 @@
   overflow: hidden;
   border-radius: 5px;
   z-index: 2;
+}
+.all-header-responsive-search-outer-wrapper {
+  margin: 10px 0;
   display: none;
+  width: 100%;
+  min-width: 100%;
 }
 .all-header-search-wrapper, .all-header-responsive-search-wrapper {
   display: flex;
@@ -118,10 +123,8 @@
   border-radius: 5px;
 }
 .all-header-responsive-search-wrapper {
-  display: none;
   width: 100%;
   min-width: 100%;
-  margin-top: 10px;
 }
 .all-header-search-icon {
   fill: var(--placeholder-color);
@@ -175,9 +178,9 @@
   margin-right: 5px;
 }
 .all-header-each-search-input-result-text {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--text-color-two);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-color);
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -414,16 +417,21 @@
     --all-header-language-button-width: 130px;
   }
   .all-header-buttons-wrapper {
+    margin-top: 0;
     justify-content: flex-start;
   }
   .all-header-language-button-text, .all-header-each-language-button-text, .all-header-search-input {
     font-size: 15px;
   }
-  .all-header-search-wrapper {
+  .all-header-search-outer-wrapper, .all-header-search-wrapper {
     display: none;
   }
-  .all-header-responsive-search-wrapper {
+  .all-header-responsive-search-outer-wrapper, .all-header-responsive-search-wrapper {
     display: flex;
+  }
+  .all-header-search-input-results-wrapper {
+    width: 100%;
+    min-width: 100%;
   }
 }
 @media only screen and (max-width: 350px) {

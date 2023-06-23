@@ -27,8 +27,7 @@ function createSearchResult(writing) {
 
 function loadSearchResults(search) {
   serverRequest('/filter', 'POST', {
-    search,
-    do_not_load_blog: true
+    search
   }, res => {
     if (!res.success)
       return throwError(res.error);
@@ -46,7 +45,7 @@ function loadSearchResults(search) {
     for (let i = 0; i < res.writings.length; i++)
       createSearchResult(res.writings[i]);
   })
-}
+};
 
 window.addEventListener('load', () => {
   SOCIAL_MEDIA_ICONS = JSON.parse(document.getElementById('social-media-account-json').value);
