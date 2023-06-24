@@ -1,5 +1,4 @@
 let MONTHS;
-const NEW_WRITING_LOAD_SCROLL_DISTANCE = 300;
 const SLIDE_CHANGE_DURATION_IN_MS = 5 * 1000;
 
 let currentSlide = 0;

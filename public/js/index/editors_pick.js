@@ -1,6 +1,5 @@
 let MONTHS;
 
-let search;
 let isWritingEndReached = false;
 let isWritingsLoading = false;
 let writings = [];
@@ -13,7 +12,7 @@ function loadNewWritings() {
 
   serverRequest('/filter', 'POST', {
     page: writingsPageCount,
-    search
+    label: 'editors_pick'
   }, res => {
     if (!res.success || res.error) return alert(res.error);
 
@@ -43,7 +42,6 @@ function loadNewWritings() {
 window.addEventListener('load', () => {
   MONTHS = JSON.parse(document.getElementById('MONTHS').value);
   writings = JSON.parse(document.getElementById('writings-json').value);
-  search = JSON.parse(document.getElementById('search-json').value);
 
   const allWrapper = document.querySelector('.all-wrapper');
 
