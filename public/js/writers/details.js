@@ -1,5 +1,4 @@
 let MONTHS;
-const NEW_WRITING_LOAD_SCROLL_DISTANCE = 300;
 const WRITING_COUNT = 5;
 
 let writer;

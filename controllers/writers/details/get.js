@@ -21,8 +21,8 @@ module.exports = (req, res) => {
         title: writer.name,
         includes: {
           external: {
-            css: ['general', 'header', 'info', 'navbar', 'page', 'writing'],
-            js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest', 'writing']
+            css: ['confirm', 'general', 'header', 'info', 'navbar', 'page', 'writing'],
+            js: ['ancestorWithClassName', 'cookies', 'createConfirm', 'header', 'navbar', 'page', 'serverRequest', 'writing']
           },
           meta: {
             title: writer.name,

@@ -24,8 +24,8 @@ module.exports = (req, res) => {
           title: blog.title,
           includes: {
             external: {
-              css: ['general', 'header', 'info', 'navbar', 'writing'],
-              js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest', 'writing']
+              css: ['confirm', 'general', 'header', 'info', 'navbar', 'writing'],
+              js: ['ancestorWithClassName', 'cookies', 'createConfirm', 'header', 'navbar', 'page', 'serverRequest', 'writing']
             },
             meta: {
               title: blog.title,
@@ -48,8 +48,8 @@ module.exports = (req, res) => {
           title: writing.title,
           includes: {
             external: {
-              css: ['general', 'header', 'navbar', 'page', 'writing'],
-              js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest', 'writing']
+              css: ['confirm', 'general', 'header', 'navbar', 'page', 'writing'],
+              js: ['ancestorWithClassName', 'cookies', 'createConfirm', 'header', 'navbar', 'page', 'serverRequest', 'writing']
             },
             meta: {
               title: writing.title,

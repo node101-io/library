@@ -20,8 +20,8 @@ module.exports = (req, res) => {
         title: res.__('Our Writers'),
         includes: {
           external: {
-            css: ['general', 'header', 'item', 'navbar', 'page', 'text'],
-            js: ['ancestorWithClassName', 'header', 'item', 'navbar', 'page', 'serverRequest']
+            css: ['confirm', 'general', 'header', 'item', 'navbar', 'page', 'text'],
+            js: ['ancestorWithClassName', 'cookies', 'createConfirm', 'header', 'item', 'navbar', 'page', 'serverRequest']
           },
           meta: {
             title: res.__('Our Writers'),

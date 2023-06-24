@@ -94,7 +94,9 @@ TagSchema.statics.findTagsByFiltersAndFormatByLanguage = function (data, languag
   if (!data || typeof data != 'object')
     return callback('bad_request');
 
-  const filters = {};
+  const filters = {
+    is_completed: true
+  };
 
   const limit = data.limit && !isNaN(parseInt(data.limit)) && parseInt(data.limit) > 0 && parseInt(data.limit) < MAX_DOCUMENT_COUNT_PER_QUERY ? parseInt(data.limit) : DEFAULT_DOCUMENT_COUNT_PER_QUERY;
   const page = data.page && !isNaN(parseInt(data.page)) && parseInt(data.page) > 0 ? parseInt(data.page) : 0;

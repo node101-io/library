@@ -37,8 +37,9 @@ if (cluster.isMaster) {
   const QUERY_LIMIT = 20;
 
   const blogRouteController = require('./routes/blogRoute');
-  const projectsRouteController = require('./routes/projectsRoute');
   const indexRouteController = require('./routes/indexRoute');
+  const navbarRouteController = require('./routes/navbarRoute');
+  const projectsRouteController = require('./routes/projectsRoute');
   const writersRouteController = require('./routes/writersRoute');
 
   app.set('views', path.join(__dirname, 'views'));
@@ -96,6 +97,7 @@ if (cluster.isMaster) {
   });
 
   app.use('/', indexRouteController);
+  app.use('/navbar', navbarRouteController);
   app.use('/projects', projectsRouteController);
   app.use('/writers', writersRouteController);
   app.use('/blog/*', blogRouteController);

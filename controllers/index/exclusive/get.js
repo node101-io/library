@@ -21,8 +21,8 @@ module.exports = (req, res) => {
       title: res.__('Exclusive Content'),
       includes: {
         external: {
-          css: ['general', 'header', 'navbar', 'page', 'writing'],
-          js: ['ancestorWithClassName', 'header', 'navbar', 'page', 'serverRequest', 'writing']
+          css: ['confirm', 'general', 'header', 'navbar', 'page', 'writing'],
+          js: ['ancestorWithClassName', 'cookies', 'createConfirm', 'header', 'navbar', 'page', 'serverRequest', 'writing']
         },
         meta: {
           title: res.__('Exclusive Content'),
