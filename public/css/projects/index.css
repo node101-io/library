@@ -89,3 +89,9 @@
   width: calc(var(--each-project-height) - var(--box-padding) / 2);
   min-width: calc(var(--each-project-height) - var(--box-padding) / 2);
 }
+
+@media only screen and (max-width: 650px) {
+  .projects-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

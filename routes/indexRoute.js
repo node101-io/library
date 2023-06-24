@@ -13,6 +13,7 @@ const searchGetController = require('../controllers/index/search/get');
 const stableGetController = require('../controllers/index/stable/get');
 
 const filterPostController = require('../controllers/index/filter/post');
+const themePostController = require('../controllers/index/theme/post');
 
 router.get(
   '/',
@@ -52,6 +53,11 @@ router.post(
   '/filter',
     generateConstantData,
     filterPostController
+);
+router.post(
+  '/theme',
+    generateConstantData,
+    themePostController
 );
 
 module.exports = router;

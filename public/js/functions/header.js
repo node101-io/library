@@ -50,6 +50,8 @@ function loadSearchResults(search) {
 };
 
 window.addEventListener('load', () => {
+  const theme = JSON.parse(document.getElementById('theme').value);
+
   SOCIAL_MEDIA_ICONS = JSON.parse(document.getElementById('social-media-account-json').value);
   QUERY = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop)
@@ -81,6 +83,17 @@ window.addEventListener('load', () => {
       url = `${url}lang=${lang}`;
 
       window.location.href = url;
+    }
+
+    if (event.target.closest('.all-header-change-theme-button')) {
+      serverRequest('/theme', 'POST', {
+        theme: theme == 'dark' ? 'light' : 'dark'
+      }, res => {
+        if (!res.success)
+          return throwError(res.error);
+
+        window.location.reload();
+      });
     }
   });
 

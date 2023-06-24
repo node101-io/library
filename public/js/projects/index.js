@@ -11,7 +11,7 @@ function createProject(project) {
   newProject.href = project.link;
 
   const newProjectContentWrapper = document.createElement('div');
-  newProjectContentWrapper.classList.add('general-each-item-content-wrapper');
+  newProjectContentWrapper.classList.add('each-project-content-wrapper');
 
   const newProjectTitle = document.createElement('h1');
   newProjectTitle.classList.add('each-project-title');
@@ -49,11 +49,10 @@ function createProject(project) {
   newProject.appendChild(newProjectContentWrapper);
 
   const newProjectImage = document.createElement('img');
-  newProjectImage.classList.add('general-each-item-image');
+  newProjectImage.classList.add('each-project-image');
   newProjectImage.src = project.image;
   newProjectImage.alt = project.title;
   newProjectImage.loading = 'lazy';
-
   newProject.appendChild(newProjectImage);
 
   document.querySelector('.projects-wrapper').appendChild(newProject);

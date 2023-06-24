@@ -136,6 +136,7 @@ function loadNavbarContent() {
 
 window.addEventListener('load', () => {
   if (
+    window.innerWidth > NAVBAR_DISPLAY_NONE_WIDTH &&
     !document.getElementById('navbar-loaded') ||
     !JSON.parse(document.getElementById('navbar-loaded').value)
   )

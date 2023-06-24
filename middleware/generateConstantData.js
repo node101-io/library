@@ -94,7 +94,7 @@ module.exports = (req, res, next) => {
     web: 'https://node101.io'
   };
   
-
+  res.locals.theme = req.session.theme ? req.session.theme : 'dark';
   res.locals.HEADER_MENU = HEADER_MENU;
   res.locals.MONTHS = MONTHS;
   res.locals.SOCIAL_MEDIA_ICONS = SOCIAL_MEDIA_ICONS;

@@ -8,6 +8,10 @@ html(lang='tr')
     else
       title library.node101
     link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700,800' rel='stylesheet')
+    if theme && theme == 'light'
+      link(rel='stylesheet' href=`${URL}/css/general/light.css`)
+    else
+      link(rel='stylesheet' href=`${URL}/css/general/dark.css`)
     if includes
       if includes.meta
         meta(property='og:type' content='website')

@@ -1,0 +1,17 @@
+:root {
+  --main-color: rgba(120, 169, 255, 1);
+  --warning-color: rgba(192, 3, 3, 1);
+  --box-color: rgba(212, 212, 212, 1);
+  --background-color: rgba(256, 256, 256, 1);
+  --background-color-two: rgba(248, 248, 248, 1);
+  --border-color: rgba(136, 136, 136, 0.2);
+  --hover-color: rgba(196, 196, 196, 0.2);
+  --hover-color-light: rgba(188, 188, 188, 0.8);
+  --button-text-color: rgba(12, 12, 16, 1);
+  --text-color: rgba(4, 4, 15, 1);
+  --text-color-two: rgba(6, 6, 12, 1);
+  --placeholder-color: rgba(6, 6, 8, 0.6);
+
+  --footer-bottom-color: rgba(224, 224, 224, 1);
+  --navbar-each-empty-line-background-color: rgba(248, 248, 248, 1)
+}

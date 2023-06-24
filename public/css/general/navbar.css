@@ -1,7 +1,6 @@
 :root {
   --general-navbar-width: 350px;
   --general-navbar-each-empty-line-height: 50px;
-  --general-navbar-each-empty-line-background-color: rgba(30, 30, 30, 1);
   --general-navbar-short-writing-height: 70px;
   --general-navbar-writing-height: 110px;
 }
@@ -64,7 +63,7 @@
   min-height: var(--general-navbar-each-empty-line-height);
   width: 100%;
   min-width: 100%;
-  background-color: var(--general-navbar-each-empty-line-background-color);
+  background-color: var(--navbar-each-empty-line-background-color);
   margin-bottom: calc(var(--box-padding) / 3);
 }
 
