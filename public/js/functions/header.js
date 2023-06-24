@@ -75,7 +75,7 @@ function setColorTheme(theme) {
     root.style.setProperty('--button-text-color', 'rgba(250, 250, 250, 1)');
     root.style.setProperty('--text-color', 'rgba(254, 254, 254, 1)');
     root.style.setProperty('--text-color-two', 'rgba(236, 236, 236, 1)');
-    root.style.setProperty('--placeholder-color', 'gba(248, 248, 248, 0.6)');
+    root.style.setProperty('--placeholder-color', 'rgba(248, 248, 248, 0.6)');
     root.style.setProperty('--footer-bottom-color', 'rgba(1, 1, 2, 1)');
     root.style.setProperty('--navbar-each-empty-line-background-color', 'rgba(30, 30, 30, 1)');
   }
