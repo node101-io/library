@@ -26,10 +26,8 @@ block content
           input.all-header-search-input(type='search' name='new-password' placeholder=__('Search') autocomplete='off' value=(search ? search : ''))
         .all-header-search-input-results-wrapper
       .all-header-change-theme-button
-        if theme && theme == 'light'
-          span.all-header-change-theme-button-text= __('Dark')
-        else
-          span.all-header-change-theme-button-text= __('Light')
+        span.all-header-change-theme-button-text.all-header-change-theme-button-text-dark(style=`display: ${theme && theme == 'light' ? 'unset' : 'none'}`)= __('Dark')
+        span.all-header-change-theme-button-text.all-header-change-theme-button-text-light(style=`display: ${theme && theme == 'dark' ? 'unset' : 'none'}`)= __('Light')
         svg.all-header-change-theme-button-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512')
           path(d='M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z')
       if lang == 'tr'
@@ -58,10 +56,8 @@ block content
             input.all-header-search-input(type='search' name='search' placeholder=__('Search') autocomplete='off' value=(search ? search : ''))
           .all-header-search-input-results-wrapper
         .all-header-change-theme-button
-          if theme && theme == 'light'
-            span.all-header-change-theme-button-text= __('Dark')
-          else
-            span.all-header-change-theme-button-text= __('Light')
+          span.all-header-change-theme-button-text.all-header-change-theme-button-text-dark(style=`display: ${theme && theme == 'light' ? 'unset' : 'none'}`)= __('Dark')
+          span.all-header-change-theme-button-text.all-header-change-theme-button-text-light(style=`display: ${theme && theme == 'dark' ? 'unset' : 'none'}`)= __('Light')
           svg.all-header-change-theme-button-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512')
             path(d='M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z')
         if lang == 'tr'

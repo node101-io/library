@@ -49,8 +49,48 @@ function loadSearchResults(search) {
   })
 };
 
+function setColorTheme(theme) {
+  const root = document.documentElement;
+
+  if (theme == 'light') {
+    root.style.setProperty('--box-color', 'rgba(212, 212, 212, 1)');
+    root.style.setProperty('--background-color', 'rgba(256, 256, 256, 1)');
+    root.style.setProperty('--background-color-two', 'rgba(248, 248, 248, 1)');
+    root.style.setProperty('--border-color', 'rgba(136, 136, 136, 0.2)');
+    root.style.setProperty('--hover-color', 'rgba(196, 196, 196, 0.2)');
+    root.style.setProperty('--hover-color-light', 'rgba(188, 188, 188, 0.8)');
+    root.style.setProperty('--button-text-color', 'rgba(12, 12, 16, 1)');
+    root.style.setProperty('--text-color', 'rgba(4, 4, 15, 1)');
+    root.style.setProperty('--text-color-two', 'rgba(6, 6, 12, 1)');
+    root.style.setProperty('--placeholder-color', 'rgba(6, 6, 8, 0.6)');
+    root.style.setProperty('--footer-bottom-color', 'rgba(224, 224, 224, 1)');
+    root.style.setProperty('--navbar-each-empty-line-background-color', 'rgba(248, 248, 248, 1)');
+  } else {
+    root.style.setProperty('--box-color', 'rgba(6, 6, 9, 1)');
+    root.style.setProperty('--background-color', 'rgba(13, 13, 15, 1)');
+    root.style.setProperty('--background-color-two', 'rgba(8, 8, 10, 1)');
+    root.style.setProperty('--border-color', 'rgba(248, 248, 248, 0.2)');
+    root.style.setProperty('--hover-color', 'rgba(148, 148, 148, 0.2)');
+    root.style.setProperty('--hover-color-light', 'rgba(254, 254, 254, 0.8)');
+    root.style.setProperty('--button-text-color', 'rgba(250, 250, 250, 1)');
+    root.style.setProperty('--text-color', 'rgba(254, 254, 254, 1)');
+    root.style.setProperty('--text-color-two', 'rgba(236, 236, 236, 1)');
+    root.style.setProperty('--placeholder-color', 'gba(248, 248, 248, 0.6)');
+    root.style.setProperty('--footer-bottom-color', 'rgba(1, 1, 2, 1)');
+    root.style.setProperty('--navbar-each-empty-line-background-color', 'rgba(30, 30, 30, 1)');
+  }
+
+  const darkButtons = document.querySelectorAll('.all-header-change-theme-button-text-dark');
+  const lightButtons = document.querySelectorAll('.all-header-change-theme-button-text-light');
+
+  for (let i = 0; i < darkButtons.length; i++)
+    darkButtons[i].style.display = (theme == 'dark' ? 'none' : 'unset'); 
+  for (let i = 0; i < lightButtons.length; i++)
+    lightButtons[i].style.display = (theme == 'light' ? 'none' : 'unset'); 
+}
+
 window.addEventListener('load', () => {
-  const theme = JSON.parse(document.getElementById('theme').value);
+  let theme = JSON.parse(document.getElementById('theme').value);
 
   SOCIAL_MEDIA_ICONS = JSON.parse(document.getElementById('social-media-account-json').value);
   QUERY = new Proxy(new URLSearchParams(window.location.search), {
@@ -86,13 +126,17 @@ window.addEventListener('load', () => {
     }
 
     if (event.target.closest('.all-header-change-theme-button')) {
+      theme = (theme == 'dark' ? 'light' : 'dark');
+
+      console.log(theme);
+
       serverRequest('/theme', 'POST', {
-        theme: theme == 'dark' ? 'light' : 'dark'
+        theme
       }, res => {
         if (!res.success)
           return throwError(res.error);
 
-        window.location.reload();
+        setColorTheme(theme);
       });
     }
   });
