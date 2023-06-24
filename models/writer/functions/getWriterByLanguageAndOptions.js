@@ -1,4 +1,4 @@
-module.exports = (writer, language, callback) => {
+module.exports = (writer, language, options, callback) => {
   let translation = writer.translations[language];
 
   if (!translation)
@@ -16,7 +16,7 @@ module.exports = (writer, language, callback) => {
     _id: writer._id.toString(),
     is_completed: writer.is_completed,
     name: writer.name.replace(writer._id.toString(), ''),
-    link: '/writers' + writer.link,
+    link: `/writers${writer.link}${options.query_lang ? '?lang=' + options.query_lang : ''}`,
     title: translation.title,
     image: writer.image,
     social_media_accounts: translation.social_media_accounts

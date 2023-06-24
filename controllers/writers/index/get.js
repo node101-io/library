@@ -4,8 +4,10 @@ const Writer = require('../../../models/writer/Writer');
 
 module.exports = (req, res) => {
   const language = res.locals.lang;
+  const query_lang = res.locals.query_lang;
 
   req.query.limit = WRITERS_COUNT;
+  req.query.query_lang = query_lang;
 
   Writer.findWritersByFiltersAndFormatByLanguage(req.query, language, (err, data) => {
     if (err) return res.redirect('/');
@@ -28,6 +30,7 @@ module.exports = (req, res) => {
             twitter: true
           }
         },
+        url: '/writers',
         active_header: 'writers',
         count,
         writers: data.writers,

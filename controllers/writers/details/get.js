@@ -31,6 +31,7 @@ module.exports = (req, res) => {
             twitter: true
           }
         },
+        url: writer.link,
         count,
         writer
       });

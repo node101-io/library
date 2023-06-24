@@ -4,6 +4,7 @@ const Writing = require('../../../models/writing/Writing');
 
 module.exports = (req, res) => {
   const language = res.locals.lang;
+  const query_lang = res.locals.query_lang;
 
   if (!req.query.search || typeof req.query.search != 'string' || !req.query.search.trim().length)
     return res.redirect('/');
@@ -12,7 +13,8 @@ module.exports = (req, res) => {
     search: req.query.search,
     type: 'blog',
     do_not_load_content: true,
-    do_not_load_writer: true
+    do_not_load_writer: true,
+    query_lang
   }, language, (err, count) => {
     if (err) return res.redirect('/error?message=' + err);
 
@@ -21,7 +23,8 @@ module.exports = (req, res) => {
       limit: WRITING_COUNT,
       type: 'blog',
       do_not_load_content: true,
-      do_not_load_writer: true
+      do_not_load_writer: true,
+      query_lang
     }, language, (err, writings_data) => {
       if (err) return res.redirect('/error?message=' + err);
   
@@ -40,6 +43,7 @@ module.exports = (req, res) => {
             twitter: true
           }
         },
+        url: '/search?search=' + writings_data.search,
         count,
         search: writings_data.search,
         writings: writings_data.writings

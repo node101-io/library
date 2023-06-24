@@ -11,6 +11,8 @@ module.exports = (writing, language, options, callback) => {
     translation = {};
   if (!translation.title || !translation.title.length)
     translation.title = writing.title;
+  if (!translation.parent_title || !translation.parent_title.length)
+    translation.parent_title = writing.parent_title;
   if (!translation.subtitle || !translation.subtitle.length)
     translation.subtitle = writing.subtitle
   if (!formatContent(translation.content) || !formatContent(translation.content).length)
@@ -28,7 +30,7 @@ module.exports = (writing, language, options, callback) => {
     title: translation.parent_title,
     image: writing.parent_image,
     identifier: writing.parent_identifiers.find(each => writing.parent_identifier_languages[each] == language) || writing.parent_identifiers[0],
-    link: `blog/${writing.parent_identifiers.find(each => writing.parent_identifier_languages[each] == language) || writing.parent_identifiers[0]}`
+    link: `blog/${writing.parent_identifiers.find(each => writing.parent_identifier_languages[each] == language) || writing.parent_identifiers[0]}${options.query_lang ? '?lang=' + options.query_lang : ''}`,
   };
 
   if (options.do_not_load_blog) {
@@ -36,7 +38,7 @@ module.exports = (writing, language, options, callback) => {
       return callback(null, {
         _id: writing._id.toString(),
         title: translation.title.replace(writing._id.toString(), ''),
-        link: `/stable/${writing._id.toString()}`,
+        link: `/stable/${writing._id.toString()}${options.query_lang ? '?lang=' + options.query_lang : ''}`,
         blog: {},
         writer: {},
         created_at: moment(writing.created_at).format('DD[.]MM[.]YYYY'),
@@ -55,7 +57,7 @@ module.exports = (writing, language, options, callback) => {
         return callback(null, {
           _id: writing._id.toString(),
           title: translation.title.replace(writing._id.toString(), ''),
-          link: `/stable/${writing._id.toString()}`,
+          link: `/stable/${writing._id.toString()}${options.query_lang ? '?lang=' + options.query_lang : ''}`,
           blog: {},
           writer,
           created_at: moment(writing.created_at).format('DD[.]MM[.]YYYY'),
@@ -74,7 +76,7 @@ module.exports = (writing, language, options, callback) => {
       return callback(null, {
         _id: writing._id.toString(),
         title: translation.title.replace(writing._id.toString(), ''),
-        link: `/blog/${blog.identifier}/${writing.identifiers.find(each => writing.identifier_languages[each] == language) || writing.identifiers[0]}`,
+        link: `/blog/${blog.identifier}/${writing.identifiers.find(each => writing.identifier_languages[each] == language) || writing.identifiers[0]}${options.query_lang ? '?lang=' + options.query_lang : ''}`,
         blog,
         writer: {},
         created_at: moment(writing.created_at).format('DD[.]MM[.]YYYY'),
@@ -93,7 +95,7 @@ module.exports = (writing, language, options, callback) => {
         return callback(null, {
           _id: writing._id.toString(),
           title: translation.title.replace(writing._id.toString(), ''),
-          link: `/blog/${blog.identifier}/${writing.identifiers.find(each => writing.identifier_languages[each] == language) || writing.identifiers[0]}`,
+          link: `/blog/${blog.identifier}/${writing.identifiers.find(each => writing.identifier_languages[each] == language) || writing.identifiers[0]}${options.query_lang ? '?lang=' + options.query_lang : ''}`,
           blog,
           writer,
           created_at: moment(writing.created_at).format('DD[.]MM[.]YYYY'),

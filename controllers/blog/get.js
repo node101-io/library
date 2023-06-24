@@ -5,6 +5,7 @@ const Writing = require('../../models/writing/Writing');
 
 module.exports = (req, res) => {
   const language = res.locals.lang;
+
   const url = urldecode(req.originalUrl.substring(1, req.originalUrl.length)).split('?')[0].replace('blog/', '');
   const blogIdentifier = url.split('/')[0];
   const writingIdentifier = url.split('/')[1];
@@ -33,6 +34,7 @@ module.exports = (req, res) => {
               twitter: true
             }
           },
+          url: blog.link,
           count,
           blog
         });
@@ -56,6 +58,7 @@ module.exports = (req, res) => {
               twitter: true
             }
           },
+          url: writing.link,
           blog,
           writing
         });

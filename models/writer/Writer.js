@@ -2,7 +2,7 @@ const async = require('async');
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const getWriterByLanguage = require('./functions/getWriterByLanguage');
+const getWriterByLanguageAndOptions = require('./functions/getWriterByLanguageAndOptions');
 
 const ALLOWED_LANGUAGE_VALUES = ['en', 'tr', 'ru'];
 const DEFAULT_DOCUMENT_COUNT_PER_QUERY = 20;
@@ -93,7 +93,7 @@ WriterSchema.statics.findWriterByIdAndFormatByLanguage = function (id, language,
     if (!writer.is_completed)
       return callback('not_authenticated_request');
 
-    getWriterByLanguage(writer, language, (err, writer) => {
+    getWriterByLanguageAndOptions(writer, language, {}, (err, writer) => {
       if (err) return callback(err);
 
       return callback(null, writer);
@@ -144,7 +144,7 @@ WriterSchema.statics.findWritersByFiltersAndFormatByLanguage = function (data, l
     .sort({ order: -1 })
     .then(writers => async.timesSeries(
       writers.length,
-      (time, next) => getWriterByLanguage(writers[time], language, (err, writer) => next(err, writer)),
+      (time, next) => getWriterByLanguageAndOptions(writers[time], language, data, (err, writer) => next(err, writer)),
       (err, writers) => {
         if (err) return callback(err);
 

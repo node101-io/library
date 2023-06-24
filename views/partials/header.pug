@@ -3,7 +3,7 @@ block content
   input.display-none#social-media-account-json(value=JSON.stringify(SOCIAL_MEDIA_ICONS))
   .all-wrapper
     .all-header-wrapper
-      a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang = ' + query_lang : ''))
+      a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang=' + query_lang : ''))
         svg.all-header-logo(viewBox='0 0 3263 617' xmlns='http://www.w3.org/2000/svg')
           path(d='M2457.32 118.678H2400.36C2392.14 118.678 2385.47 125.235 2385.47 133.324V602.166C2385.47 610.254 2392.14 616.812 2400.36 616.812H2457.32C2465.55 616.812 2472.22 610.254 2472.22 602.166V133.324C2472.22 125.235 2465.55 118.678 2457.32 118.678Z')
           path(d='M3247.81 118.678H3190.85C3182.63 118.678 3175.96 125.235 3175.96 133.324V602.166C3175.96 610.254 3182.63 616.812 3190.85 616.812H3247.81C3256.03 616.812 3262.7 610.254 3262.7 602.166V133.324C3262.7 125.235 3256.03 118.678 3247.81 118.678Z')
@@ -24,26 +24,17 @@ block content
             path(d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z')
           input.all-header-search-input(type='search' name='new-password' placeholder=__('Search') autocomplete='off' value=(search ? search : ''))
         .all-header-search-input-results-wrapper
-      .all-header-language-wrapper(style='overflow: hidden')
-        .all-header-language-button
-          .all-header-language-button-text= __('Langugage')
-          img.all-header-language-button-flag(src=`${URL}/img/flags/${lang}.png` alt='node101 language ' + lang)
-        .all-header-language-menu
-          if lang != 'en'
-            .all-header-each-language-button#all-header-en
-              .all-header-each-language-button-text EN
-              img.all-header-each-language-button-flag(src=`${URL}/img/flags/en.png` alt='node101 language english')
-          if lang != 'tr'
-            .all-header-each-language-button#all-header-tr
-              .all-header-each-language-button-text TR
-              img.all-header-each-language-button-flag(src=`${URL}/img/flags/tr.png` alt='node101 language turkish')
-          if lang != 'ru'
-            .all-header-each-language-button#all-header-ru
-              .all-header-each-language-button-text RU
-              img.all-header-each-language-button-flag(src=`${URL}/img/flags/ru.png` alt='node101 language russian')
+      if lang == 'tr'
+        a.all-header-language-button(href=`${url}${url.includes('?') ? '&' : '?'}lang=en`)
+          img.all-header-language-button-flag(src=`${URL}/img/flags/en.png` alt='node101 language english')
+          span.all-header-language-button-text EN
+      else
+        a.all-header-language-button(href=`${url}${url.includes('?') ? '&' : '?'}lang=tr`)
+          img.all-header-language-button-flag(src=`${URL}/img/flags/tr.png` alt='node101 language türkçe')
+          span.all-header-language-button-text TR
     .all-header-responsive-wrapper
       .all-header-responsive-top-wrapper
-        a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang = ' + query_lang : ''))
+        a.all-header-logo-wrapper(href='/' + (query_lang ? '?lang=' + query_lang : ''))
           svg.all-header-logo(viewBox='0 0 3263 617' xmlns='http://www.w3.org/2000/svg')
             path(d='M2457.32 118.678H2400.36C2392.14 118.678 2385.47 125.235 2385.47 133.324V602.166C2385.47 610.254 2392.14 616.812 2400.36 616.812H2457.32C2465.55 616.812 2472.22 610.254 2472.22 602.166V133.324C2472.22 125.235 2465.55 118.678 2457.32 118.678Z')
             path(d='M3247.81 118.678H3190.85C3182.63 118.678 3175.96 125.235 3175.96 133.324V602.166C3175.96 610.254 3182.63 616.812 3190.85 616.812H3247.81C3256.03 616.812 3262.7 610.254 3262.7 602.166V133.324C3262.7 125.235 3256.03 118.678 3247.81 118.678Z')
@@ -58,23 +49,14 @@ block content
               path(d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z')
             input.all-header-search-input(type='search' name='search' placeholder=__('Search') autocomplete='off' value=(search ? search : ''))
           .all-header-search-input-results-wrapper
-        .all-header-language-wrapper(style='overflow: hidden')
-          .all-header-language-button
-            .all-header-language-button-text= __('Langugage')
-            img.all-header-language-button-flag(src=`${URL}/img/flags/${lang}.png` alt='node101 language ' + lang)
-          .all-header-language-menu
-            if lang != 'en'
-              .all-header-each-language-button#all-header-en
-                .all-header-each-language-button-text EN
-                img.all-header-each-language-button-flag(src=`${URL}/img/flags/en.png` alt='node101 language english')
-            if lang != 'tr'
-              .all-header-each-language-button#all-header-tr
-                .all-header-each-language-button-text TR
-                img.all-header-each-language-button-flag(src=`${URL}/img/flags/tr.png` alt='node101 language turkish')
-            if lang != 'ru'
-              .all-header-each-language-button#all-header-ru
-                .all-header-each-language-button-text RU
-                img.all-header-each-language-button-flag(src=`${URL}/img/flags/ru.png` alt='node101 language russian')
+        if lang == 'tr'
+          a.all-header-language-button(href=`${url}${url.includes('?') ? '&' : '?'}lang=en`)
+            img.all-header-language-button-flag(src=`${URL}/img/flags/en.png` alt='node101 language english')
+            span.all-header-language-button-text EN
+        else
+          a.all-header-language-button(href=`${url}${url.includes('?') ? '&' : '?'}lang=tr`)
+            img.all-header-language-button-flag(src=`${URL}/img/flags/tr.png` alt='node101 language türkçe')
+            span.all-header-language-button-text TR
       .all-header-buttons-wrapper
         each menu in HEADER_MENU
           if active_header && active_header == menu.name

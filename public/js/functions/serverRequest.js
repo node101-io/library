@@ -1,8 +1,14 @@
-function serverRequest (url, method, data, callback) {
+let query_lang = null;
+
+function serverRequest (_url, method, data, callback) {
   const METHOD_VALUES = ['FILE', 'GET', 'POST'];
 
-  if (!url || typeof url != 'string' || !url.trim().length)
+  const query_lang = QUERY?.lang ? QUERY.lang : null;
+
+  if (!_url || typeof _url != 'string' || !_url.trim().length)
     return callback({ success: false, error: 'bad_request' });
+
+  const url = _url.includes('?lang=') ? _url.trim() : _url.trim() + ((_url.includes('?') ? '&lang=' : '?lang=') + query_lang)
 
   if (!method || !METHOD_VALUES.includes(method))
     return callback({ success: false, error: 'bad_request' });
@@ -43,5 +49,4 @@ function serverRequest (url, method, data, callback) {
       return callback({ success: false, error: 'network_error' });
     }
   };
-}
-  
+};

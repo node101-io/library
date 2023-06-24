@@ -3,7 +3,10 @@ block inner
   input.display-none#MONTHS(value=JSON.stringify(MONTHS))
   input.display-none#writings-json(value=JSON.stringify(writings))
   input.display-none#search-json(value=JSON.stringify(search))
-  h1.search-count-text #{__('Find')} #{count} #{__('result' + (count > 1 ? 's' : '') + ' for the')} "#{search}" #{__('search')}.
+  if lang == 'tr'
+    h1.search-count-text #{__('Find')} "#{search}" #{__('result' + (count > 1 ? 's' : '') + ' for the')} #{count} #{__('search')}.
+  else
+    h1.search-count-text #{__('Find')} #{count} #{__('result' + (count > 1 ? 's' : '') + ' for the')} "#{search}" #{__('search')}.
   .general-writings-wrapper
     each writing, i in writings
       .general-each-writing-seperator
