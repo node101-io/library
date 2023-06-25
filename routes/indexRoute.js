@@ -10,6 +10,7 @@ const errorGetController = require('../controllers/index/error/get');
 const exclusiveGetController = require('../controllers/index/exclusive/get');
 const indexGetController = require('../controllers/index/index/get');
 const searchGetController = require('../controllers/index/search/get');
+const sitemapGetController = require('../controllers/index/sitemap/get');
 const stableGetController = require('../controllers/index/stable/get');
 
 const filterPostController = require('../controllers/index/filter/post');
@@ -42,6 +43,12 @@ router.get(
     generateConstantData,
     loadNavbarData,
     searchGetController
+);
+router.get(
+  '/sitemap',
+    generateConstantData,
+    loadNavbarData,
+    sitemapGetController
 );
 router.get(
   '/stable/*',
