@@ -52,7 +52,7 @@ input[type=number] {
 
 :root {
   --page-horizontal-padding: 80px;
-  --content-horizontal-padding: 170px;
+  --content-horizontal-padding: 150px;
   --box-padding: 30px;
   --space-character-width: 6px;
 }
@@ -67,13 +67,13 @@ p, h1, h2, h3, h4, h5, h6 {
 @media only screen and (min-width: 1900px) {
   :root {
     --page-horizontal-padding: calc((100vw - 1900px) / 2 + 80px);
-    --content-horizontal-padding: calc((100vw - 1900px) / 2 + 170px);
+    --content-horizontal-padding: calc((100vw - 1900px) / 2 + 150px);
   }
 }
 @media only screen and (max-width: 1700px) {
   :root {
     --page-horizontal-padding: 70px;
-    --content-horizontal-padding: 150px;
+    --content-horizontal-padding: 130px;
   }
 }
 @media only screen and (max-width: 1500px) {

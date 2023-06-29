@@ -87,7 +87,7 @@ function setColorTheme(theme) {
     darkButtons[i].style.display = (theme == 'dark' ? 'none' : 'unset'); 
   for (let i = 0; i < lightButtons.length; i++)
     lightButtons[i].style.display = (theme == 'light' ? 'none' : 'unset'); 
-}
+};
 
 window.addEventListener('load', () => {
   let theme = JSON.parse(document.getElementById('theme').value);
@@ -127,8 +127,6 @@ window.addEventListener('load', () => {
 
     if (event.target.closest('.all-header-change-theme-button')) {
       theme = (theme == 'dark' ? 'light' : 'dark');
-
-      console.log(theme);
 
       serverRequest('/theme', 'POST', {
         theme
