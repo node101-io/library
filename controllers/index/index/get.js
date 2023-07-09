@@ -11,7 +11,6 @@ module.exports = (req, res) => {
 
   Writing.findWritingsByFiltersAndFormatByLanguage({
     limit: SLIDER_WRITING_COUNT,
-    type: 'blog',
     label: 'slider',
     do_not_load_content: true,
     do_not_load_writer: true,
@@ -21,7 +20,6 @@ module.exports = (req, res) => {
 
     Writing.findWritingsByFiltersAndFormatByLanguage({
       limit: WRITING_COUNT,
-      type: 'blog',
       do_not_load_content: true,
       do_not_load_writer: true,
       query_lang

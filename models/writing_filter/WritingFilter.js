@@ -11,7 +11,6 @@ const LABEL_VALUES = ['slider', 'editors_pick', 'exclusive'];
 const LANGUAGE_VALUES = ['en', 'tr', 'ru'];
 const MAX_DATABASE_TEXT_FIELD_LENGTH = 1e4;
 const MAX_DATABASE_LONG_TEXT_FIELD_LENGTH = 1e5;
-const TYPE_VALUES = ['blog', 'book', 'guide'];
 const MAX_DOCUMENT_COUNT_PER_QUERY = 1e2;
 
 const Schema = mongoose.Schema;
@@ -32,10 +31,6 @@ const WritingFilterSchema = new Schema({
     trim: true,
     minlength: 1,
     maxlength: MAX_DATABASE_LONG_TEXT_FIELD_LENGTH
-  },
-  type: {
-    type: String,
-    required: true
   },
   parent_id: {
     type: mongoose.Types.ObjectId,
@@ -67,10 +62,6 @@ const WritingFilterSchema = new Schema({
     default: null,
     trim: true,
     maxlength: MAX_DATABASE_TEXT_FIELD_LENGTH
-  },
-  order: {
-    type: Number,
-    required: true
   }
 });
 
@@ -93,9 +84,6 @@ WritingFilterSchema.statics.findWritingFiltersByFiltersAndLanguage = function (d
   if (data.label && LABEL_VALUES.includes(data.label))
     filters.label = data.label;
 
-  if (data.type && TYPE_VALUES.includes(data.type))
-    filters.type = data.type;
-
   if (data.flag && typeof data.flag == 'string' && data.flag.trim().length && data.flag.trim().length < MAX_DATABASE_TEXT_FIELD_LENGTH)
     filters.flag = data.flag.trim();
 
@@ -105,39 +93,25 @@ WritingFilterSchema.statics.findWritingFiltersByFiltersAndLanguage = function (d
   if (data.writer_id && validator.isMongoId(data.writer_id.toString()))
     filters.writer_id = mongoose.Types.ObjectId(data.writer_id.toString());
 
+  if (data.search && typeof data.search == 'string' && data.search.trim().length && data.search.trim().length < MAX_DATABASE_TEXT_FIELD_LENGTH)
+    filters.title = { $regex: data.search.trim(), $options: 'i' };
+
   const limit = data.limit && !isNaN(parseInt(data.limit)) && parseInt(data.limit) > 0 && parseInt(data.limit) < MAX_DOCUMENT_COUNT_PER_QUERY ? parseInt(data.limit) : DEFAULT_DOCUMENT_COUNT_PER_QUERY;
   const page = data.page && !isNaN(parseInt(data.page)) && parseInt(data.page) > 0 ? parseInt(data.page) : 0;
   const skip = page * limit;
-  
-  if (!data.search || typeof data.search != 'string' || !data.search.trim().length) {
-    WritingFilter
-      .find(filters)
-      .skip(skip)
-      .sort({ order: -1 })
-      .limit(limit)
-      .then(writing_filters => callback(null, {
-        search: null,
-        limit,
-        page,
-        id_list: writing_filters.map(each => each.writing_id)
-      }))
-      .catch(_ => callback('database_error'));
-  } else {
-    filters.title = { $regex: data.search.trim(), $options: 'i' };
 
-    WritingFilter
-      .find(filters)
-      .skip(skip)
-      .sort({ order: -1 })
-      .limit(limit)
-      .then(writing_filters => callback(null, {
-        search: data.search.trim(),
-        limit,
-        page,
-        id_list: writing_filters.map(each => each.writing_id.toString())
-      }))
-      .catch(_ => callback('database_error'));
-  };
+  WritingFilter
+    .find(filters)
+    .skip(skip)
+    .sort({ created_at: -1 })
+    .limit(limit)
+    .then(writing_filters => callback(null, {
+      search: 'title' in filters ? data.search.trim() : null,
+      limit,
+      page,
+      id_list: writing_filters.map(each => each.writing_id)
+    }))
+    .catch(_ => callback('database_error'));
 };
 
 WritingFilterSchema.statics.findWritingFiltersCountByFiltersAndLanguage = function (data, language, callback) {
@@ -156,9 +130,6 @@ WritingFilterSchema.statics.findWritingFiltersCountByFiltersAndLanguage = functi
   if (data.label && LABEL_VALUES.includes(data.label))
     filters.label = data.label;
 
-  if (data.type && TYPE_VALUES.includes(data.type))
-    filters.type = data.type;
-
   if (data.flag && typeof data.flag == 'string' && data.flag.trim().length && data.flag.trim().length < MAX_DATABASE_TEXT_FIELD_LENGTH)
     filters.flag = data.flag.trim();
 
@@ -167,22 +138,15 @@ WritingFilterSchema.statics.findWritingFiltersCountByFiltersAndLanguage = functi
 
   if (data.writer_id && validator.isMongoId(data.writer_id.toString()))
     filters.writer_id = mongoose.Types.ObjectId(data.writer_id.toString());
-  
-  if (!data.search || typeof data.search != 'string' || !data.search.trim().length) {
-    WritingFilter
-      .find(filters)
-      .countDocuments()
-      .then(count => callback(null, count))
-      .catch(_ => callback('database_error'));
-  } else {
+
+  if (data.search && typeof data.search == 'string' && data.search.trim().length && data.search.trim().length < MAX_DATABASE_TEXT_FIELD_LENGTH)
     filters.title = { $regex: data.search.trim(), $options: 'i' };
 
-    WritingFilter
-      .find(filters)
-      .countDocuments()
-      .then(count => callback(null, count))
-      .catch(_ => callback('database_error'));
-  };
+  WritingFilter
+    .find(filters)
+    .countDocuments()
+    .then(count => callback(null, count))
+    .catch(_ => callback('database_error'));
 };
 
 module.exports = mongoose.model('WritingFilter', WritingFilterSchema);

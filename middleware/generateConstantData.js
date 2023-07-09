@@ -22,11 +22,11 @@ module.exports = (req, res, next) => {
       text: res.__('Writers'),
       link: '/writers'
     },
-    {
-      name: 'books',
-      text: res.__('Books'),
-      link: '/books'
-    }
+    // {
+    //   name: 'books',
+    //   text: res.__('Books'),
+    //   link: '/books'
+    // }
   ];
   const MONTHS = [
     res.__('Jan'),
