@@ -65,6 +65,7 @@ function setColorTheme(theme) {
     root.style.setProperty('--placeholder-color', 'rgba(6, 6, 8, 0.6)');
     root.style.setProperty('--footer-bottom-color', 'rgba(224, 224, 224, 1)');
     root.style.setProperty('--navbar-each-empty-line-background-color', 'rgba(248, 248, 248, 1)');
+    root.style.setProperty('--code-color', 'rgba(64, 64, 64, 1)');
   } else {
     root.style.setProperty('--box-color', 'rgba(6, 6, 9, 1)');
     root.style.setProperty('--background-color', 'rgba(13, 13, 15, 1)');
@@ -78,6 +79,7 @@ function setColorTheme(theme) {
     root.style.setProperty('--placeholder-color', 'rgba(248, 248, 248, 0.6)');
     root.style.setProperty('--footer-bottom-color', 'rgba(1, 1, 2, 1)');
     root.style.setProperty('--navbar-each-empty-line-background-color', 'rgba(30, 30, 30, 1)');
+    root.style.setProperty('--code-color', 'rgba(136, 136, 136, 1)');
   }
 
   const darkButtons = document.querySelectorAll('.all-header-change-theme-button-text-dark');

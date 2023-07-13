@@ -48,7 +48,7 @@ module.exports = (req, res) => {
           title: writing.title,
           includes: {
             external: {
-              css: ['confirm', 'general', 'header', 'navbar', 'page', 'writing'],
+              css: ['confirm', 'general', 'header', 'jetBrainsMono', 'navbar', 'page', 'writing'],
               js: ['ancestorWithClassName', 'cookies', 'createConfirm', 'header', 'navbar', 'page', 'serverRequest', 'writing']
             },
             meta: {

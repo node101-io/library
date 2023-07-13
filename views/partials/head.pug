@@ -41,6 +41,8 @@ html(lang='tr')
           each file_name in includes.external.css
             if file_name == 'page'
               link(rel='stylesheet' href=`${URL}/css/${page}.css`)
+            else if file_name == 'jetBrainsMono'
+              link(href='https://fonts.googleapis.com/css?family=JetBrains+Mono:500' rel='stylesheet')
             else
               link(rel='stylesheet' href=`${URL}/css/general/${file_name}.css`)
         if includes.external.js

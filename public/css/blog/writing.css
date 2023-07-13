@@ -281,7 +281,7 @@
 
 .writing-list {
   color: var(--text-color);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 300;
   line-height: 23px;
   outline: none;
@@ -304,9 +304,11 @@
 .writing-code {
   outline: none;
   background-color: var(--box-color) !important;
-  font-weight: 600 !important;
+  font-family: 'JetBrains Mono' !important;
+  font-weight: 500 !important;
   padding: 15px 30px;
-  color: rgb(7, 161, 40);
+  color: var(--code-color);
+  margin-top: calc(-1 * var(--box-padding));
 }
 
 .writing-quote {
