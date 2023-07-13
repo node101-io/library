@@ -38,7 +38,7 @@ block main
           .general-navbar-tags-inner-wrapper
             if tags && tags.length
               each tag in tags
-                a.general-navbar-each-tag(href=tag)= tag.name
+                a.general-navbar-each-tag(href=tag.url)= tag.name
         article.general-navbar-exclusive-wrapper
           .general-navbar-title-wrapper
             h1.general-navbar-title= __('Exclusive Content')
@@ -92,7 +92,7 @@ block main
           .general-navbar-tags-inner-wrapper
             if tags && tags.length
               each tag in tags
-                a.general-navbar-each-tag(href=tag)= tag.name
+                a.general-navbar-each-tag(href=tag.url)= tag.name
         article.general-navbar-exclusive-wrapper
           .general-navbar-title-wrapper
             h1.general-navbar-title= __('Exclusive Content')

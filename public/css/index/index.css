@@ -82,23 +82,24 @@
 
 .each-slide-title {
   font-weight: 700;
-  font-size: 19px;
+  font-size: 18px;
   color: var(--text-color);
   margin-top: auto;
   text-decoration: none;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration-thickness: 2px;
 }
 .each-slide-title-hovered {
   text-decoration: underline !important;
 }
 .each-slide-subtitle {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 140%;
   color: var(--text-color);
   margin-top: auto;

@@ -94,8 +94,8 @@
   text-overflow: ellipsis;
 }
 .general-each-writing-title-hovered {
-  border-bottom: 1px solid var(--text-color);
-  margin-bottom: -1px;
+  border-bottom: 1.5px solid var(--text-color);
+  margin-bottom: -1.5px;
 }
 .general-each-writing-subtitle {
   font-weight: 400;
@@ -116,6 +116,7 @@
   min-width: var(--general-writing-image-size);
   border-radius: 3px;
   margin-left: var(--box-padding);
+  box-shadow: 0 0 2px var(--shadow-color);
 }
 
 .general-writings-loading-icon-wrapper {

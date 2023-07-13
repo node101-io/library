@@ -19,5 +19,15 @@
   color: var(--text-color-two);
   line-height: 175%;
   margin-top: calc(var(--box-padding) / 2);
-  margin-bottom: var(--box-padding);
+}
+
+.general-text-link {
+  font-weight: 600;
+  color: var(--main-color);
+  text-decoration: none;
+  margin: 0 4px;
+}
+.general-text-link:hover {
+  border-bottom: 2px solid var(--main-color);
+  margin-bottom: -2px;
 }

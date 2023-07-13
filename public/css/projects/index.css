@@ -88,6 +88,7 @@
   min-height: calc(var(--each-project-height) - var(--box-padding) / 2);
   width: calc(var(--each-project-height) - var(--box-padding) / 2);
   min-width: calc(var(--each-project-height) - var(--box-padding) / 2);
+  border-radius: 4px;
 }
 
 @media only screen and (max-width: 650px) {

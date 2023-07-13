@@ -59,6 +59,7 @@ function setColorTheme(theme) {
     root.style.setProperty('--border-color', 'rgba(136, 136, 136, 0.2)');
     root.style.setProperty('--hover-color', 'rgba(196, 196, 196, 0.2)');
     root.style.setProperty('--hover-color-light', 'rgba(188, 188, 188, 0.8)');
+    root.style.setProperty('--shadow-color', 'rgba(1, 1, 1, 0.5)');
     root.style.setProperty('--button-text-color', 'rgba(12, 12, 16, 1)');
     root.style.setProperty('--text-color', 'rgba(4, 4, 15, 1)');
     root.style.setProperty('--text-color-two', 'rgba(6, 6, 12, 1)');
@@ -73,6 +74,7 @@ function setColorTheme(theme) {
     root.style.setProperty('--border-color', 'rgba(248, 248, 248, 0.2)');
     root.style.setProperty('--hover-color', 'rgba(148, 148, 148, 0.2)');
     root.style.setProperty('--hover-color-light', 'rgba(254, 254, 254, 0.8)');
+    root.style.setProperty('--shadow-color', 'rgba(248, 248, 248, 0.2)');
     root.style.setProperty('--button-text-color', 'rgba(250, 250, 250, 1)');
     root.style.setProperty('--text-color', 'rgba(254, 254, 254, 1)');
     root.style.setProperty('--text-color-two', 'rgba(236, 236, 236, 1)');
