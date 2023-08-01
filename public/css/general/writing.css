@@ -1,6 +1,6 @@
 :root {
   --general-writing-blog-image-size: 30px;
-  --general-writing-image-size: 130px;
+  --general-writing-image-size: 110px;
   --general-writing-loading-icon-wrapper-height: 100px;
 }
 
@@ -94,12 +94,12 @@
   text-overflow: ellipsis;
 }
 .general-each-writing-title-hovered {
-  border-bottom: 1px solid var(--text-color);
-  margin-bottom: -1px;
+  border-bottom: 1.5px solid var(--text-color);
+  margin-bottom: -1.5px;
 }
 .general-each-writing-subtitle {
-  font-weight: 300;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 16px;
   color: var(--text-color);
   margin-top: calc(var(--box-padding) / 2);
   display: -webkit-box;
@@ -114,8 +114,9 @@
   min-height: var(--general-writing-image-size);
   width: var(--general-writing-image-size);
   min-width: var(--general-writing-image-size);
-  border-radius: 2px;
+  border-radius: 3px;
   margin-left: var(--box-padding);
+  box-shadow: 0 0 2px var(--shadow-color);
 }
 
 .general-writings-loading-icon-wrapper {

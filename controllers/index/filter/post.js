@@ -4,8 +4,10 @@ const Writing = require('../../../models/writing/Writing');
 
 module.exports = (req, res) => {
   const language = res.locals.lang;
+  const query_lang = res.locals.query_lang;
 
   req.body.language = language;
+  req.body.query_lang = query_lang;
   req.body.type = 'blog';
   req.body.limit = WRITING_COUNT;
   req.body.do_not_load_content = true;

@@ -22,10 +22,12 @@
     "moment-timezone": "^0.5.41",
     "mongoose": "^6.6.5",
     "multer": "^1.4.5-lts.1",
+    "node-fetch": "^2.6.9",
     "os": "^0.1.2",
     "pug": "^3.0.2",
     "serve-favicon": "^2.5.0",
     "urldecode": "^1.0.1",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "xml-js": "^1.6.11"
   }
 }

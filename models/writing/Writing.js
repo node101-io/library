@@ -40,6 +40,28 @@ const WritingSchema = new Schema({
     type: mongoose.Types.ObjectId,
     required: true
   },
+  parent_identifiers: {
+    type: Array,
+    default: []
+  },
+  parent_identifier_languages: {
+    type: Object,
+    default: {}
+  },
+  parent_title: {
+    type: String,
+    default: null,
+    trim: true,
+    minlength: 1,
+    maxlength: MAX_DATABASE_TEXT_FIELD_LENGTH
+  },
+  parent_image: {
+    type: String,
+    default: null,
+    trim: true,
+    minlength: 1,
+    maxlength: MAX_DATABASE_TEXT_FIELD_LENGTH
+  },
   writer_id: {
     type: mongoose.Types.ObjectId,
     default: null
@@ -177,24 +199,28 @@ WritingSchema.statics.findWritingsByFiltersAndFormatByLanguage = function (data,
   WritingFilter.findWritingFiltersByFiltersAndLanguage(data, language, (err, writing_filters_data) => {
     if (err) return callback(err);
 
-    Writing.find({ _id: { $in: writing_filters_data.id_list } }, (err, writings) => {
-      if (err) return callback('database_error');
+    Writing
+      .find({ _id: { $in: writing_filters_data.id_list } })
+      .sort({ created_at: -1 })
+      .then(writings => {
+        if (err) return callback('database_error');
 
-      async.timesSeries(
-        writings.length,
-        (time, next) => getWritingByLanguageAndOptions(writings[time], language, data, (err, writing) => next(err, writing)),
-        (err, writings) => {
-          if (err) return callback(err);
-  
-          return callback(null, {
-            search: writing_filters_data.search,
-            limit: writing_filters_data.limit,
-            page: writing_filters_data.page,
-            writings
-          });
-        }
-      );
-    });
+        async.timesSeries(
+          writings.length,
+          (time, next) => getWritingByLanguageAndOptions(writings[time], language, data, (err, writing) => next(err, writing)),
+          (err, writings) => {
+            if (err) return callback(err);
+    
+            return callback(null, {
+              search: writing_filters_data.search,
+              limit: writing_filters_data.limit,
+              page: writing_filters_data.page,
+              writings
+            });
+          }
+        );
+      })
+      .catch(_ => callback('database_error'));
   });
 };
 

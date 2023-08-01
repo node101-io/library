@@ -6,7 +6,8 @@ const generateConstantData = require('../middleware/generateConstantData');
 const loadNavbarData = require('../middleware/loadNavbarData');
 
 const indexGetController = require('../controllers/projects/index/get');
-const detailsGetController = require('../controllers/projects/details/get');
+
+const filterPostController = require('../controllers/projects/filter/post');
 
 router.get(
   '/',
@@ -14,10 +15,11 @@ router.get(
     loadNavbarData,
     indexGetController
 );
-router.get(
-  '/*',
+
+router.post(
+  '/filter',
     generateConstantData,
-    detailsGetController
+    filterPostController
 );
 
 module.exports = router;

@@ -3,14 +3,17 @@ block inner
   input.display-none#MONTHS(value=JSON.stringify(MONTHS))
   input.display-none#writings-json(value=JSON.stringify(writings))
   input.display-none#search-json(value=JSON.stringify(search))
-  h1.search-count-text #{__('Find')} #{count} #{__('result' + (count > 1 ? 's' : '') + ' for the')} "#{search}" #{__('search')}.
+  if lang == 'tr'
+    h1.search-count-text #{__('Find')} "#{search}" #{__('result' + (count > 1 ? 's' : '') + ' for the')} #{count} #{__('search')}.
+  else
+    h1.search-count-text #{__('Find')} #{count} #{__('result' + (count > 1 ? 's' : '') + ' for the')} "#{search}" #{__('search')}.
   .general-writings-wrapper
     each writing, i in writings
       .general-each-writing-seperator
       a.general-each-writing-wrapper(href=writing.link)
         .general-each-writing-content-wrapper
           .general-each-writing-content-header-wrapper
-            .general-each-writing-blog-wrapper
+            .general-each-writing-blog-wrapper(id=writing.blog.link)
               img.general-each-writing-blog-image(src=writing.blog.image alt=writing.blog.title)
               h2.general-each-writing-blog-title= writing.blog.title
             .general-each-writing-date • #{writing.created_at.split('.')[0]} #{MONTHS[parseInt(writing.created_at.split('.')[1]) - 1]} #{writing.created_at.split('.')[2]}

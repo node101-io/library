@@ -1,8 +1,8 @@
 :root {
-  --each-slide-blog-image-size: 40px;
-  --each-slide-image-size: 170px;
+  --each-slide-blog-image-size: 60px;
+  --each-slide-image-size: 200px;
   --each-slide-footer-height: 40px;
-  --each-slide-bullet-size: 9px;
+  --each-slide-bullet-size: 11px;
   --each-slide-button-size: 20px;
 }
 
@@ -82,27 +82,29 @@
 
 .each-slide-title {
   font-weight: 700;
-  font-size: 19px;
+  font-size: 18px;
   color: var(--text-color);
   margin-top: auto;
   text-decoration: none;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration-thickness: 2px;
 }
 .each-slide-title-hovered {
   text-decoration: underline !important;
 }
 .each-slide-subtitle {
-  font-weight: 600;
-  font-size: 17px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 140%;
   color: var(--text-color);
   margin-top: auto;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -113,6 +115,7 @@
   min-height: var(--each-slide-image-size);
   width: var(--each-slide-image-size);
   min-width: var(--each-slide-image-size);
+  border-radius: 5px;
 }
 
 .each-slide-footer-wrapper {
@@ -189,14 +192,18 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .slider-wrapper {
+    margin-top: var(--box-padding);
+  }
   :root {
-    --each-slide-image-size: 140px;
+    --each-slide-blog-image-size: 30px;
+    --each-slide-image-size: 170px;
   }
   .each-slide-content-inner-wrapper {
     padding-right: 0;
   }
   .each-slide-subtitle {
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
   }
   .each-slide-image {
     display: none;

@@ -1,10 +1,62 @@
+let MONTHS;
+const WRITING_COUNT = 5;
+
+let writer;
+let isWritingEndReached = false;
+let isWritingsLoading = false;
+let writings = [];
+let writingsPageCount = 0;
+
+function loadNewWritings() {
+  if (isWritingsLoading) return;
+
+  isWritingsLoading = true;
+
+  serverRequest('/filter', 'POST', {
+    writer_id: writer._id,
+    page: writingsPageCount
+  }, res => {
+    if (!res.success || res.error) return alert(res.error);
+
+    writingsPageCount++;
+
+    let isLastWritingInArray = true;
+    const lastTenWritings = writings.slice(writings.length - 10);
+
+    for (let i = 0; i < res.writings.length; i++)
+      if (!isLastWritingInArray || !lastTenWritings.find(any => any._id.toString() == res.writings[i]._id.toString())) {
+        isLastWritingInArray = false;
+        createWriting(res.writings[i])
+      }
+
+    checkNavbarPosition();
+
+    if (res.writings.length < WRITING_COUNT) {
+      isWritingEndReached = true;
+      if (document.getElementById('writings-loading-icon'))
+        document.getElementById('writings-loading-icon').style.display = 'none';
+    }
+
+    isWritingsLoading = false;
+  });
+};
+
 window.addEventListener('load', () => {
-  document.addEventListener('click', event => {
-    if (ancestorWithClassName(event.target, 'general-each-writing-wrapper')) {
-      if (ancestorWithClassName(event.target, 'general-each-writing-social-media-account-wrapper'))
-        return;
-      const target = ancestorWithClassName(event.target, 'general-each-writing-wrapper');
-      window.location.href = target.id;
+  MONTHS = JSON.parse(document.getElementById('MONTHS').value);
+  writer = JSON.parse(document.getElementById('writer-json').value);
+
+  loadNewWritings();
+
+  const allWrapper = document.querySelector('.all-wrapper');
+  const allFooterHeight = document.querySelector('.all-footer-wrapper').offsetHeight;
+
+  allWrapper.addEventListener('scroll', () => {
+    if (
+      !isWritingEndReached &&
+      !isWritingsLoading &&
+      (allWrapper.scrollHeight - (allWrapper.scrollTop + window.document.body.offsetHeight + allFooterHeight)) < NEW_WRITING_LOAD_SCROLL_DISTANCE
+    ) {
+      loadNewWritings();
     }
   });
-});
+})

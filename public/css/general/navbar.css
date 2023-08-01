@@ -1,5 +1,6 @@
 :root {
   --general-navbar-width: 350px;
+  --general-navbar-each-empty-line-height: 50px;
   --general-navbar-short-writing-height: 70px;
   --general-navbar-writing-height: 110px;
 }
@@ -37,6 +38,34 @@
   bottom: 0;
   right: var(--content-horizontal-padding);
 }
+.general-navbar-inner-empty-wrapper, .general-navbar-inner-wrapper {
+  width: 100%;
+  min-width: 100%;
+  height: fit-content;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+}
+
+.general-navbar-empty-wrapper {
+  height: fit-content;
+  min-height: fit-content;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: var(--box-padding);
+  margin-bottom: var(--box-padding);
+}
+.general-navbar-each-empty-line {
+  height: var(--general-navbar-each-empty-line-height);
+  min-height: var(--general-navbar-each-empty-line-height);
+  width: 100%;
+  min-width: 100%;
+  background-color: var(--navbar-each-empty-line-background-color);
+  margin-bottom: calc(var(--box-padding) / 3);
+}
 
 .general-navbar-title-wrapper {
   height: fit-content;
@@ -58,10 +87,11 @@
 }
 
 .general-navbar-see-more-button {
-  font-weight: 700;
+  font-weight: 400;
   font-size: 14px;
   color: var(--text-color-two);
   cursor: pointer;
+  text-decoration: none;
 }
 .general-navbar-see-more-button:hover {
   border-bottom: 1px solid var(--text-color);
@@ -99,6 +129,7 @@
   height: calc(var(--general-navbar-short-writing-height) - var(--box-padding));
   min-height: calc(var(--general-navbar-short-writing-height) - var(--box-padding));
   margin-right: calc(var(--box-padding) / 2);
+  border-radius: 3px;
 }
 
 .general-navbar-each-short-writing-title {
@@ -173,6 +204,7 @@
   height: calc(var(--general-navbar-writing-height) - var(--box-padding));
   min-height: calc(var(--general-navbar-writing-height) - var(--box-padding));
   margin-right: calc(var(--box-padding) / 2);
+  border-radius: 4px;
 }
 
 .general-navbar-each-writing-content-wrapper {

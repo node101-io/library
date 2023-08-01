@@ -2,6 +2,10 @@
   --each-project-height: 150px;
 }
 
+.general-title-wrapper {
+  margin-bottom: calc(var(--box-padding) / 2);
+}
+
 .projects-wrapper {
   height: fit-content;
   min-height: fit-content;
@@ -84,4 +88,11 @@
   min-height: calc(var(--each-project-height) - var(--box-padding) / 2);
   width: calc(var(--each-project-height) - var(--box-padding) / 2);
   min-width: calc(var(--each-project-height) - var(--box-padding) / 2);
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 650px) {
+  .projects-wrapper {
+    grid-template-columns: 1fr;
+  }
 }

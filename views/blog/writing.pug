@@ -1,9 +1,36 @@
 extends ../partials/navbar
 block inner
+  input.display-none#writing-json(value=JSON.stringify(writing))
+  input.display-none#MONTHS(value=JSON.stringify(MONTHS))
   .writing-outer-wrapper
     .writing-content-wrapper
       img.writing-cover(src=writing.cover width='100%' alt=writing.title)
+      .writing-info-wrapper
+        .writing-info-inner-wrapper
+          a.writing-blog-wrapper(href=writing.blog.link)
+            img.writing-blog-image(src=writing.blog.image alt=writing.blog.title)
+            h3.writing-blog-title= writing.blog.title
+          span.writing-date • #{writing.created_at.split('.')[0]} #{MONTHS[parseInt(writing.created_at.split('.')[1]) - 1]} #{writing.created_at.split('.')[2]}
+        a.writing-writer-wrapper(href=writing.writer.link)
+          .writing-writer-info-wrapper
+            h3.writing-writer-name= writing.writer.name
+            h4.writing-writer-title= writing.writer.title
+          img.writing-writer-image(src=writing.writer.image alt=writing.writer.name)
       h1.writing-title= writing.title
       h2.writing-subtitle= writing.subtitle
       .writing-content !{writing.content.map(each => each.split('contenteditable="true"').join('').split('spellcheck="false"').join('').split('general-writing').join('writing')).join('').split('width="500px"').join('')}
-    .writings-wrapper
+      .writing-end-writer-outer-wrapper
+        a.writing-end-writer-wrapper(href=writing.writer.link)
+          .writing-end-writer-info-wrapper
+            h1.writing-end-writer-name= writing.writer.name
+            h2.writing-end-writer-title= writing.writer.title
+            .writing-end-writer-social-media-account-outer-wrapper
+              each account in Object.keys(writing.writer.social_media_accounts)
+                .writing-end-writer-social-media-account-wrapper(id=writing.writer.social_media_accounts[account])
+                  svg.writing-end-writer-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
+                    path(d=SOCIAL_MEDIA_ICONS[account].d)
+          img.writing-end-writer-image(src=writing.writer.image alt=writing.writer.name)
+  .general-writings-wrapper
+  .general-writings-loading-icon-wrapper#writings-loading-icon
+    svg.general-writings-loading-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512')
+      path(d='M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z')

@@ -1,9 +1,23 @@
 extends ../partials/navbar
 block inner
-  .writing-outer-wrapper
-    .writing-content-wrapper
-      img.writing-cover(src=writing.cover width='100%' alt=writing.title)
-      h1.writing-title= writing.title
-      h2.writing-subtitle= writing.subtitle
-      .writing-content !{writing.content.map(each => each.split('contenteditable="true"').join('').split('spellcheck="false"').join('').split('general-writing').join('writing')).join('').split('width="500px"').join('')}
-    .writings-wrapper
+  input.display-none#blog-json(value=JSON.stringify(blog))
+  input.display-none#MONTHS(value=JSON.stringify(MONTHS))
+  .general-info-outer-wrapper
+    .general-info-wrapper
+      .general-info-content-wrapper
+        h1.general-info-title= blog.title
+        h2.general-info-subtitle= blog.subtitle
+        .general-info-social-media-accounts-wrapper
+          each account in Object.keys(blog.social_media_accounts)
+            a.general-info-each-social-media-account-wrapper(href=blog.social_media_accounts[account] target='_blank')
+              svg.general-info-each-social-media-account-icon(viewBox=SOCIAL_MEDIA_ICONS[account].view_box xmlns='http://www.w3.org/2000/svg')
+                path(d=SOCIAL_MEDIA_ICONS[account].d)
+        h3.general-info-number #{count} #{__('writing')}#{count > 1 ? __('s') : ''}
+      .general-info-image-wrapper
+        img.general-info-image(src=blog.image alt=blog.name)
+    h2.general-info-responsive-subtitle= blog.subtitle
+  .inner-content-wrapper
+    .general-writings-wrapper
+    .general-writings-loading-icon-wrapper#writings-loading-icon(style=(count > 0 ? '' : 'display: none;'))
+      svg.general-writings-loading-icon(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512')
+        path(d='M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z')

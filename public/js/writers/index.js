@@ -96,16 +96,17 @@ function loadNewWriters() {
 
 window.addEventListener('load', () => {
   document.addEventListener('click', event => {
-    if (ancestorWithClassName(event.target, 'general-each-item-social-media-account-icon')) {
-      const target = ancestorWithClassName(event.target, 'general-each-item-social-media-account-icon');
-      window.location.href = target.id;
+    if (ancestorWithClassName(event.target, 'general-each-item-social-media-account-wrapper')) {
+      event.preventDefault();
+      const link = ancestorWithClassName(event.target, 'general-each-item-social-media-account-wrapper').id;
+      window.open(link, '_blank').focus();
     }
   });
 
   const allWrapper = document.querySelector('.all-wrapper');
   const allFooterHeight = document.querySelector('.all-footer-wrapper').offsetHeight;
 
-  allWrapper.addEventListener('scroll', (_) => {
+  allWrapper.addEventListener('scroll', _ => {
     if (
       !isWriterEndReached &&
       !isWritersLoading &&

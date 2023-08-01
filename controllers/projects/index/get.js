@@ -19,16 +19,17 @@ module.exports = (req, res) => {
         title: res.__('Projects'),
         includes: {
           external: {
-            css: ['general', 'header', 'item', 'navbar', 'page', 'text'],
-            js: ['ancestorWithClassName', 'header', 'item', 'navbar', 'page', 'serverRequest']
+            css: ['confirm', 'general', 'header', 'item', 'navbar', 'page', 'text'],
+            js: ['ancestorWithClassName', 'cookies', 'createConfirm', 'header', 'item', 'navbar', 'page', 'serverRequest']
           },
           meta: {
             title: res.__('Projects'),
             description: res.__('Stake your assets with the industry\'s most user-friendly organization! node101 accompanies you on your staking journey from start to finish and offers a privileged service where you can safely stake your assets and get support from experts whenever you want.'),
-            image: '/res/images/meta/header.png',
+            image: '/img/meta/header.png',
             twitter: true
           }
         },
+        url: '/projects',
         active_header: 'projects',
         count,
         projects: data.blogs,

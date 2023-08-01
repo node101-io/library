@@ -1,33 +1,56 @@
 extends ./header
 block main
+  input.display-none#navbar-loaded(value=JSON.stringify(navbar_loaded ? true : false))
   .general-inner-content-outer-wrapper
     .general-inner-content-wrapper
       block inner
     .general-navbar-wrapper
-      article.general-navbar-editors-pick-wrapper
-        .general-navbar-title-wrapper(style='margin-top: 0;')
-          h1.general-navbar-title= __('Editors Pick')
-          a.general-navbar-see-more-button= __('See more')
-        - for (let i = 0; i < editors_pick.length; i++)
-          a.general-navbar-each-short-writing-wrapper(href=editors_pick[i].link)
-            img.general-navbar-each-short-writing-image(src=editors_pick[i].logo alt=editors_pick[i].title)
-            h2.general-navbar-each-short-writing-title= editors_pick[i].title
-      article.general-navbar-tags-wrapper
-        h1.general-navbar-title= __('Popular Tags')
-        .general-navbar-tags-inner-wrapper
-          - for (let i = 0; i < tags.length; i++)
-            a.general-navbar-each-tag(href=tags[i].url)= tags[i].name
-      article.general-navbar-exclusive-wrapper
-        .general-navbar-title-wrapper
-          h1.general-navbar-title= __('Exclusive Content')
-          a.general-navbar-see-more-button= __('See more')
-        - for (let i = 0; i < exclusive.length; i++)
-          a.general-navbar-each-writing-wrapper(href=exclusive[i].link)
-            img.general-navbar-each-writing-image(src=exclusive[i].logo alt=exclusive[i].title)
-            .general-navbar-each-writing-content-wrapper
-              h2.general-navbar-each-writing-title= exclusive[i].title
-              h2.general-navbar-each-writing-subtitle= exclusive[i].subtitle
-      article.general-navbar-node101-wrapper
+      .general-navbar-inner-empty-wrapper(style=`display: ${navbar_loaded ? 'none' : 'flex'}`)
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+      .general-navbar-inner-wrapper(style=`display: ${navbar_loaded ? 'flex' : 'none'}`)
+        article.general-navbar-editors-pick-wrapper
+          .general-navbar-title-wrapper(style='margin-top: 0;')
+            h1.general-navbar-title= __('Editor\'s Pick')
+            a.general-navbar-see-more-button(href=`/editors-pick${query_lang ? '?lang=' + query_lang : ''}`)= __('See more')
+          if editors_pick && editors_pick.length
+            each writing in editors_pick
+              a.general-navbar-each-short-writing-wrapper(href=writing.link)
+                img.general-navbar-each-short-writing-image(src=writing.logo alt=writing.title)
+                h2.general-navbar-each-short-writing-title= writing.title
+        article.general-navbar-tags-wrapper
+          h1.general-navbar-title= __('Popular Tags')
+          .general-navbar-tags-inner-wrapper
+            if tags && tags.length
+              each tag in tags
+                a.general-navbar-each-tag(href=tag.url)= tag.name
+        article.general-navbar-exclusive-wrapper
+          .general-navbar-title-wrapper
+            h1.general-navbar-title= __('Exclusive Content')
+            a.general-navbar-see-more-button(href=`/exclusive${query_lang ? '?lang=' + query_lang : ''}`)= __('See more')
+          if exclusive && exclusive.length
+            each writing in exclusive
+              a.general-navbar-each-writing-wrapper(href=writing.link)
+                img.general-navbar-each-writing-image(src=writing.logo alt=writing.title)
+                .general-navbar-each-writing-content-wrapper
+                  h2.general-navbar-each-writing-title= writing.title
+                  h2.general-navbar-each-writing-subtitle= writing.subtitle
+        article.general-navbar-node101-wrapper
         .general-navbar-title-wrapper
           h1.general-navbar-title= __('Follow Us')
         .general-navbar-social-media-wrapper
@@ -36,30 +59,52 @@ block main
               svg.general-navbar-each-social-media-account-icon(xmlns='http://www.w3.org/2000/svg' viewBox=SOCIAL_MEDIA_ICONS[account].view_box)
                 path(d=SOCIAL_MEDIA_ICONS[account].d)
     .general-navbar-scrolled-wrapper(style='display: none')
-      article.general-navbar-editors-pick-wrapper
-        .general-navbar-title-wrapper(style='margin-top: 0;')
-          h1.general-navbar-title= __('Editors Pick')
-          a.general-navbar-see-more-button= __('See more')
-        - for (let i = 0; i < editors_pick.length; i++)
-          a.general-navbar-each-short-writing-wrapper(href=editors_pick[i].link)
-            img.general-navbar-each-short-writing-image(src=editors_pick[i].logo alt=editors_pick[i].title)
-            h2.general-navbar-each-short-writing-title= editors_pick[i].title
-      article.general-navbar-tags-wrapper
-        h1.general-navbar-title= __('Popular Tags')
-        .general-navbar-tags-inner-wrapper
-          each tag in tags
-            a.general-navbar-each-tag(href=tag.url)= tag.name
-      article.general-navbar-exclusive-wrapper
-        .general-navbar-title-wrapper
-          h1.general-navbar-title= __('Exclusive Content')
-          a.general-navbar-see-more-button= __('See more')
-        - for (let i = 0; i < exclusive.length; i++)
-          a.general-navbar-each-writing-wrapper(href=exclusive[i].link)
-            img.general-navbar-each-writing-image(src=exclusive[i].logo alt=exclusive[i].title)
-            .general-navbar-each-writing-content-wrapper
-              h2.general-navbar-each-writing-title= exclusive[i].title
-              h2.general-navbar-each-writing-subtitle= exclusive[i].subtitle
-      article.general-navbar-node101-wrapper
+      .general-navbar-inner-empty-wrapper(style=`display: ${navbar_loaded ? 'none' : 'flex'}`)
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+        .general-navbar-empty-wrapper
+          .general-navbar-each-empty-line
+          .general-navbar-each-empty-line
+      .general-navbar-inner-wrapper(style=`display: ${navbar_loaded ? 'flex' : 'none'}`)
+        article.general-navbar-editors-pick-wrapper
+          .general-navbar-title-wrapper(style='margin-top: 0;')
+            h1.general-navbar-title= __('Editor\'s Pick')
+            a.general-navbar-see-more-button(href=`/editors-pick${query_lang ? '?lang=' + query_lang : ''}`)= __('See more')
+          if editors_pick && editors_pick.length
+            each writing in editors_pick
+              a.general-navbar-each-short-writing-wrapper(href=writing.link)
+                img.general-navbar-each-short-writing-image(src=writing.logo alt=writing.title)
+                h2.general-navbar-each-short-writing-title= writing.title
+        article.general-navbar-tags-wrapper
+          h1.general-navbar-title= __('Popular Tags')
+          .general-navbar-tags-inner-wrapper
+            if tags && tags.length
+              each tag in tags
+                a.general-navbar-each-tag(href=tag.url)= tag.name
+        article.general-navbar-exclusive-wrapper
+          .general-navbar-title-wrapper
+            h1.general-navbar-title= __('Exclusive Content')
+            a.general-navbar-see-more-button(href=`/exclusive${query_lang ? '?lang=' + query_lang : ''}`)= __('See more')
+          if exclusive && exclusive.length
+            each writing in exclusive
+              a.general-navbar-each-writing-wrapper(href=writing.link)
+                img.general-navbar-each-writing-image(src=writing.logo alt=writing.title)
+                .general-navbar-each-writing-content-wrapper
+                  h2.general-navbar-each-writing-title= writing.title
+                  h2.general-navbar-each-writing-subtitle= writing.subtitle
+        article.general-navbar-node101-wrapper
         .general-navbar-title-wrapper
           h1.general-navbar-title= __('Follow Us')
         .general-navbar-social-media-wrapper
@@ -67,3 +112,4 @@ block main
             a.general-navbar-each-social-media-account-wrapper(href=NODE101_SOCIAL_MEDIA_ACCOUNTS[account] target='_blank')
               svg.general-navbar-each-social-media-account-icon(xmlns='http://www.w3.org/2000/svg' viewBox=SOCIAL_MEDIA_ICONS[account].view_box)
                 path(d=SOCIAL_MEDIA_ICONS[account].d)
+    
