@@ -54,8 +54,8 @@
   text-overflow: ellipsis;
 }
 .general-each-item-title-hovered {
-  border-bottom: 1px solid var(--text-color);
-  margin-bottom: calc(var(--box-padding) / 4 - 1px);
+  border-bottom: 2px solid var(--text-color);
+  margin-bottom: calc(var(--box-padding) / 4 - 2px);
 }
 .general-each-item-subtitle {
   font-weight: 400;
