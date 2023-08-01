@@ -14,13 +14,18 @@ function moveToNextSlide() {
   if (isSlideMoving) return;
   isSlideMoving = true;
 
+  const allWrapper = document.querySelector('.all-wrapper');
   const wrapper = document.querySelector('.slider-wrapper');
   const element = wrapper.childNodes[0];
 
   const duplicate = element.cloneNode(true);
-  
+
+  const allWraperScrollTop = allWrapper.scrollTop;
+
   wrapper.appendChild(duplicate);
   element.remove();
+
+  allWrapper.scrollTop = allWraperScrollTop;
 
   isSlideMoving = false;
 };
@@ -29,14 +34,18 @@ function moveToPrevSlide() {
   if (isSlideMoving) return;
   isSlideMoving = true;
 
+  const allWrapper = document.querySelector('.all-wrapper');
   const wrapper = document.querySelector('.slider-wrapper');
   const element = wrapper.childNodes[wrapper.childNodes.length - 1];
 
   const duplicate = element.cloneNode(true);
-  
+
+  const allWraperScrollTop = allWrapper.scrollTop;
+
   wrapper.insertBefore(duplicate, wrapper.childNodes[0]);
   element.remove();
 
+  allWrapper.scrollTop = allWraperScrollTop;
   isSlideMoving = false;
 };
 
