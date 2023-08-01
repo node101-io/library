@@ -2,7 +2,6 @@ let MONTHS;
 const SLIDE_CHANGE_DURATION_IN_MS = 5 * 1000;
 
 let currentSlide = 0;
-let isSlideMoving = false;
 let isWritingEndReached = false;
 let isWritingsLoading = false;
 let onSlide = false;
@@ -10,54 +9,33 @@ let slider = [];
 let writings = [];
 let writingsPageCount = 1;
 
-function moveToNextSlide() {
-  if (isSlideMoving) return;
-  isSlideMoving = true;
+const sliderObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      currentSlide = Number(entry.target.getAttribute('data-index'));
+      const slideBullets = document.querySelectorAll('.slide-bullet');
+      const filledBullet = document.querySelector('.slide-bullet-filled');
 
-  const allWrapper = document.querySelector('.all-wrapper');
-  const wrapper = document.querySelector('.slider-wrapper');
-  const element = wrapper.childNodes[0];
+      if (filledBullet) {
+        filledBullet.classList.remove('slide-bullet-filled');
+      }
 
-  const duplicate = element.cloneNode(true);
-
-  const allWrapperScrollTop = allWrapper.scrollTop;
-
-  wrapper.appendChild(duplicate);
-  element.remove();
-
-  allWrapper.scrollTop = allWrapperScrollTop;
-
-  currentSlide = (currentSlide + 1) % slider.length;
-
-  isSlideMoving = false;
-};
-
-function moveToPrevSlide() {
-  if (isSlideMoving) return;
-  isSlideMoving = true;
-
-  const allWrapper = document.querySelector('.all-wrapper');
-  const wrapper = document.querySelector('.slider-wrapper');
-  const element = wrapper.childNodes[wrapper.childNodes.length - 1];
-
-  const duplicate = element.cloneNode(true);
-
-  const allWrapperScrollTop = allWrapper.scrollTop;
-
-  wrapper.insertBefore(duplicate, wrapper.childNodes[0]);
-  element.remove();
-
-  allWrapper.scrollTop = allWrapperScrollTop;
-
-  currentSlide = (currentSlide + slider.length - 1) % slider.length;
-
-  isSlideMoving = false;
-};
+      slideBullets[currentSlide].classList.add('slide-bullet-filled');
+    }
+  })
+}, { threshold: 0.5 });
 
 function changeSlide() {
+  const sliderWrapper = document.querySelector('.slider-wrapper');
+
   setTimeout(() => {
-    if (!onSlide)
-      moveToNextSlide();
+    if (!onSlide) {
+      currentSlide = (Number(currentSlide) + 1) % slider.length;
+
+      sliderWrapper.scrollTo({
+        left: sliderWrapper.clientWidth * currentSlide, behavior: 'smooth'
+      });
+    }
     changeSlide();
   }, SLIDE_CHANGE_DURATION_IN_MS)
 };
@@ -101,6 +79,12 @@ window.addEventListener('load', () => {
   writings = JSON.parse(document.getElementById('writings-json').value);
   changeSlide();
 
+  const sliderWrapper = document.querySelector('.slider-wrapper');
+
+  document.querySelectorAll('.each-slide-wrapper').forEach(each => {
+    sliderObserver.observe(each);
+  });
+
   document.addEventListener('mouseover', event => {
     if (ancestorWithClassName(event.target, 'each-slide-content-wrapper')) {
       const target = ancestorWithClassName(event.target, 'each-slide-content-wrapper');
@@ -117,13 +101,13 @@ window.addEventListener('load', () => {
   });
 
   document.addEventListener('click', event => {
-    if (ancestorWithClassName(event.target, 'move-next-slide-button')) moveToNextSlide();
-    if (ancestorWithClassName(event.target, 'move-previous-slide-button')) moveToPrevSlide();
-
-    if (event.target.classList.contains('each-slide-bullet')) {
-      const index = event.target.id.replace('each-slide-bullet-', '');
-      for (let i = 0; i < slider.length && index != currentSlide; i++)
-        moveToNextSlide();
+    if (ancestorWithClassName(event.target, 'move-previous-slide-button')) {
+      sliderWrapper.scrollTo({ left: sliderWrapper.clientWidth * ((currentSlide - 1) % slider.length), behavior: 'smooth' });
+    } else if (ancestorWithClassName(event.target, 'move-next-slide-button')) {
+      sliderWrapper.scrollTo({ left: sliderWrapper.clientWidth * ((currentSlide + 1) % slider.length), behavior: 'smooth' });
+    } else if (event.target.classList.contains('slide-bullet')) {
+      currentSlide = Number(event.target.getAttribute('data-index'));
+      sliderWrapper.scrollTo({ left: sliderWrapper.clientWidth * currentSlide, behavior: 'smooth' });
     }
   });
 
