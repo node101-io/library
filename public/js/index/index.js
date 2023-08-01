@@ -20,12 +20,12 @@ function moveToNextSlide() {
 
   const duplicate = element.cloneNode(true);
 
-  const allWraperScrollTop = allWrapper.scrollTop;
+  const allWrapperScrollTop = allWrapper.scrollTop;
 
   wrapper.appendChild(duplicate);
   element.remove();
 
-  allWrapper.scrollTop = allWraperScrollTop;
+  allWrapper.scrollTop = allWrapperScrollTop;
 
   isSlideMoving = false;
 };
@@ -40,12 +40,12 @@ function moveToPrevSlide() {
 
   const duplicate = element.cloneNode(true);
 
-  const allWraperScrollTop = allWrapper.scrollTop;
+  const allWrapperScrollTop = allWrapper.scrollTop;
 
   wrapper.insertBefore(duplicate, wrapper.childNodes[0]);
   element.remove();
 
-  allWrapper.scrollTop = allWraperScrollTop;
+  allWrapper.scrollTop = allWrapperScrollTop;
   isSlideMoving = false;
 };
 
