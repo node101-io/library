@@ -80,8 +80,9 @@ window.addEventListener('load', () => {
   changeSlide();
 
   const sliderWrapper = document.querySelector('.slider-wrapper');
+  const sliderWrappers = document.querySelectorAll('.each-slide-wrapper');
 
-  document.querySelectorAll('.each-slide-wrapper').forEach(each => {
+  sliderWrappers.forEach(each => {
     sliderObserver.observe(each);
   });
 

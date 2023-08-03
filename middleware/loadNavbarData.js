@@ -1,4 +1,5 @@
-const FIVE_MINS_IN_MS = 5 * 60 * 1000;
+// const FIVE_MINS_IN_MS = 5 * 60 * 1000;
+const FIVE_MINS_IN_MS = 0;
 
 module.exports = (req, res, next) => {
   if (
