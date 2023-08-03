@@ -100,6 +100,16 @@ window.addEventListener('load', () => {
     }
   });
 
+  document.addEventListener('touchstart', event => {
+    if (ancestorWithClassName(event.target, 'each-slide-wrapper')) {
+      onSlide = true;
+    }
+  });
+
+  document.addEventListener('touchend', event => {
+    onSlide = false;
+  });
+
   document.addEventListener('click', event => {
     if (ancestorWithClassName(event.target, 'move-previous-slide-button')) {
       sliderWrapper.scrollTo({ left: sliderWrapper.clientWidth * ((currentSlide - 1) % slider.length), behavior: 'smooth' });
