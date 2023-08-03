@@ -1,8 +1,5 @@
-const async = require('async');
 const mongoose = require('mongoose');
 const validator = require('validator');
-
-const getTagByLanguage = require('./functions/getTagByLanguage');
 
 const DEFAULT_DOCUMENT_COUNT_PER_QUERY = 20;
 const MAX_DATABASE_ARRAY_FIELD_LENGTH = 1e4;
@@ -44,12 +41,13 @@ const TagSchema = new Schema({
     type: Boolean,
     default: false
   },
-  translations: {
-    type: Object,
-    default: {}
-  },
   order: {
     type: Number,
+    required: true
+  },
+  language: {
+    type: String,
+    length: 2,
     required: true
   }
 });
@@ -68,34 +66,15 @@ TagSchema.statics.findTagById = function (id, callback) {
   });
 };
 
-TagSchema.statics.findTagByIdAndFormatByLanguage = function (id, language, callback) {
-  const Tag = this;
-
-  if (!language || !validator.isISO31661Alpha2(language.toString()))
-    return callback('bad_request');
-
-  Tag.findTagById(id, (err, tag) => {
-    if (err) return callback(err);
-
-    if (!tag.is_completed)
-      return callback('not_authenticated_request');
-
-    getTagByLanguage(tag, language, (err, tag) => {
-      if (err) return callback(err);
-
-      return callback(null, tag);
-    });
-  });
-};
-
-TagSchema.statics.findTagsByFiltersAndFormatByLanguage = function (data, language, callback) {
+TagSchema.statics.findTagsByFilters = function (data, callback) {
   const Tag = this;
 
   if (!data || typeof data != 'object')
     return callback('bad_request');
 
   const filters = {
-    is_completed: true
+    is_completed: true,
+    language: data.language || 'en'
   };
 
   const limit = data.limit && !isNaN(parseInt(data.limit)) && parseInt(data.limit) > 0 && parseInt(data.limit) < MAX_DOCUMENT_COUNT_PER_QUERY ? parseInt(data.limit) : DEFAULT_DOCUMENT_COUNT_PER_QUERY;
@@ -107,19 +86,11 @@ TagSchema.statics.findTagsByFiltersAndFormatByLanguage = function (data, languag
     .sort({ order: -1 })
     .limit(limit)
     .skip(skip)
-    .then(tags => async.timesSeries(
-      tags.length,
-      (time, next) => getTagByLanguage(tags[time], language, (err, tag) => next(err, tag)),
-      (err, tags) => {
-        if (err) return callback(err);
-
-        return callback(null, {
-          limit,
-          page,
-          tags
-        });
-      })
-    )
+    .then(tags => callback(null, {
+      limit,
+      page,
+      tags
+    }))
     .catch(err => callback('database_error'));
 };
 
