@@ -4,10 +4,6 @@
   --writing-image-width: 450px;
 }
 
-grammarly-extension {
-  position: unset !important;
-}
-
 .writing-outer-wrapper {
   display: flex;
   width: 100%;
