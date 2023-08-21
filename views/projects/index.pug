@@ -3,7 +3,11 @@ block inner
   input.display-none#projects-json(value=JSON.stringify(projects))
   .general-title-wrapper
     h1.general-title= __('Projects')
-    p.general-text= __('node101 brings together experienced names in the blockchain world and young enthusiats with the vision of helping the growth of the blockchain community accross the globe. Feel free to reach us from support@node101.io if you have any questions / feedback on our content.')
+    p.general-text= __('node101 brings together experienced names in the blockchain world and young enthusiasts with the vision of helping the growth of the blockchain community across the globe.')
+    p.general-text
+      span #{__('Feel free to reach us from')}
+      a.general-text-link(href='mailto:support@node101.io') support@node101.io
+      span #{__('if you have any questions / feedback on our content.')}
   .projects-wrapper
     each project in projects
       a.each-project-wrapper(href=project.link)
