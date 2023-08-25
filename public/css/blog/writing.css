@@ -6,6 +6,7 @@
 
 grammarly-extension {
   position: unset !important;
+  pointer-events: unset !important;
 }
 
 .writing-outer-wrapper {
